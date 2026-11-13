@@ -69,7 +69,7 @@ npm run review-sheet   # rewrites docs/strings-review.md after an interface stri
 | `scripts/build.ts`, `scripts/serve.ts` | The build after Vite; the GitHub Pages-like preview |
 | `migration/` | The six pieces as geometer.dev had them, and the map of what changed (addresses and section ids only) |
 | `redirects.json` | geometer.dev/journal/<slug> to journal.streetlist.in/<slug>, for the geometer.dev website |
-| `docs/` | [Explanation](docs/Explanation.md) (design and why), [editorial guidelines](docs/editorial.md), [image prompts](docs/image-prompts.md), [story ideas](docs/story-ideas.md), [review list](docs/review.md), [strings review sheet](docs/strings-review.md), [Deferred](docs/Deferred.md) |
+| `docs/` | [Explanation](docs/Explanation.md) (design and why), [editorial guidelines](docs/editorial.md), [image prompts](docs/image-prompts.md), [review list](docs/review.md), [strings review sheet](docs/strings-review.md), [Deferred](docs/Deferred.md) |
 
 ## How to write a piece (for the owner)
 

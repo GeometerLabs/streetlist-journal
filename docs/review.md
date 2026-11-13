@@ -35,7 +35,7 @@ publishes the site (`.github/workflows/pages.yml`), so read these first.
 
 ## Good to know
 
-9. `docs/story-ideas.md` is not shown on the site, but the repository is public, so anyone can read it.
+9. The story ideas list moved to the private plans (14 Nov) before the first push, so the public repository does not carry it.
 10. The Pages CMS form (`.pages.yml`) was written from Pages CMS's documentation and checked by the tests, but not opened in the
     hosted app (that needs the GitHub repository first). First step after pushing: open one piece in Pages CMS, save it without
     changes, and check that the commit changes nothing (or only adds `"featured": false` / `"draft": false`).
