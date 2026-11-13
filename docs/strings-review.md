@@ -48,6 +48,7 @@ are shown with a sample (5, "Livelihoods", "Geometer").
 | `piece.corrections` | Corrections: | सुधार: | തിരുത്തലുകൾ: | ತಿದ್ದುಪಡಿಗಳು: |
 | `piece.noCorrections` | none recorded. | कोई दर्ज नहीं। | ഒന്നും രേഖപ്പെടുത്തിയിട്ടില്ല. | ಯಾವುದೂ ದಾಖಲಾಗಿಲ್ಲ. |
 | `piece.keepReading` | Keep reading | और पढ़ें | തുടർന്നു വായിക്കുക | ಇನ್ನಷ್ಟು ಓದಿ |
+| `piece.elsewhere` | More to read on geometer.dev | geometer.dev पर और पढ़ें | geometer.dev-ൽ കൂടുതൽ വായിക്കാൻ | geometer.dev ನಲ್ಲಿ ಇನ್ನಷ್ಟು ಓದಲು |
 | `piece.allJournal` | All of the Journal | पूरा जर्नल | ജേണൽ മുഴുവൻ | ಇಡೀ ಜರ್ನಲ್ |
 | `piece.reviewedBy` | Translation reviewed by A. Reviewer | अनुवाद की समीक्षा: A. Reviewer | പരിഭാഷ പരിശോധിച്ചത്: A. Reviewer | ಅನುವಾದ ಪರಿಶೀಲಿಸಿದವರು: A. Reviewer |
 | `lists.count` | 5 pieces | 5 लेख | ലേഖനങ്ങൾ: 5 | ಲೇಖನಗಳು: 5 |
