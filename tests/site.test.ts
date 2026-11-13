@@ -20,9 +20,10 @@ const content = loadContent(root);
 
 /**
  * The size budget for a budget phone on a slow connection. Pages are sent gzipped by GitHub Pages. A lead picture's phone file is
- * the 800 px AVIF (a phone at device pixel ratio 2 shows a 390 px wide picture). The browser test measures whole page loads.
+ * the 800 px AVIF (a phone at device pixel ratio 2 shows a 390 px wide picture). SVG (covers, faces) is measured gzipped, as GitHub
+ * Pages sends it. The browser test measures whole page loads.
  */
-export const BUDGET = { htmlGz: 24 * 1024, cssGz: 14 * 1024, themeJsGz: 1024, phonePicture: 110 * 1024, cover: 40 * 1024, face: 12 * 1024 };
+export const BUDGET = { htmlGz: 24 * 1024, cssGz: 14 * 1024, themeJsGz: 1024, phonePicture: 110 * 1024, cover: 40 * 1024, face: 4 * 1024 };
 
 /** Every HTML file in dist/, by its address. */
 function builtPages(): Map<string, string> {
@@ -221,5 +222,8 @@ test("the size budget holds: pages, stylesheet, theme script, phone-sized pictur
     if (/-800\.avif$/.test(name)) assert.ok(size <= BUDGET.phonePicture, `${name}: ${size} bytes`);
     if (/^cover-.*\.svg$/.test(name)) assert.ok(gzipSync(readFileSync(join(img, name))).length <= BUDGET.cover, `${name} gzipped`);
   }
-  for (const name of readdirSync(join(img, "faces"))) assert.ok(statSync(join(img, "faces", name)).size <= BUDGET.face, `faces/${name}`);
+  for (const name of readdirSync(join(img, "faces"))) {
+    const gz = gzipSync(readFileSync(join(img, "faces", name))).length;
+    assert.ok(gz <= BUDGET.face, `faces/${name}: ${gz} bytes gzipped`);
+  }
 });
