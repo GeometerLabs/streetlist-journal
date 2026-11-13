@@ -43,6 +43,7 @@ export const kn = {
     corrections: "ತಿದ್ದುಪಡಿಗಳು:",
     noCorrections: "ಯಾವುದೂ ದಾಖಲಾಗಿಲ್ಲ.",
     keepReading: "ಇನ್ನಷ್ಟು ಓದಿ",
+    elsewhere: "geometer.dev ನಲ್ಲಿ ಇನ್ನಷ್ಟು ಓದಲು",
     allJournal: "ಇಡೀ ಜರ್ನಲ್",
     reviewedBy: (name: string) => `ಅನುವಾದ ಪರಿಶೀಲಿಸಿದವರು: ${name}`,
   },

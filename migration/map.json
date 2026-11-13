@@ -28,6 +28,12 @@
     "category": "journal",
     "relatedAssessmentIds": []
   },
-  "related": "Only pieces that moved stay in 'related' (the Keep reading cards). The ones that stayed with Geometer are still linked from the piece's sources.",
-  "added": "Each piece gains a 'companion' (a face from src/characters/cast.ts and the mood it shows); it is new, so the test does not compare it."
+  "related": "Pieces that moved stay in 'related' (the Keep reading cards). Pieces that stayed with Geometer move to 'elsewhere': their title (from geometer.dev's articles.json) and their geometer.dev address, shown under Keep reading.",
+  "added": "Each piece gains a 'companion' (a face from src/characters/cast.ts and the mood it shows); it is new, so the test does not compare it.",
+  "stayedBehind": {
+    "about": "Titles of the related pieces that stayed with Geometer, as geometer.dev had them.",
+    "what-you-depend-on": "What you depend on when you build on Geometer",
+    "lost-acknowledgements": "A timeout is not a failed refund.",
+    "exact-call-approval": "Approve the action that will happen."
+  }
 }

@@ -68,6 +68,8 @@ export interface PieceFile {
   ending?: Ending;
   sources: { title: string; url: string }[];
   related: string[];
+  /** Related reading on other sites (the pieces that stayed with Geometer), shown under Keep reading. */
+  elsewhere?: { title: string; url: string }[];
   corrections: string[];
 }
 /** A translation as stored: only the words, plus who reviewed them. */
@@ -231,6 +233,10 @@ export function loadContent(root: string): Content {
     for (const [i, s] of (piece.sources ?? []).entries()) {
       p.text(s.title, `sources[${i + 1}].title`);
       p.text(s.url, `sources[${i + 1}].url`);
+    }
+    for (const [i, s] of (piece.elsewhere ?? []).entries()) {
+      p.text(s.title, `elsewhere[${i + 1}].title`);
+      p.text(s.url, `elsewhere[${i + 1}].url`);
     }
     piece.sources ??= [];
     piece.related ??= [];

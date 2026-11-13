@@ -43,6 +43,7 @@ export const ml = {
     corrections: "തിരുത്തലുകൾ:",
     noCorrections: "ഒന്നും രേഖപ്പെടുത്തിയിട്ടില്ല.",
     keepReading: "തുടർന്നു വായിക്കുക",
+    elsewhere: "geometer.dev-ൽ കൂടുതൽ വായിക്കാൻ",
     allJournal: "ജേണൽ മുഴുവൻ",
     reviewedBy: (name: string) => `പരിഭാഷ പരിശോധിച്ചത്: ${name}`,
   },

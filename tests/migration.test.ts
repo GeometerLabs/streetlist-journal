@@ -54,7 +54,7 @@ for (const src of pieces) {
     const mapped = ["topic", "image", "ending", "sources", "related"];
     const dropped = Object.keys(map.dropped).filter((k) => k !== "about");
     for (const key of Object.keys(src)) assert.ok([...kept, ...mapped, ...dropped].includes(key), `${key} is not accounted for`);
-    for (const key of Object.keys(out)) assert.ok([...kept, ...mapped, "companion"].includes(key), `${key} is new and undocumented`);
+    for (const key of Object.keys(out)) assert.ok([...kept, ...mapped, "elsewhere", "companion"].includes(key), `${key} is new and undocumented`);
 
     for (const key of kept) assert.deepEqual(out[key as keyof PieceFile], src[key as keyof SourcePiece], key);
     for (const key of dropped) assert.deepEqual(src[key as keyof SourcePiece], map.dropped[key as keyof typeof map.dropped], `dropped ${key}`);
@@ -66,11 +66,10 @@ for (const src of pieces) {
       assert.deepEqual(out.image, { ...src.image, src: map.images[src.image.src] }, "image");
       assert.ok(existsSync(join(root, "content", out.image!.src)), "the lead picture's file is in content/media");
     } else assert.equal(out.image, undefined);
-    // Related pieces that stayed with Geometer are dropped from Keep reading, and still linked from the sources.
+    // Related pieces that moved stay in Keep reading; the ones that stayed with Geometer are kept as links to geometer.dev.
     assert.deepEqual(out.related, src.related.filter((s) => moved.has(s)), "related");
-    for (const slug of src.related.filter((s) => !moved.has(s))) {
-      assert.ok(src.sources.some((s) => s.url === `/journal/${slug}`), `${slug} (stayed behind) is still linked from the sources`);
-    }
+    const behind = src.related.filter((s) => !moved.has(s));
+    assert.deepEqual(out.elsewhere ?? [], behind.map((slug) => ({ title: map.stayedBehind[slug], url: `https://geometer.dev/journal/${slug}` })), "elsewhere");
     assert.equal(readMinutes(out), geometerReadMinutes(src), "read time");
   });
 
@@ -81,6 +80,7 @@ for (const src of pieces) {
     if (src.ending) texts.push(src.ending.title, src.ending.text, src.ending.linkText);
     if (src.image) texts.push(src.image.alt, src.image.credit);
     for (const s of src.sources) texts.push(s.title);
+    for (const slug of src.related.filter((r) => !moved.has(r))) texts.push(map.stayedBehind[slug]);
     for (const text of texts) assert.ok(html.includes(esc(text)), `missing on the page: ${text.slice(0, 80)}`);
     assert.match(html, new RegExp(`${readMinutes(src)} min read`));
   });

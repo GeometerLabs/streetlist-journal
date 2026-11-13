@@ -108,5 +108,15 @@
   "related": [
     "paid-work-around-an-agent"
   ],
+  "elsewhere": [
+    {
+      "title": "A timeout is not a failed refund.",
+      "url": "https://geometer.dev/journal/lost-acknowledgements"
+    },
+    {
+      "title": "Approve the action that will happen.",
+      "url": "https://geometer.dev/journal/exact-call-approval"
+    }
+  ],
   "corrections": []
 }

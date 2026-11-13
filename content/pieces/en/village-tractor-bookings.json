@@ -100,5 +100,11 @@
   "related": [
     "salon-whatsapp-deposits"
   ],
+  "elsewhere": [
+    {
+      "title": "What you depend on when you build on Geometer",
+      "url": "https://geometer.dev/journal/what-you-depend-on"
+    }
+  ],
   "corrections": []
 }

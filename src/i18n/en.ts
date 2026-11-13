@@ -53,6 +53,7 @@ export const en = {
     corrections: "Corrections:",
     noCorrections: "none recorded.",
     keepReading: "Keep reading",
+    elsewhere: "More to read on geometer.dev",
     allJournal: "All of the Journal",
     reviewedBy: (name: string) => `Translation reviewed by ${name}`,
   },

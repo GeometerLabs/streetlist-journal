@@ -103,5 +103,11 @@
   "related": [
     "village-tractor-bookings"
   ],
+  "elsewhere": [
+    {
+      "title": "What you depend on when you build on Geometer",
+      "url": "https://geometer.dev/journal/what-you-depend-on"
+    }
+  ],
   "corrections": []
 }

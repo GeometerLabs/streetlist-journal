@@ -24,6 +24,7 @@ export interface MigrationMap {
   links: Record<string, string>;
   images: Record<string, string>;
   dropped: { category: string; relatedAssessmentIds: unknown[] };
+  stayedBehind: Record<string, string>;
 }
 
 export const source = (): SourcePiece[] => JSON.parse(readFileSync(join(root, "migration/geometer-articles.json"), "utf8")).pieces;
@@ -70,6 +71,9 @@ export function migratePiece(src: SourcePiece, map: MigrationMap, moved: Set<str
     ...(src.ending ? { ending: { ...src.ending, href: mapLink(map, src.ending.href) } } : {}),
     sources: src.sources.map((s) => ({ ...s, url: mapLink(map, s.url) })),
     related: src.related.filter((slug) => moved.has(slug)),
+    ...(src.related.some((slug) => !moved.has(slug))
+      ? { elsewhere: src.related.filter((slug) => !moved.has(slug)).map((slug) => ({ title: map.stayedBehind[slug], url: mapLink(map, `/journal/${slug}`) })) }
+      : {}),
     corrections: src.corrections,
   };
   return out;

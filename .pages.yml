@@ -340,6 +340,26 @@ content:
               search: "title"
               value: "{fields.slug}"
               label: "{fields.title}"
+          - name: elsewhere
+            label: Keep reading elsewhere
+            description: "Optional. Related pieces on other sites, shown under Keep reading."
+            type: object
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{title}"
+            fields:
+              - name: title
+                label: Title
+                type: string
+                required: true
+              - name: url
+                label: Address
+                type: string
+                required: true
+                pattern:
+                  regex: "^https://\\S+$"
+                  message: "A full address starting with https://"
           - name: corrections
             label: Corrections
             description: "One line per correction, with its date. Shown under the sources."

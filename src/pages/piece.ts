@@ -63,9 +63,11 @@ export function piecePage(ctx: Ctx, piece: Piece): string {
     + `</section>`;
 
   const related = ctx.content.pieces.en.filter((p) => piece.related.includes(p.slug));
-  const keep = related.length
+  const elsewhere = piece.elsewhere ?? [];
+  const keep = related.length || elsewhere.length
     ? `<section class="keep wrap" aria-labelledby="keep-title"><h2 id="keep-title" class="sec-title">${esc(s.piece.keepReading)}</h2>
-<div class="cards">${related.map((p) => card(ctx, ctx.content.pieces[lang].find((q) => q.slug === p.slug) ?? p, lang)).join("")}</div>
+${related.length ? `<div class="cards">${related.map((p) => card(ctx, ctx.content.pieces[lang].find((q) => q.slug === p.slug) ?? p, lang)).join("")}</div>` : ""}
+${elsewhere.length ? `<div class="elsewhere"><h3>${esc(s.piece.elsewhere)}</h3><ul>${elsewhere.map((e) => `<li lang="en"><a href="${esc(e.url)}">${esc(e.title)}</a></li>`).join("")}</ul></div>` : ""}
 <p class="more"><a href="${url.home(lang)}">${esc(s.piece.allJournal)}</a></p></section>`
     : "";
 

@@ -108,5 +108,11 @@
     "village-tractor-bookings",
     "paid-work-around-an-agent"
   ],
+  "elsewhere": [
+    {
+      "title": "What you depend on when you build on Geometer",
+      "url": "https://geometer.dev/journal/what-you-depend-on"
+    }
+  ],
   "corrections": []
 }

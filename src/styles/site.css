@@ -401,3 +401,10 @@ a.lbl { text-decoration: underline; text-decoration-color: var(--line-strong); t
 .banner img { display: block; width: 100%; aspect-ratio: 3 / 1; object-fit: cover; border-radius: 22px; }
 .banner figcaption { margin-top: 6px; font-size: .84rem; color: var(--ink-soft); text-align: right; }
 .banner figcaption a { color: inherit; }
+
+/* Keep reading on other sites: the related pieces that stayed with Geometer, as a short list under the cards. */
+.elsewhere { margin-top: 22px; }
+.elsewhere h3 { font-size: 1.05rem; margin-bottom: .4em; }
+.elsewhere ul { display: grid; gap: .4em; }
+.elsewhere li { padding-left: 1.2em; position: relative; }
+.elsewhere li::before { content: "↗"; position: absolute; left: 0; color: var(--ink-soft); }

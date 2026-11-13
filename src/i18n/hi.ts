@@ -43,6 +43,7 @@ export const hi = {
     corrections: "सुधार:",
     noCorrections: "कोई दर्ज नहीं।",
     keepReading: "और पढ़ें",
+    elsewhere: "geometer.dev पर और पढ़ें",
     allJournal: "पूरा जर्नल",
     reviewedBy: (name: string) => `अनुवाद की समीक्षा: ${name}`,
   },
