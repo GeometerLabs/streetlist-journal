@@ -26,7 +26,7 @@ function exampleHtml(ctx: Ctx, piece: Piece, example: Example, lang: Lang): stri
   const words = langAttr(piece.exampleLang, piece.lang);
   const lines = example.lines.map((line) => {
     const face = line.who === "helper" ? faceImg(ctx, piece.companion.look, "well", 36, "msg-face") : "";
-    return `<li class="msg from-${line.who}">${face}<div class="msg-in"><span class="who">${esc(line.name ?? who[line.who])}</span><p>${esc(line.text)}</p></div></li>`;
+    return `<li class="msg from-${line.who}">${face}<div class="msg-in"><span class="who">${esc(line.name || who[line.who])}</span><p>${esc(line.text)}</p></div></li>`;
   }).join("");
   return `<figure class="example"${words}><figcaption class="ex-title">${esc(example.title)}</figcaption><ol class="chat">${lines}</ol><p class="ex-note">${esc(example.caption)}</p></figure>`;
 }

@@ -20,6 +20,8 @@ import { CAST, type CastId, type Mood } from "./characters/cast.ts";
 /** The widths written for a lead picture, and the frame every lead picture is cropped to (3:2). */
 export const WIDTHS = [480, 800, 1200, 1600];
 export const FRAME = { width: 1600, height: 1067 };
+/** The most a phone-sized picture file (800 px or less) should weigh; the encoder lowers quality to stay under it. */
+const PHONE_FILE_BYTES = 100 * 1024;
 /** A section's header picture: a wide 3:1 strip (docs/image-prompts.md). */
 export const BANNER_WIDTHS = [800, 1200, 1800];
 export const BANNER = { width: 1800, height: 600 };
@@ -99,13 +101,18 @@ export class Images {
       const entries: string[] = [];
       for (const w of widths) {
         const h = Math.round((w * frame.height) / frame.width);
-        const cached = join(this.cache, `${key}-${shape}-${w}.${format}`);
+        const cached = join(this.cache, `${key}-${shape}-${w}-v2.${format}`);
         if (!existsSync(cached)) {
-          const img = sharp(original).rotate().resize(w, h, { fit: "cover", position: "attention" });
-          const data =
-            format === "avif" ? await img.avif({ quality: 50, effort: 4 }).toBuffer()
-            : format === "webp" ? await img.webp({ quality: 72 }).toBuffer()
-            : await img.jpeg({ quality: 76, mozjpeg: true, progressive: true }).toBuffer();
+          // A busy drawing (a crowded pen-and-ink scene) can be heavy: phone-sized files step their quality down until they fit
+          // the phone budget (tests/site.test.ts), so a new picture never blocks publishing and stays light on a budget phone.
+          const encode = (q: number) => {
+            const img = sharp(original).rotate().resize(w, h, { fit: "cover", position: "attention" });
+            return format === "avif" ? img.avif({ quality: q, effort: 4 }).toBuffer()
+              : format === "webp" ? img.webp({ quality: q + 22 }).toBuffer()
+              : img.jpeg({ quality: q + 26, mozjpeg: true, progressive: true }).toBuffer();
+          };
+          let data = await encode(50);
+          for (const q of [42, 34, 26]) if (w <= 800 && data.length > PHONE_FILE_BYTES) data = await encode(q);
           writeFileSync(cached, data);
         }
         const rel = `${name}-${w}.${format}`;

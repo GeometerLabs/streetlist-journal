@@ -1,4 +1,4 @@
-// Browser checks (`npm run test:browser`, after `npm run build`), in Chromium through Playwright, against scripts/serve.ts (which
+// Browser checks (`npm run test:browser`, after `npm run build`), in Chromium through Playwright, on scripts/serve.ts (which
 // serves dist/ the way GitHub Pages does):
 //  - every English page, and the front, a section and a label page in Hindi, Malayalam and Kannada, at 390 and 1280 px in light and
 //    dark: nothing sticks out sideways, axe (WCAG 2.1 A and AA) finds nothing, no console or policy error, nothing loaded from
@@ -10,7 +10,7 @@
 //  - the reading measure on a piece: 18 px body text, about 66 characters a line on a laptop;
 //  - the feeds and the sitemap are well-formed XML and JSON;
 //  - a budget phone (CPU slowed 4x, a slow 4G connection): how long the front page and a piece take to show their main picture and
-//    how many bytes they load, fonts included, gzipped as GitHub Pages sends them, against the budget.
+//    how many bytes they load, fonts included, gzipped as GitHub Pages sends them, within the budget.
 import test from "node:test";
 import assert from "node:assert/strict";
 import { spawn, type ChildProcess } from "node:child_process";

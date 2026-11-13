@@ -75,6 +75,9 @@ mascot. No script is involved: the faces are prerendered SVG files of 2 to 8 KB.
 - One JSON file per piece per language (`content/pieces/<lang>/<slug>.json`); the English file holds everything, a translation only
   the words and its reviewer. `src/content.ts` reads and checks it all and stops the build with the file and field named when
   something is wrong; GitHub Pages keeps the last good site meanwhile.
+- **What a form saves is read the same as what was written by hand:** empty strings, empty lists and optional groups left empty (a
+  piece with no picture or no example, saved through Pages CMS) count as not there (`compact` in `src/content.ts`). A test saves
+  every piece the way a form might and checks that every page comes out byte for byte the same.
 - **The six pieces moved word for word.** `migration/geometer-articles.json` is the frozen copy from public-web;
   `migration/map.json` lists every change (section ids, link and picture addresses, two keys geometer.dev needed, related pieces
   that stayed behind); `tests/migration.test.ts` compares every field and block, the read time by geometer.dev's own formula, and
@@ -98,6 +101,8 @@ mascot. No script is involved: the faces are prerendered SVG files of 2 to 8 KB.
 
 - Lead pictures: cropped to 3:2 and written at 480, 800, 1200 and 1600 px as AVIF, WebP and JPEG, with width and height, `sizes`,
   `fetchpriority="high"` on the first picture of a page and `loading="lazy"` on the rest. The originals stay in the repository.
+  Phone-sized files (800 px and under) step their quality down until they weigh under 100 KB, so a busy drawing never blocks a
+  publish and stays light on a budget phone.
 - Names are stable (no hash), so the JSON feed's picture addresses keep working for streetlist.in and geometer.dev, which copy them
   at their build. GitHub Pages caches for ten minutes, so a replaced picture shows within minutes.
 - Art direction and prompts: `docs/image-prompts.md`. The covers stay until the owner supplies art.

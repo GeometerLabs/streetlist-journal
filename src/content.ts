@@ -166,6 +166,27 @@ function readJson(file: string): unknown {
   }
 }
 
+/**
+ * A piece as the rules read it: empty strings, nulls, empty lists and groups left with nothing in them are taken as not there.
+ * A form editor saves an optional group the writer never opened (no lead picture, no example) as an empty object or empty strings;
+ * without this, the first "save without changes" in Pages CMS could stop the build. Booleans (featured, draft) are kept as saved.
+ */
+export function compact<T>(value: T): T {
+  if (Array.isArray(value)) return value.map(compact).filter((v) => !isBlank(v)) as T;
+  if (value && typeof value === "object") {
+    const out: Record<string, unknown> = {};
+    for (const [k, v] of Object.entries(value)) {
+      const c = compact(v);
+      if (!isBlank(c)) out[k] = c;
+    }
+    return out as T;
+  }
+  return (typeof value === "string" && value.trim() === "" ? undefined : value) as T;
+}
+const isBlank = (v: unknown): boolean =>
+  v === undefined || v === null || (typeof v === "string" && v.trim() === "")
+  || (Array.isArray(v) && v.length === 0) || (typeof v === "object" && v !== null && !Array.isArray(v) && Object.keys(v).length === 0);
+
 function checkSections(p: Problems, sections: unknown, field = "sections"): void {
   if (!Array.isArray(sections) || sections.length === 0) return p.add(`"${field}" needs at least one section`);
   sections.forEach((s: Section, i) => {
@@ -208,7 +229,7 @@ export function loadContent(root: string): Content {
   for (const name of readdirSync(enDir).filter((f) => f.endsWith(".json")).sort()) {
     const file = `content/pieces/en/${name}`;
     const p = new Problems(file);
-    const piece = readJson(join(enDir, name)) as PieceFile;
+    const piece = compact(readJson(join(enDir, name))) as PieceFile;
     if (p.text(piece.slug, "slug")) {
       if (!SLUG.test(piece.slug)) p.add(`"slug" must be lower-case words joined by hyphens (got "${piece.slug}")`);
       if (RESERVED.includes(piece.slug)) p.add(`"slug" cannot be "${piece.slug}": the site uses that address`);
@@ -265,7 +286,8 @@ export function loadContent(root: string): Content {
     for (const name of readdirSync(dir).filter((f) => f.endsWith(".json")).sort()) {
       const file = `content/pieces/${lang}/${name}`;
       const p = new Problems(file);
-      const t = readJson(join(dir, name)) as TranslationFile;
+      const t = compact(readJson(join(dir, name))) as TranslationFile;
+      t.reviewedBy ??= "";
       const base = bySlug.get(t.slug);
       if (!base) {
         // A translation of a draft or of a piece that does not exist waits with it.
@@ -311,7 +333,7 @@ export function loadContent(root: string): Content {
         sections: t.sections,
         example: t.example ?? base.example,
         ending: base.ending && t.ending ? { ...base.ending, ...t.ending } : base.ending,
-        corrections: t.corrections ?? base.corrections,
+        corrections: t.corrections?.length ? t.corrections : base.corrections,
         reviewedBy: t.reviewedBy,
         exampleLang: t.example ? lang : "en",
         endingLang: t.ending ? lang : "en",

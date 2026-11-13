@@ -3,7 +3,7 @@
 // block by block, allowing only the documented maps in migration/map.json (section ids, link and picture addresses, two dropped
 // keys, related pieces that stayed behind) and the new companion. The read time is checked with geometer.dev's own formula, and
 // every paragraph, list item, example line and credit is checked on the built page too (run `npm run build` first).
-// Set GEOMETER_ARTICLES=<path to public-web's src/data/articles.json> to also check the frozen copy against geometer.dev's file.
+// Set GEOMETER_ARTICLES=<path to public-web's src/data/articles.json> to also compare the frozen copy with geometer.dev's file.
 // Not run in the deploy workflow: once the owner edits a moved piece on purpose, this test has done its job.
 import test from "node:test";
 import assert from "node:assert/strict";

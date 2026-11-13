@@ -175,17 +175,51 @@ function withTranslation(reviewedBy: string) {
   }));
   try {
     const loaded = loadContent(dir);
-    const picture: Picture = { kind: "cover", width: 1200, height: 800, srcset: {}, src: "/img/x.svg", share: "/img/x.jpg" };
-    const ctx: Ctx = {
-      css: "/assets/site.css", themeJs: "/assets/theme.js", fontPreload: "", content: loaded,
-      images: { face: () => "/img/faces/x.svg", written: new Map() } as unknown as Ctx["images"],
-      pictures: new Map(loaded.pieces.en.map((p) => [p.slug, picture])), banners: new Map(),
-    };
+    const ctx = stubCtx(loaded);
     return { loaded, built: pages(ctx), feed: JSON.parse(jsonFeed(ctx)) };
   } finally {
     rmSync(dir, { recursive: true, force: true });
   }
 }
+
+/** A build context without pictures on disk: every piece gets the same stand-in cover, every face the same file. */
+function stubCtx(loaded: ReturnType<typeof loadContent>): Ctx {
+  const picture: Picture = { kind: "cover", width: 1200, height: 800, srcset: {}, src: "/img/x.svg", share: "/img/x.jpg" };
+  return {
+    css: "/assets/site.css", themeJs: "/assets/theme.js", fontPreload: "", content: loaded,
+    images: { face: (look: string, mood: string) => `/img/faces/${look}-${mood}.svg`, written: new Map() } as unknown as Ctx["images"],
+    pictures: new Map(loaded.pieces.en.map((p) => [p.slug, picture])), banners: new Map(),
+  };
+}
+
+test("a piece saved by a form (empty optional groups, empty strings and lists, false flags) renders exactly the same pages", () => {
+  const dir = mkdtempSync(join(tmpdir(), "journal-form-"));
+  cpSync(join(root, "content"), join(dir, "content"), { recursive: true });
+  try {
+    const en = join(dir, "content/pieces/en");
+    for (const name of readdirSync(en)) {
+      const p = JSON.parse(readFileSync(join(en, name), "utf8"));
+      // What a form editor might write for the fields the writer never touched.
+      p.featured ??= false;
+      p.draft = false;
+      p.image = p.image ? { creditUrl: "", ...p.image } : { src: "", alt: "", credit: "", creditUrl: "" };
+      p.example = p.example
+        ? { ...p.example, lines: p.example.lines.map((l: { name?: string }) => ({ name: "", ...l })) }
+        : { title: "", caption: "", lines: [] };
+      p.ending = p.ending ? { code: "", ...p.ending } : { kind: "", title: "", text: "", code: "", href: "", linkText: "" };
+      p.sections = p.sections.map((s: object) => ({ paragraphs: [], items: [], after: [], ...s }));
+      p.elsewhere ??= [];
+      p.corrections ??= [];
+      writeFileSync(join(en, name), JSON.stringify(p));
+    }
+    const before = pages(stubCtx(loadContent(root)));
+    const after = pages(stubCtx(loadContent(dir)));
+    assert.deepEqual(after.map((x) => x.path), before.map((x) => x.path));
+    for (const [i, page] of before.entries()) assert.equal(after[i].html, page.html, page.path);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
 
 test("a translation without a reviewer is a draft: no page, no hreflang, no feed entry", () => {
   const { loaded, built, feed } = withTranslation("");
