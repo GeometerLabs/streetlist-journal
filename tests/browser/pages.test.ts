@@ -10,7 +10,7 @@
 //  - the reading measure on a piece: 18 px body text, about 66 characters a line on a laptop;
 //  - the feeds and the sitemap are well-formed XML and JSON;
 //  - a budget phone (CPU slowed 4x, a slow 4G connection): how long the front page and a piece take to show their main picture and
-//    how many bytes they load, against the budget.
+//    how many bytes they load, fonts included, gzipped as GitHub Pages sends them, against the budget.
 import test from "node:test";
 import assert from "node:assert/strict";
 import { spawn, type ChildProcess } from "node:child_process";
@@ -35,8 +35,8 @@ const WIDTHS = [390, 1280];
 const SCHEMES = ["light", "dark"] as const;
 const PAPER = { light: "rgb(247, 248, 244)", dark: "rgb(21, 29, 27)" } as const;
 const THEME_KEY = "streetlist-journal-theme";
-/** Whole-page budgets on a budget phone (390 px, first view, lazy pictures not scrolled to), in bytes over the wire. */
-const PHONE_BUDGET = { home: 300 * 1024, piece: 260 * 1024, lcpMs: 4000 };
+/** Whole-page budgets on a budget phone (390 px, first view, fonts included), in bytes over the wire. A front page allows for a Hindi, Malayalam or Kannada heading font (76 to 113 KB). */
+const PHONE_BUDGET = { home: 220 * 1024, piece: 160 * 1024, lcpMs: 3500 };
 
 let server: ChildProcess;
 let browser: Browser;
@@ -222,6 +222,9 @@ async function phoneLoad(path: string): Promise<{ bytes: number; lcp: number }> 
   let bytes = 0;
   cdp.on("Network.loadingFinished", (e: { encodedDataLength: number }) => { bytes += e.encodedDataLength; });
   await page.goto(BASE + path, { waitUntil: "networkidle" });
+  // Fonts start loading only once the page is laid out, so wait for them (and a quiet network after) before counting bytes.
+  await page.evaluate(() => document.fonts.ready);
+  await page.waitForLoadState("networkidle");
   const times = await page.evaluate(() => new Promise<{ lcp: number }>((done) => {
     new PerformanceObserver((list) => {
       const entries = list.getEntries();
@@ -233,7 +236,7 @@ async function phoneLoad(path: string): Promise<{ bytes: number; lcp: number }> 
 }
 
 test("on a budget phone (CPU 4x slower, slow 4G) the front page and a piece show quickly and stay within the byte budget", async () => {
-  for (const [path, budget] of [["/", PHONE_BUDGET.home], [slugs[0], PHONE_BUDGET.piece], ["/salon-whatsapp-deposits", PHONE_BUDGET.piece], ["/hi/", PHONE_BUDGET.home]] as const) {
+  for (const [path, budget] of [["/", PHONE_BUDGET.home], [slugs[0], PHONE_BUDGET.piece], ["/salon-whatsapp-deposits", PHONE_BUDGET.piece], ["/hi/", PHONE_BUDGET.home], ["/kn/", PHONE_BUDGET.home]] as const) {
     const runs = [await phoneLoad(path), await phoneLoad(path)];
     const best = runs.reduce((a, b) => (a.lcp < b.lcp ? a : b));
     console.log(`budget phone ${path}: ${(best.bytes / 1024).toFixed(0)} KB, largest paint ${best.lcp.toFixed(0)} ms (runs: ${runs.map((r) => r.lcp.toFixed(0)).join(", ")} ms)`);

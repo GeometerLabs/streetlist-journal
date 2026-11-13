@@ -119,3 +119,32 @@ does the same locally. One `404.html` serves every language.
 - `npm run test:browser`: Playwright and axe at 390 and 1280 px in light and dark on every English page and the interface pages of
   the other three languages; the theme and language switches by keyboard; the header at 360 px in all four languages; the reading
   measure; well-formed feeds; and a budget phone (CPU slowed 4x, slow 4G) on the front page and two pieces.
+
+## 7. Sizes and timings (14 Nov 2026)
+
+Measured on this machine, in headless Chromium only (a real budget phone is in `Deferred.md`).
+
+| What | Size |
+| --- | --- |
+| Pages | 40 (English 16, Hindi, Malayalam and Kannada 8 each); HTML 1.8 to 6.0 KB gzipped a page |
+| Stylesheet | 5.8 KB gzipped |
+| Script | the theme switch only, 0.4 KB gzipped |
+| Heading fonts | Latin 33 KB (preloaded on English pages); Devanagari 113 KB, Kannada 76 KB, Malayalam 45 KB, each loaded only on pages in that script |
+| A lead photo on a phone | the 800 px AVIF, 22 KB for the salon piece (its original is 416 KB and is never published) |
+| A cover | 7 to 24 KB as SVG (2 to 3 KB gzipped); a face 1 to 2 KB gzipped |
+| All pictures in dist | 48 files, 889 KB (every width and format; a reader downloads one of each) |
+
+On a budget phone's terms (390 px, device pixel ratio 2, CPU slowed 4x, slow 4G at 1.6 Mbit/s and 150 ms, best of two runs, bytes
+as GitHub Pages sends them, fonts included):
+
+| Page | Bytes | Main picture shown |
+| --- | --- | --- |
+| Front page, English | 75 KB | 1.8 s |
+| A piece with a cover (training centre) | 49 KB | 1.7 s |
+| A piece with a photo (salon) | 69 KB | 1.9 s |
+| Front page, Hindi | 188 KB | 2.7 s |
+| Front page, Kannada | 149 KB | 2.5 s |
+
+The budgets in the tests: a page's HTML 24 KB gzipped, the stylesheet 14 KB, the script 1 KB, a phone-sized photo 110 KB, a cover
+40 KB and a face 4 KB gzipped (`tests/site.test.ts`); a whole front page 220 KB and a piece 160 KB, the main picture within 3.5 s
+(`tests/browser/pages.test.ts`). The reading measure on a laptop is 65 characters a line at 18 px (median of the body's full lines).

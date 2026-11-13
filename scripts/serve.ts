@@ -1,11 +1,13 @@
 // `npm run preview`: serves dist/ the way GitHub Pages will, so what the owner previews (and what the browser tests check) behaves
 // like the live Journal: /x is served from x.html, /hi/ from hi/index.html, /hi from a redirect to /hi/, and anything else gets
 // 404.html with a 404 status. GitHub Pages sends no custom headers, so neither does this; the content security policy travels in
-// each page's <meta> tag. Port: PORT, or 4310. Local use only.
+// each page's <meta> tag. Like GitHub Pages it gzips text (HTML, CSS, scripts, SVG, JSON, XML) for browsers that accept it, so the
+// browser test's byte counts match what a phone downloads. Port: PORT, or 4310. Local use only.
 import { createServer } from "node:http";
 import { existsSync, readFileSync, statSync } from "node:fs";
 import { dirname, extname, join, normalize, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { gzipSync } from "node:zlib";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const dist = join(root, "dist");
@@ -43,6 +45,9 @@ createServer((req, res) => {
     return;
   }
   const served = file ?? join(dist, "404.html");
-  res.writeHead(file ? 200 : 404, { "Content-Type": TYPES[extname(served)] ?? "application/octet-stream" });
-  res.end(readFileSync(served));
+  const type = TYPES[extname(served)] ?? "application/octet-stream";
+  const body = readFileSync(served);
+  const gzip = /^(text\/|image\/svg|application\/(json|xml))/.test(type) && /\bgzip\b/.test(String(req.headers["accept-encoding"] ?? ""));
+  res.writeHead(file ? 200 : 404, { "Content-Type": type, ...(gzip ? { "Content-Encoding": "gzip", Vary: "Accept-Encoding" } : {}) });
+  res.end(gzip ? gzipSync(body) : body);
 }).listen(port, "127.0.0.1", () => console.log(`Streetlist Journal preview: http://127.0.0.1:${port}/`));
