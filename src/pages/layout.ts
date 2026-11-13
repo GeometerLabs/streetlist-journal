@@ -26,6 +26,8 @@ export interface Ctx {
   images: Images;
   /** Each English piece's lead picture or cover, by slug. */
   pictures: Map<string, Picture>;
+  /** Each section's header picture, by topic id, once the owner has added one. */
+  banners: Map<string, Picture>;
 }
 
 /** Escapes text for HTML text and attribute values. Every word from content or strings goes through it. */

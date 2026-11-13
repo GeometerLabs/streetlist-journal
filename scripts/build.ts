@@ -71,7 +71,9 @@ if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.ur
   const content = loadContent(root);
   const images = new Images(root, dist);
   const pictures = await makePictures(images, content);
-  const ctx: Ctx = { ...assets(), content, images, pictures };
+  const banners = new Map<string, Picture>();
+  for (const topic of content.taxonomy.topics) if (topic.image?.src) banners.set(topic.id, await images.photo(topic.image.src, "banner"));
+  const ctx: Ctx = { ...assets(), content, images, pictures, banners };
   const list = pages(ctx);
   for (const p of list) {
     const file = join(dist, fileOf(p.path));

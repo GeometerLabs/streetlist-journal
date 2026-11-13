@@ -395,3 +395,9 @@ a.lbl { text-decoration: underline; text-decoration-color: var(--line-strong); t
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .mascot:hover .mascot-face { transform: none; }
 }
+
+/* A section's header picture (when the owner has added one): a wide strip under the section's heading. */
+.banner { margin-top: 24px; }
+.banner img { display: block; width: 100%; aspect-ratio: 3 / 1; object-fit: cover; border-radius: 22px; }
+.banner figcaption { margin-top: 6px; font-size: .84rem; color: var(--ink-soft); text-align: right; }
+.banner figcaption a { color: inherit; }

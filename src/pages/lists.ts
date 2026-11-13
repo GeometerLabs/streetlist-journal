@@ -5,7 +5,7 @@ import { CONTACT } from "../i18n/en.ts";
 import { LANGS, STRINGS, url, type Lang } from "../i18n/index.ts";
 import type { Label, Topic } from "../content.ts";
 import { piecesFor } from "./home.ts";
-import { card, esc, faceImg, labelIn, page, topicIn, type Ctx } from "./layout.ts";
+import { card, esc, faceImg, labelIn, page, pictureHtml, topicIn, type Ctx } from "./layout.ts";
 
 export function topicPage(ctx: Ctx, topic: Topic, lang: Lang): string {
   const s = STRINGS[lang];
@@ -14,10 +14,14 @@ export function topicPage(ctx: Ctx, topic: Topic, lang: Lang): string {
   const list = pieces.length
     ? `<div class="cards">${pieces.map((p) => card(ctx, p, lang)).join("")}</div>`
     : `<p class="list-empty">${esc(s.lists.emptyTopic)} <a href="mailto:${CONTACT}">${esc(s.home.write)}</a></p>`;
+  // A header picture, once the owner has added one through Pages CMS (Section pictures), runs under the heading as a wide strip.
+  const banner = ctx.banners.get(topic.id);
+  const credit = topic.image && (topic.image.creditUrl ? `<a href="${esc(topic.image.creditUrl)}">${esc(topic.image.credit)}</a>` : esc(topic.image.credit));
   const body = `<header class="list-head t-${topic.id}"><div class="wrap list-head-in">
 ${faceImg(ctx, topic.mascot.look, pieces.length ? topic.mascot.mood : "closed", 132, "list-face", false)}
 <div><h1>${esc(t.name)}</h1><p class="lead-line">${esc(t.gloss)}</p><p class="count">${esc(s.lists.count(pieces.length))}</p></div>
 </div></header>
+${banner && topic.image ? `<figure class="banner wrap">${pictureHtml(banner, topic.image.alt, "(max-width: 1120px) calc(100vw - 32px), 1088px", false)}<figcaption>${credit}</figcaption></figure>` : ""}
 <section class="wrap list-body">${list}</section>`;
   return page({
     ctx, lang, path: url.topic(lang, topic.id),

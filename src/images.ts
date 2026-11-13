@@ -18,8 +18,11 @@ import { drawFace, prefixIds } from "./characters/draw.ts";
 import { CAST, type CastId, type Mood } from "./characters/cast.ts";
 
 /** The widths written for a lead picture, and the frame every lead picture is cropped to (3:2). */
-export const WIDTHS = [480, 800, 1200, 1600] as const;
+export const WIDTHS = [480, 800, 1200, 1600];
 export const FRAME = { width: 1600, height: 1067 };
+/** A section's header picture: a wide 3:1 strip (docs/image-prompts.md). */
+export const BANNER_WIDTHS = [800, 1200, 1800];
+export const BANNER = { width: 1800, height: 600 };
 const FORMATS = ["avif", "webp", "jpg"] as const;
 type Format = (typeof FORMATS)[number];
 
@@ -80,21 +83,23 @@ export class Images {
     return url;
   }
 
-  /** A lead picture from content/media, resized into every width and format (cached between local builds). */
-  async photo(src: string): Promise<Picture> {
+  /** A lead picture (3:2) or a section's header picture (3:1) from content/media, in every width and format (cached locally). */
+  async photo(src: string, shape: "lead" | "banner" = "lead"): Promise<Picture> {
+    const frame = shape === "lead" ? FRAME : BANNER;
+    const all = shape === "lead" ? WIDTHS : BANNER_WIDTHS;
     const file = join(this.root, "content", src);
     const original = readFileSync(file);
-    const name = basename(src, extname(src)).toLowerCase().replace(/[^a-z0-9]+/g, "-");
+    const name = (shape === "banner" ? "banner-" : "") + basename(src, extname(src)).toLowerCase().replace(/[^a-z0-9]+/g, "-");
     const meta = await sharp(original).metadata();
-    const widths = WIDTHS.filter((w) => w <= (meta.width ?? 0));
-    if (widths.length === 0) widths.push(WIDTHS[0]);
+    const widths = all.filter((w) => w <= (meta.width ?? 0));
+    if (widths.length === 0) widths.push(all[0]);
     const key = hash(original);
     const srcset: Partial<Record<Format, string>> = {};
     for (const format of FORMATS) {
       const entries: string[] = [];
       for (const w of widths) {
-        const h = Math.round((w * FRAME.height) / FRAME.width);
-        const cached = join(this.cache, `${key}-${w}.${format}`);
+        const h = Math.round((w * frame.height) / frame.width);
+        const cached = join(this.cache, `${key}-${shape}-${w}.${format}`);
         if (!existsSync(cached)) {
           const img = sharp(original).rotate().resize(w, h, { fit: "cover", position: "attention" });
           const data =
@@ -110,8 +115,8 @@ export class Images {
       }
       srcset[format] = entries.join(", ");
     }
-    const jpg = (w: number) => `/img/${name}-${widths.includes(w as (typeof WIDTHS)[number]) ? w : widths[widths.length - 1]}.jpg`;
-    return { kind: "photo", width: FRAME.width, height: FRAME.height, srcset, src: jpg(800), share: jpg(1200) };
+    const jpg = (w: number) => `/img/${name}-${widths.includes(w) ? w : widths[widths.length - 1]}.jpg`;
+    return { kind: "photo", width: frame.width, height: frame.height, srcset, src: jpg(800), share: jpg(1200) };
   }
 
   /** A cover for a piece without a lead picture: its companion, a speech bubble and the section's mascot, on the section's colour. */

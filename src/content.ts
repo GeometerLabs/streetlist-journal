@@ -193,6 +193,11 @@ export function loadContent(root: string): Content {
   const errors: string[] = [];
   for (const t of taxonomy.topics) {
     if (!(t.mascot?.look in CAST) || !MOODS.includes(t.mascot?.mood)) errors.push(`content/taxonomy.json: topic "${t.id}" needs a mascot from the cast and a mood`);
+    // A header picture is optional; once its file is chosen, its alt text and credit are required.
+    if (t.image?.src) {
+      if (!/^\/media\/[^/]+$/.test(t.image.src) || !existsSync(join(root, "content", t.image.src))) errors.push(`content/taxonomy.json: topic "${t.id}" picture ${t.image.src} is not a file in content/media`);
+      if (!t.image.alt?.trim() || !t.image.credit?.trim()) errors.push(`content/taxonomy.json: topic "${t.id}" picture needs its alt text and credit`);
+    } else delete t.image;
   }
 
   // English: the pieces themselves.

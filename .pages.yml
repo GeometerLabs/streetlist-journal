@@ -1,0 +1,476 @@
+# Pages CMS (https://pagescms.org, free and open source): the web editor for the Journal. Sign in at app.pagescms.org with GitHub,
+# open GeometerLabs/streetlist-journal, and every piece is a form; Save is a commit to main, which rebuilds and publishes the site
+# (.github/workflows/pages.yml). README.md has the step-by-step "How to write a piece".
+#
+# What it edits:
+#  - Pieces, in four collections that share one slug: English (the piece itself: words, dates, section, label, companion, lead
+#    picture, sources) and Hindi, Malayalam and Kannada (only the translated words, plus who reviewed them). A translation is
+#    published only when "Reviewed by" is filled; until then it is saved as a draft and the site leaves it out (src/content.ts).
+#  - The sections' header pictures (content/taxonomy.json), once the owner has them (docs/image-prompts.md).
+# Uploads go to content/media; the build turns each into small AVIF, WebP and JPEG files and never publishes the original.
+# The section and label choices below must match content/taxonomy.json, and the face choices src/characters/cast.ts
+# (tests/content.test.ts checks both). Fields mirror src/content.ts; settings.content.merge keeps any key this form does not show.
+
+media:
+  input: content/media
+  output: /media
+  extensions: [jpg, jpeg, png, webp]
+  rename: safe
+
+settings:
+  content:
+    merge: true
+  commit:
+    templates:
+      create: "Journal: add {path} (Pages CMS)"
+      update: "Journal: update {path} (Pages CMS)"
+      delete: "Journal: remove {path} (Pages CMS)"
+      rename: "Journal: rename {oldPath} to {newPath} (Pages CMS)"
+
+components:
+  # A piece's body: parts, each with a heading, its paragraphs, an optional list, and paragraphs after the list.
+  sections:
+    type: object
+    label: Parts of the piece
+    description: "Each part has a heading and its paragraphs. A list, if any, comes after the paragraphs; 'After the list' holds paragraphs that follow it."
+    required: true
+    list:
+      min: 1
+      collapsible:
+        collapsed: true
+        summary: "{index}. {heading}"
+    fields:
+      - name: heading
+        label: Heading
+        type: string
+        required: true
+        options:
+          maxlength: 120
+      - name: paragraphs
+        label: Paragraphs
+        type: text
+        list: true
+      - name: items
+        label: List
+        description: "Optional. One point per item."
+        type: text
+        list: true
+      - name: after
+        label: After the list
+        description: "Optional. Paragraphs that come after the list."
+        type: text
+        list: true
+  # An Idea's example: a short made-up exchange, shown after the second part.
+  example:
+    type: object
+    label: Example exchange
+    description: "Optional. A short made-up exchange, shown after the second part. Say where it comes from in the note under it."
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: lines
+        label: Lines
+        type: object
+        required: true
+        list:
+          min: 1
+          collapsible:
+            collapsed: false
+            summary: "{who}: {text}"
+        fields:
+          - name: who
+            label: Who speaks
+            type: select
+            required: true
+            options:
+              values:
+                - { name: customer, label: "A customer or member" }
+                - { name: helper, label: "The AI helper (shows the companion's face)" }
+                - { name: owner, label: "The owner or a person in charge" }
+          - name: name
+            label: Name shown
+            description: "Optional, e.g. 'The learner'. Empty shows 'Customer', 'AI helper' or 'The owner sees'."
+            type: string
+          - name: text
+            label: Words
+            type: text
+            required: true
+      - name: caption
+        label: Note under the example
+        description: "Say plainly that it is made up, and what it is not."
+        type: text
+        required: true
+  # The lead picture: a photo or a drawing, with its words. Alt text and credit are required whenever a picture is set.
+  image:
+    type: object
+    label: Lead picture
+    description: "Optional until you have one; the piece shows its companion's cover meanwhile. 3:2, at least 1600 px wide (2400 x 1600 is ideal)."
+    fields:
+      - name: src
+        label: Picture
+        type: image
+        required: true
+        options:
+          extensions: [jpg, jpeg, png, webp]
+      - name: alt
+        label: Alt text
+        description: "What the picture shows, for people who cannot see it. One plain sentence."
+        type: string
+        required: true
+        options:
+          minlength: 10
+          maxlength: 250
+      - name: credit
+        label: Credit
+        description: "Who made it, e.g. 'Photo: Name / Unsplash' or 'Drawing: Name'."
+        type: string
+        required: true
+        options:
+          maxlength: 120
+      - name: creditUrl
+        label: Credit link
+        description: "Optional. The maker's page."
+        type: string
+        pattern:
+          regex: "^https://\\S+$"
+          message: "A full address starting with https://"
+
+content:
+  - name: pieces
+    label: Pieces
+    type: group
+    items:
+      - name: pieces-en
+        label: English (the pieces)
+        type: collection
+        path: content/pieces/en
+        format: json
+        filename:
+          template: "{fields.slug}.json"
+          field: false
+        view:
+          primary: title
+          fields: [title, published, topic, label, draft]
+          sort: [published, title]
+          search: [title, summary]
+          default:
+            sort: published
+            order: desc
+        fields:
+          - name: slug
+            label: Address
+            description: "The piece's address: journal.streetlist.in/<this>. Lower-case words joined by hyphens. Set it once; changing it later breaks links."
+            type: string
+            required: true
+            pattern:
+              regex: "^(?!(?:about|topics|labels|en|hi|ml|kn|assets|img|media|feed|sitemap|404|index|robots|favicon)$)[a-z0-9]+(?:-[a-z0-9]+)*$"
+              message: "Lower-case words joined by hyphens, and not a name the site uses (about, topics, labels, hi, ml, kn ...)"
+            options:
+              minlength: 3
+              maxlength: 80
+          - name: title
+            label: Title
+            type: string
+            required: true
+            options:
+              maxlength: 140
+          - name: summary
+            label: Summary
+            description: "Two or three sentences: what the piece is and what the reader gains. Shown under the title and on cards."
+            type: text
+            required: true
+            options:
+              minlength: 40
+              maxlength: 420
+          - name: author
+            label: Byline
+            type: string
+            required: true
+            default: Geometer
+          - name: published
+            label: Published on
+            type: date
+            required: true
+            options:
+              format: yyyy-MM-dd
+          - name: updated
+            label: Updated on
+            description: "Same as the published date unless the piece changed after it went out."
+            type: date
+            required: true
+            options:
+              format: yyyy-MM-dd
+          - name: label
+            label: Label (what kind of piece)
+            type: select
+            required: true
+            options:
+              values:
+                - { name: idea, label: "Idea: a proposal nobody has tried yet" }
+                - { name: practical-guide, label: "Practical guide: how to do one thing" }
+                - { name: experiment, label: "Experiment: what we ran and what we saw" }
+                - { name: field-report, label: "Field report: what happened, with dates" }
+                - { name: research, label: "Research: careful study with sources" }
+                - { name: opinion, label: "Opinion: a view we hold" }
+          - name: topic
+            label: Section
+            type: select
+            required: true
+            options:
+              values:
+                - { name: technology, label: Technology }
+                - { name: livelihoods, label: "Livelihoods (work and commerce)" }
+                - { name: community, label: Community and civic life }
+                - { name: ideas, label: Ideas and philosophy }
+                - { name: art, label: Art and culture }
+          - name: featured
+            label: Lead story on the front page
+            description: "Turn on for one piece only; with none on, the newest piece leads."
+            type: boolean
+            default: false
+          - name: draft
+            label: Draft (not published)
+            type: boolean
+            default: false
+          - name: companion
+            label: Companion
+            description: "The cartoon face that keeps the piece company, and its mood at the top. The small faces beside each heading change mood with the story by themselves."
+            type: object
+            required: true
+            fields:
+              - name: look
+                label: Face
+                type: select
+                required: true
+                options:
+                  values:
+                    - { name: clay-1, label: Clay 1 }
+                    - { name: clay-2, label: Clay 2 }
+                    - { name: clay-3, label: Clay 3 }
+                    - { name: critters-1, label: Critters 1 }
+                    - { name: critters-2, label: Critters 2 }
+                    - { name: sprouts-1, label: Sprouts 1 }
+                    - { name: sprouts-2, label: Sprouts 2 }
+                    - { name: moods-1, label: Moods 1 }
+                    - { name: moods-2, label: Moods 2 }
+                    - { name: pixel-1, label: Pixel 1 }
+                    - { name: pixel-2, label: Pixel 2 }
+              - name: mood
+                label: Mood at the top
+                type: select
+                required: true
+                options:
+                  values:
+                    - { name: well, label: Cheerful }
+                    - { name: needs, label: Curious }
+                    - { name: wrong, label: Worried }
+                    - { name: closed, label: Asleep }
+                    - { name: busy, label: Busy }
+          - name: image
+            component: image
+          - name: sections
+            component: sections
+          - name: example
+            component: example
+          - name: ending
+            label: Ending
+            description: "Optional. What the reader can do next, with one link."
+            type: object
+            fields:
+              - name: kind
+                label: Kind
+                type: select
+                required: true
+                options:
+                  values:
+                    - { name: discovery, label: "Discovery: try it on paper with real people" }
+                    - { name: next, label: "Next: read or do one more thing" }
+                    - { name: reproduce, label: "Reproduce: run the experiment yourself" }
+              - name: title
+                label: Title
+                type: string
+                required: true
+              - name: text
+                label: Text
+                type: text
+                required: true
+              - name: code
+                label: Command (only for Reproduce)
+                type: string
+              - name: href
+                label: Link
+                type: string
+                required: true
+                pattern:
+                  regex: "^(https://\\S+|mailto:\\S+|/[a-z0-9/-]*)$"
+                  message: "A full https:// address, a mailto: address, or a Journal address starting with /"
+              - name: linkText
+                label: Link words
+                type: string
+                required: true
+          - name: sources
+            label: Sources
+            type: object
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{title}"
+            fields:
+              - name: title
+                label: Title
+                type: string
+                required: true
+              - name: url
+                label: Address
+                type: string
+                required: true
+                pattern:
+                  regex: "^(https://\\S+|mailto:\\S+|/[a-z0-9/-]*)$"
+                  message: "A full https:// address, a mailto: address, or a Journal address starting with /"
+          - name: related
+            label: Keep reading
+            description: "Other Journal pieces to show at the end."
+            type: reference
+            options:
+              collection: pieces-en
+              multiple: true
+              max: 3
+              search: "title"
+              value: "{fields.slug}"
+              label: "{fields.title}"
+          - name: corrections
+            label: Corrections
+            description: "One line per correction, with its date. Shown under the sources."
+            type: text
+            list: true
+
+      # The three translation collections share one form; only the folder and the label differ.
+      - name: pieces-hi
+        label: हिन्दी (Hindi translations)
+        type: collection
+        path: content/pieces/hi
+        format: json
+        filename: { template: "{fields.slug}.json", field: false }
+        view: { primary: title, fields: [title, reviewedBy, updated] }
+        fields: &translation
+          - name: slug
+            label: Piece
+            description: "The English piece this translates. The translation uses its address, dates, picture and sources."
+            type: reference
+            required: true
+            options:
+              collection: pieces-en
+              search: "title"
+              value: "{fields.slug}"
+              label: "{fields.title}"
+          - name: reviewedBy
+            label: Reviewed by
+            description: "The native speaker who checked this translation. Required to publish: while it is empty the translation is a draft and stays off the site. Never publish a machine translation."
+            type: string
+          - name: translatedBy
+            label: Translated by
+            type: string
+          - name: updated
+            label: Updated on
+            description: "Optional. Leave empty to use the English piece's date."
+            type: date
+            default: ""
+            options:
+              format: yyyy-MM-dd
+          - name: title
+            label: Title
+            type: string
+            required: true
+          - name: summary
+            label: Summary
+            type: text
+            required: true
+          - name: imageAlt
+            label: Alt text of the lead picture
+            description: "Optional. The English alt text is used when empty."
+            type: string
+          - name: sections
+            component: sections
+          - name: example
+            component: example
+          - name: ending
+            label: Ending (words only)
+            type: object
+            fields:
+              - name: title
+                label: Title
+                type: string
+                required: true
+              - name: text
+                label: Text
+                type: text
+                required: true
+              - name: linkText
+                label: Link words
+                type: string
+                required: true
+          - name: corrections
+            label: Corrections
+            type: text
+            list: true
+      - name: pieces-ml
+        label: മലയാളം (Malayalam translations)
+        type: collection
+        path: content/pieces/ml
+        format: json
+        filename: { template: "{fields.slug}.json", field: false }
+        view: { primary: title, fields: [title, reviewedBy, updated] }
+        fields: *translation
+      - name: pieces-kn
+        label: ಕನ್ನಡ (Kannada translations)
+        type: collection
+        path: content/pieces/kn
+        format: json
+        filename: { template: "{fields.slug}.json", field: false }
+        view: { primary: title, fields: [title, reviewedBy, updated] }
+        fields: *translation
+
+  # The five sections' header pictures. Ids, names and mascots are set in code (they appear in the select lists above), so only the
+  # picture is editable here.
+  - name: sections-file
+    label: Section pictures
+    type: file
+    path: content/taxonomy.json
+    format: json
+    operations: { delete: false }
+    fields:
+      - name: about
+        type: text
+        hidden: true
+      - name: labels
+        type: object
+        list: true
+        hidden: true
+        fields:
+          - { name: id, type: string }
+          - { name: name, type: string }
+          - { name: gloss, type: string }
+      - name: topics
+        label: Sections
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{name}"
+        fields:
+          - { name: id, label: Id, type: string, readonly: true }
+          - { name: name, label: Name, type: string, readonly: true }
+          - { name: gloss, label: Line under the name, type: text, readonly: true }
+          - name: mascot
+            label: Mascot
+            type: object
+            readonly: true
+            fields:
+              - { name: look, type: string }
+              - { name: mood, type: string }
+          - name: image
+            component: image
+            label: Header picture
+            description: "Optional. A wide picture for the section's page, 3:1, at least 1800 px wide (docs/image-prompts.md)."
