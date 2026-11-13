@@ -169,37 +169,50 @@ test("the header fits a 360 px phone in all four languages, both switches inside
 test("a piece reads at 18 px with about 66 characters a line on a laptop", async () => {
   const { page } = await open(1280, "light", slugs[0]);
   const m = await page.evaluate(() => {
-    const p = document.querySelector(".body .part p") as HTMLElement;
-    const size = parseFloat(getComputedStyle(p).fontSize);
-    // Characters per line: the paragraph's text over its number of lines.
-    const range = document.createRange();
-    range.selectNodeContents(p);
-    const lines = new Set(Array.from(range.getClientRects()).map((r) => Math.round(r.top))).size;
-    return { size, perLine: p.textContent!.length / lines, lines };
+    // Characters on each full line of the body's paragraphs (a paragraph's last, short line is left out), by where each
+    // character is drawn.
+    const counts: number[] = [];
+    const paragraphs = Array.from(document.querySelectorAll<HTMLElement>(".body .part > p"));
+    for (const p of paragraphs) {
+      const text = p.firstChild as Text;
+      const lines = new Map<number, number>();
+      const range = document.createRange();
+      for (let i = 0; i < text.length; i++) {
+        range.setStart(text, i);
+        range.setEnd(text, i + 1);
+        const top = Math.round(range.getBoundingClientRect().top);
+        lines.set(top, (lines.get(top) ?? 0) + 1);
+      }
+      counts.push(...[...lines.values()].slice(0, -1));
+    }
+    counts.sort((a, b) => a - b);
+    return { size: parseFloat(getComputedStyle(paragraphs[0]).fontSize), median: counts[Math.floor(counts.length / 2)], lines: counts.length };
   });
   assert.equal(m.size, 18);
-  assert.ok(m.perLine >= 58 && m.perLine <= 74, `${m.perLine.toFixed(1)} characters a line over ${m.lines} lines`);
-  console.log(`reading measure: ${m.size}px, ${m.perLine.toFixed(1)} characters a line`);
+  assert.ok(m.median >= 60 && m.median <= 72, `${m.median} characters a line (median of ${m.lines} full lines)`);
+  console.log(`reading measure: ${m.size}px, ${m.median} characters a line (median of ${m.lines} full lines)`);
   await page.context().close();
 });
 
-test("the feeds and the sitemap are well-formed", async () => {
+test("the feeds and the sitemap are well-formed, as served", async () => {
+  // Fetched by the test (the pages' own policy rightly allows no fetch), then parsed by the browser's XML parser.
   const { page } = await open(390, "light", "/");
-  for (const file of ["/feed.xml", "/sitemap.xml"]) {
-    const ok = await page.evaluate(async (f) => {
-      const text = await (await fetch(f)).text();
+  for (const [file, root] of [["/feed.xml", "rss"], ["/sitemap.xml", "urlset"]]) {
+    const res = await fetch(BASE + file);
+    assert.equal(res.status, 200, file);
+    const name = await page.evaluate((text) => {
       const doc = new DOMParser().parseFromString(text, "application/xml");
-      return doc.getElementsByTagName("parsererror").length === 0 && doc.documentElement.nodeName;
-    }, file);
-    assert.ok(ok, `${file} is not well-formed XML`);
+      return doc.getElementsByTagName("parsererror").length === 0 ? doc.documentElement.nodeName : "parsererror";
+    }, await res.text());
+    assert.equal(name, root, `${file} is not well-formed XML`);
   }
-  const json = await page.evaluate(async () => (await (await fetch("/feed.json")).json()).items.length);
-  assert.equal(json, slugs.length);
+  const json = (await (await fetch(`${BASE}/feed.json`)).json()) as { items: unknown[] };
+  assert.equal(json.items.length, slugs.length);
   await page.context().close();
 });
 
-/** One load on a budget phone: CPU slowed 4x, slow 4G (1.6 Mbit/s down, 150 ms). Bytes on the wire, first paint and largest paint. */
-async function phoneLoad(path: string): Promise<{ bytes: number; fcp: number; lcp: number }> {
+/** One load on a budget phone: CPU slowed 4x, slow 4G (1.6 Mbit/s down, 150 ms). Bytes on the wire and the largest paint. */
+async function phoneLoad(path: string): Promise<{ bytes: number; lcp: number }> {
   const context = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true });
   const page = await context.newPage();
   const cdp = await context.newCDPSession(page);
@@ -209,11 +222,10 @@ async function phoneLoad(path: string): Promise<{ bytes: number; fcp: number; lc
   let bytes = 0;
   cdp.on("Network.loadingFinished", (e: { encodedDataLength: number }) => { bytes += e.encodedDataLength; });
   await page.goto(BASE + path, { waitUntil: "networkidle" });
-  const times = await page.evaluate(() => new Promise<{ fcp: number; lcp: number }>((done) => {
-    const fcp = performance.getEntriesByName("first-contentful-paint")[0]?.startTime ?? 0;
+  const times = await page.evaluate(() => new Promise<{ lcp: number }>((done) => {
     new PerformanceObserver((list) => {
       const entries = list.getEntries();
-      done({ fcp, lcp: entries[entries.length - 1].startTime });
+      done({ lcp: entries[entries.length - 1].startTime });
     }).observe({ type: "largest-contentful-paint", buffered: true });
   }));
   await context.close();
@@ -224,7 +236,7 @@ test("on a budget phone (CPU 4x slower, slow 4G) the front page and a piece show
   for (const [path, budget] of [["/", PHONE_BUDGET.home], [slugs[0], PHONE_BUDGET.piece], ["/salon-whatsapp-deposits", PHONE_BUDGET.piece], ["/hi/", PHONE_BUDGET.home]] as const) {
     const runs = [await phoneLoad(path), await phoneLoad(path)];
     const best = runs.reduce((a, b) => (a.lcp < b.lcp ? a : b));
-    console.log(`budget phone ${path}: ${(best.bytes / 1024).toFixed(0)} KB, first paint ${best.fcp.toFixed(0)} ms, main picture ${best.lcp.toFixed(0)} ms (runs: ${runs.map((r) => r.lcp.toFixed(0)).join(", ")} ms)`);
+    console.log(`budget phone ${path}: ${(best.bytes / 1024).toFixed(0)} KB, largest paint ${best.lcp.toFixed(0)} ms (runs: ${runs.map((r) => r.lcp.toFixed(0)).join(", ")} ms)`);
     assert.ok(best.bytes <= budget, `${path}: ${best.bytes} bytes`);
     assert.ok(best.lcp <= PHONE_BUDGET.lcpMs, `${path}: largest paint ${best.lcp} ms`);
   }
