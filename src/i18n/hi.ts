@@ -1,0 +1,83 @@
+// The Journal's interface words in Hindi, the same shape as en.ts. Written for the launch on 14 Nov 2026 and waiting for a native
+// speaker's review (docs/strings-review.md lists every string beside the English): until reviewedBy is filled, the Hindi pages are
+// built and linked from the language switch but carry noindex and stay out of the sitemap. Brand names (Streetlist, Geometer,
+// DiceBear) stay in Latin letters. The pieces are not translated here; a piece gets a Hindi version only through content/pieces/hi,
+// with its own reviewer.
+import type { Strings } from "./en.ts";
+
+export const hi = {
+  reviewedBy: "",
+  site: {
+    tagline: "भविष्य, जो यहीं बनता है।",
+    sub: "तकनीक, रोज़ी-रोटी, और अपने घर-गाँव को सँवारते लोगों की कहानियाँ और विचार।",
+    skip: "सामग्री पर जाएँ",
+    navLabel: "मुख्य",
+    streetlistTitle: "Streetlist: स्थानीय सेवाओं के अपने पेज और सहायक",
+    themeLabel: "डार्क थीम",
+    langLabel: "भाषा",
+    runsOn: "Geometer पर चलता है",
+  },
+  home: {
+    intro:
+      "गाँव और छोटे शहर अपनी AI सेवाएँ खुद चला सकते हैं: स्थानीय लोग उन्हें बनाते हैं, और उनका मूल्य वहीं रहता है जहाँ काम होता है। दुकान का पैसा मालिक के पास रहता है, सेवा शुरू करने वाले साथी अपना मार्जिन रखते हैं, और समुदाय उन सेवाओं का मालिक हो सकता है जिन पर वह निर्भर है। यह जर्नल वह जगह है जहाँ कला, विचार और तकनीक रोज़मर्रा की ज़िंदगी से मिलते हैं।",
+    lead: "मुख्य कहानी",
+    latest: "ताज़ा",
+    sections: "विभाग",
+    more: (section: string) => `${section} में और`,
+    empty: "यहाँ अभी कुछ नहीं है।",
+    write: "इस विभाग के लिए कोई कहानी है? हमें लिखें।",
+    aboutTitle: "जर्नल के बारे में",
+    aboutText: "गाँवों और छोटे शहरों की अपनी सेवाओं पर एक पत्रिका क्यों, और हम इसे कैसे लिखते हैं।",
+    aboutLink: "जर्नल के बारे में पढ़ें (अंग्रेज़ी में)",
+  },
+  piece: {
+    by: (author: string) => `लेखक: ${author}`,
+    minRead: (minutes: number) => `पढ़ने में ${minutes} मिनट`,
+    updated: (date: string) => `अपडेट: ${date}`,
+    inEnglish: "अंग्रेज़ी में",
+    alsoIn: "इन भाषाओं में भी",
+    coverCredit: "कवर: Streetlist Journal के लिए DiceBear से बनाया गया",
+    coverAlt: (section: string, mood: string) => `${section} के रंग में कवर: कहानी का कार्टून साथी, ${mood}, बातचीत के एक गुब्बारे के पास।`,
+    exampleWho: { customer: "ग्राहक", helper: "AI सहायक", owner: "मालिक को दिखता है" },
+    sources: "स्रोत और सुधार",
+    corrections: "सुधार:",
+    noCorrections: "कोई दर्ज नहीं।",
+    keepReading: "और पढ़ें",
+    allJournal: "पूरा जर्नल",
+    reviewedBy: (name: string) => `अनुवाद की समीक्षा: ${name}`,
+  },
+  lists: {
+    count: (n: number) => `${n} लेख`,
+    emptyTopic: "इस विभाग में अभी कोई लेख नहीं है।",
+  },
+  moods: { well: "खुश", needs: "जिज्ञासु", wrong: "चिंतित", closed: "सोया हुआ", busy: "व्यस्त" },
+  notFound: {
+    title: "यह पेज अभी यहाँ नहीं है",
+    text: "पता बदल गया होगा, या यह पेज कभी था ही नहीं। मुख पृष्ठ पर हर लेख है।",
+    home: "मुख पृष्ठ पर जाएँ",
+    other: "या जर्नल पढ़ें",
+  },
+  footer: {
+    about: "जर्नल के बारे में",
+    feed: "RSS फ़ीड",
+    streetlist: "Streetlist",
+    credits: "किरदार DiceBear (MIT लाइसेंस) से बनाए गए हैं; किरदारों की शैलियाँ CC0 हैं।",
+    contact: (address: string) => `${address} पर लिखें`,
+    write: "कहानियाँ, चित्र और सुधार भेजें, आपका स्वागत है।",
+  },
+  labels: {
+    idea: { name: "प्रस्ताव", gloss: "एक प्रस्ताव। अभी तक किसी ने इसे आज़माया नहीं है।" },
+    "practical-guide": { name: "व्यावहारिक गाइड", gloss: "एक काम कैसे करें, कदम-दर-कदम।" },
+    experiment: { name: "प्रयोग", gloss: "एक छोटा परीक्षण: हमने क्या चलाया और क्या देखा।" },
+    "field-report": { name: "ज़मीनी रिपोर्ट", gloss: "किसी असली दुकान या समूह में क्या हुआ, तारीख़ों के साथ।" },
+    research: { name: "शोध", gloss: "सावधानी से किया गया अध्ययन, अपने स्रोतों और सीमाओं के साथ।" },
+    opinion: { name: "राय", gloss: "एक विचार जो हम रखते हैं। आप असहमत हो सकते हैं।" },
+  },
+  topics: {
+    technology: { name: "तकनीक", gloss: "औज़ार, मशीनें और AI, जिन्हें कोई जगह खुद अपना सके और चला सके।" },
+    livelihoods: { name: "रोज़ी-रोटी", gloss: "काम और व्यापार: दुकानें, हुनर, सेवाएँ, और वह पैसा जो वहीं रहता है जहाँ काम होता है।" },
+    community: { name: "समुदाय और नागरिक जीवन", gloss: "कोई गाँव, शहर या वार्ड मिलकर कैसे बाँटता है, तय करता है और चीज़ों की देखभाल करता है।" },
+    ideas: { name: "विचार और दर्शन", gloss: "तकनीक और रोज़मर्रा के जीवन पर सवाल, धीरे-धीरे सोचे हुए।" },
+    art: { name: "कला और संस्कृति", gloss: "चित्र, गीत, शिल्प और कहानियाँ, और उनके आसपास का रोज़मर्रा का जीवन।" },
+  },
+} satisfies Strings;

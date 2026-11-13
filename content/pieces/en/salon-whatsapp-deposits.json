@@ -1,0 +1,107 @@
+{
+  "slug": "salon-whatsapp-deposits",
+  "title": "Could a salon's WhatsApp take the bridal deposit, and say no to a discount?",
+  "summary": "A proposal: an AI helper on a salon's WhatsApp that books the slot, takes the deposit and keeps to the owner's prices. Who would look after it, what could go wrong, and what would show whether it helped.",
+  "author": "Geometer",
+  "published": "2026-11-04",
+  "updated": "2026-11-04",
+  "label": "idea",
+  "topic": "livelihoods",
+  "featured": true,
+  "companion": {
+    "look": "clay-1",
+    "mood": "well"
+  },
+  "image": {
+    "src": "/media/salon-whatsapp-deposits.jpg",
+    "alt": "A bridal makeup palette with a soft brush and a gold jhumka earring resting on it.",
+    "credit": "Photo: Lekhak Anurag / Unsplash",
+    "creditUrl": "https://unsplash.com/@lekhakanurag"
+  },
+  "sections": [
+    {
+      "heading": "The problem",
+      "paragraphs": [
+        "A bridal, makeup or spa booking takes a long slot of a salon's day. If the customer cancels the night before, or does not turn up, those hours are gone and nobody else could use them. A salon that takes bookings on WhatsApp by hand answers them whenever the owner has a free minute.",
+        "We have not measured how often this happens, and we have not interviewed a salon owner for this piece. So treat the problem as a question to put to an owner, not as a finding. The first thing a local partner would ask at a first visit is the plain one: how many bookings did you lose to no-shows and late cancellations last month?"
+      ]
+    },
+    {
+      "heading": "What the owner and an AI helper could do together",
+      "paragraphs": [
+        "The helper would answer the salon's WhatsApp in the customer's own language: Hindi, English, Malayalam or Kannada. It would offer only times that are free in the owner's calendar, send a link to pay a deposit, and confirm the booking only when the calendar and the payment record both agree. In the practice checks, when two customers ask for the same slot, only one gets it.",
+        "The owner would keep the decisions: her prices, the deposit, how early a customer must cancel to get it back, and the most the helper may refund without asking her. Anything above that would wait for her tap on WhatsApp. A local partner would set it up with her, and would be the person she calls."
+      ]
+    },
+    {
+      "heading": "Who decides, who looks after it, who pays",
+      "paragraphs": [
+        "The owner would decide. In the design, only she can loosen a limit, and not from the chat. A partner or builder, 18 or older, would set the helper up, check it in the first week and answer when something looks wrong.",
+        "The shop would pay that person a monthly fee that the person sets. Geometer charges the partner a monthly plan for each shop running live; the pricing page has the current figure and how a month is counted. The shop's own payment provider takes a small fee on each deposit, and keeps it even when a deposit goes back. A deposit would go straight to the salon's own account, and Geometer would never hold it."
+      ]
+    },
+    {
+      "heading": "What could go wrong, and who pays for it",
+      "items": [
+        "It could misread a message. A date like “next Friday” is the classic trap, so in the demo the helper writes the full date back and holds nothing until the customer says yes.",
+        "A customer could pay the deposit twice. In the practice checks the extra payment goes back.",
+        "A late cancellation would be the owner's decision, not the helper's.",
+        "Nothing has run on a real WhatsApp number, a real payment account or a real calendar. Whether a salon's own WhatsApp account can work with it depends on the account.",
+        "The Malayalam and Kannada wording is machine-written and waits for a native speaker to review it."
+      ],
+      "paragraphs": [
+        "Here is what we already know can go wrong."
+      ],
+      "after": [
+        "A mistake would land first on the owner and the customer, inside the limits the owner set. Geometer does not pay for losses. And the work of whoever answers these messages today, the owner or a receptionist, would change. That is a cost too, and the next section says how we would count it."
+      ]
+    },
+    {
+      "heading": "What would show whether it helped",
+      "paragraphs": [
+        "We would count, not grade, and compare each salon only with its own earlier months: bookings lost to no-shows and late cancellations, deposits taken, the time the owner spends on messages and, in the receptionist's own words, what happened to her hours.",
+        "We would say exactly what each number is. A deposit taken is money collected, not extra sales. A request the limits refused is a request refused, not a loss prevented. If a salon sees no difference, or is worse off, we would publish that too.",
+        "No salon is running this yet, so there is no result to report. Until one exists, this is a proposal."
+      ]
+    }
+  ],
+  "example": {
+    "title": "One moment from the practice demo",
+    "lines": [
+      {
+        "who": "customer",
+        "text": "Haircut tomorrow at 6 pm. Can you do it for ₹300?"
+      },
+      {
+        "who": "helper",
+        "text": "A haircut is ₹450. I can hold tomorrow at 6 pm once the ₹200 deposit is paid. Here is the link."
+      },
+      {
+        "who": "owner",
+        "text": "It said no to ₹300. It never goes below your price."
+      }
+    ],
+    "caption": "From the demo of Glow Salon, a made-up salon, run on practice services with test money. The helper's reply is paraphrased; the owner's line is the one the demo shows. The demo has no bridal or spa service: those would be the salon's own settings."
+  },
+  "ending": {
+    "kind": "template",
+    "title": "The agent template that does it",
+    "text": "The Bookings agent template is built to do the booking, the deposit and the refund rules above. It is free and open under the Apache-2.0 licence, in the agents repository on GitHub, with a guide to selling it in four languages. On 4 November 2026 it had been checked by hand on stand-in services: held 33 of 33 situations within what was tried, and 14 things not tested, including a real WhatsApp number, a real payment account and a real calendar.",
+    "linkText": "See the agent templates on GitHub",
+    "href": "https://github.com/GeometerLabs/agents"
+  },
+  "sources": [
+    {
+      "title": "Pricing",
+      "url": "https://geometer.dev/pricing"
+    },
+    {
+      "title": "The Bookings agent template, in the public agents repository",
+      "url": "https://github.com/GeometerLabs/agents"
+    }
+  ],
+  "related": [
+    "village-tractor-bookings"
+  ],
+  "corrections": []
+}

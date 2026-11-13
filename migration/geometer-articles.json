@@ -1,0 +1,633 @@
+{
+ "about": "The six community and livelihood pieces as they were in geometer.dev's Journal, copied unchanged from the public-web repository (src/data/articles.json at public-web commit 77fd3e2; the file last changed in 6f027a3) when they moved to the Streetlist Journal. Read-only: tests/migration.test.ts checks content/pieces/en against it through the documented maps in migration/map.json.",
+ "pieces": [
+  {
+   "slug": "training-centre-interview-packs",
+   "title": "Could a training centre sell a 30-day interview pack on WhatsApp?",
+   "summary": "A proposal: short interview practice written by the centre's own teacher, sold as a pack the learner pays for once, with the payment, the sessions and the completion note kept in order outside the AI. Who would look after it, what could go wrong, and what would show whether it helped.",
+   "author": "Geometer",
+   "published": "2026-11-09",
+   "updated": "2026-11-09",
+   "category": "journal",
+   "label": "idea",
+   "topic": "work",
+   "sources": [
+    {
+     "title": "Pricing",
+     "url": "/pricing"
+    },
+    {
+     "title": "The fee collection agent template, in the public agents repository",
+     "url": "https://github.com/GeometerLabs/agents/tree/main/templates/education/fees"
+    },
+    {
+     "title": "Supernova, a spoken-English practice app (its own site)",
+     "url": "https://www.getsupernova.ai/"
+    }
+   ],
+   "relatedAssessmentIds": [],
+   "corrections": [],
+   "related": [
+    "salon-whatsapp-deposits",
+    "paid-work-around-an-agent"
+   ],
+   "sections": [
+    {
+     "heading": "The problem",
+     "paragraphs": [
+      "Many jobs in shops, hotels, call centres and sales start with an interview in English. Training centres and vocational institutes already teach for it, but a class meets a few hours a week, and a learner rarely gets to rehearse the same question several times, alone, between classes.",
+      "Spoken-English practice apps exist, and some sell low-priced packs. What a local centre has is a teacher who knows the employers nearby and the learners in the room. We have not interviewed a centre for this piece, so treat the problem as a question to put to one: how many of last term's learners rehearsed an interview more than once before the real one?"
+     ]
+    },
+    {
+     "heading": "What the teacher and an AI helper could do together",
+     "paragraphs": [
+      "The helper would send short practice sessions to the learner's WhatsApp, written by the centre's own teacher: a question an interviewer might ask, three replies to choose from, and the teacher's note on why one works better. Free answers that need judgement would go to the teacher, not to the AI. Speaking aloud would stay with the teacher, in class or in a mock interview, because tapping the right reply is not the same as saying it.",
+      "The centre would keep the decisions: what a pack holds, how many sessions, how long it lasts, when a refund is due and the most the helper may refund without asking. A pack would open once for each payment, and only when the payment provider's own record shows it paid. A message that fails to arrive would not use up a session.",
+      "Progress would go only to the learner, and to anyone the learner names. The teacher would see which questions the class gets wrong most often, to plan the next class. A completion note would go out only when the records show the sessions were done, and it would say only that: the pack was completed. It would not be a language certificate or a promise of a job."
+     ]
+    },
+    {
+     "heading": "Who decides, who looks after it, who pays",
+     "paragraphs": [
+      "The centre would decide, and only the centre could loosen a limit, never from the chat. The learners would be adults, 18 or older; school students would wait for a proper way to bring a parent in. A partner or builder, 18 or older, would set the helper up with the teacher, check it in the first week and answer when something looks wrong.",
+      "The learner would pay the centre for a pack, at a price the centre sets, straight into the centre's own payment account. Geometer would never hold it. Geometer would charge the partner a monthly plan for the running centre, shared with the fee collection helper if the centre uses both; the pricing page has the current figures.",
+      "The teacher's time would be a real cost: writing the questions and notes, reading the weekly summary and running the spoken practice. The centre would decide whether a pack is worth that time, and a teacher whose material other centres reuse would be paid for it, on terms agreed in writing."
+     ]
+    },
+    {
+     "heading": "What could go wrong, and who pays for it",
+     "paragraphs": [
+      "Here is what we already know can go wrong."
+     ],
+     "items": [
+      "A question or a note could be wrong or unclear. The helper would send only what the teacher wrote, so a mistake there is a mistake in the material, fixed once for every learner.",
+      "A learner could pay twice, or a payment notice could arrive twice. In the design, a pack opens once for each payment, and a payment nobody can match waits for the centre.",
+      "Progress could reach the wrong person, for example on a phone number that changed hands. Reports would go only to numbers the learner has confirmed.",
+      "Practice could turn into memorising answers. A learner who picks the right reply every time can still freeze in a real interview, which is why the spoken part stays with the teacher.",
+      "Nothing has run with a real centre, a real learner or a real payment account. The pack, its sessions and its completion note are not built, and Malayalam and Kannada wording would wait for a native speaker's review."
+     ],
+     "after": [
+      "A mistake would land first on the learner and the centre, inside the limits the centre set. Geometer does not pay for losses. And the teacher's week would change, which the next section counts as well."
+     ]
+    },
+    {
+     "heading": "What would show whether it helped",
+     "paragraphs": [
+      "We would compare each learner's own unaided mock interview at the start and at the end, with new questions each time, scored on the same short rubric, ideally by a second teacher who does not know which interview came first. Finishing the sessions is not the measure; answering well without help is.",
+      "We would say exactly what each number is. A pack sold is money collected, not a job found. A finished pack is practice done, not English learned. We would count the teacher's hours too. If learners do no better than with the centre's usual teaching, or the teacher's week gets worse, we would publish that too.",
+      "No centre is running this yet, so there is no result to report. Until one exists, this is a proposal."
+     ]
+    }
+   ],
+   "example": {
+    "title": "One practice question, as a teacher might write it",
+    "lines": [
+     {
+      "who": "helper",
+      "text": "Practice 4 of 12, hotel front desk. A guest says the room is not clean. Which reply would you give? 1. Sorry, I will clean it. 2. I'm sorry about that. I'll send housekeeping now, or would you like another room? 3. Rooms are cleaned every morning."
+     },
+     {
+      "who": "customer",
+      "name": "The learner",
+      "text": "2"
+     },
+     {
+      "who": "helper",
+      "text": "Yes. Your teacher's note: say what you will do, then offer a choice. Say it aloud to your teacher on Thursday."
+     },
+     {
+      "who": "owner",
+      "name": "The teacher",
+      "text": "Most of the group picked 1 this week. Thursday's class practises offering a choice."
+     }
+    ],
+    "caption": "A made-up exchange, written for this proposal, with a question and a note of the kind a teacher might write. No learner, centre or practice service was involved."
+   },
+   "ending": {
+    "kind": "discovery",
+    "title": "Plan one cohort with one centre, on paper",
+    "text": "Take one teacher's questions for one job and walk through a pack on paper: what a payment opens, what counts as a session, what the completion note says and who sees progress. The fee collection agent template is built and open; the course pack is a proposal. If you run a centre, or work with one, write to support. A person answers.",
+    "href": "/contact?topic=help#request",
+    "linkText": "Write to support"
+   }
+  },
+  {
+   "slug": "town-owned-ai-service",
+   "title": "What would it mean for a town to own an AI service?",
+   "summary": "An imagined equipment group asks who controls its service, who gets paid, what happens to the surplus and how members could leave. A proposal about rights and responsibilities.",
+   "author": "Geometer",
+   "published": "2026-11-05",
+   "updated": "2026-11-05",
+   "category": "journal",
+   "label": "idea",
+   "topic": "community",
+   "sources": [
+    {
+     "title": "The equipment booking proposal",
+     "url": "/journal/village-tractor-bookings"
+    },
+    {
+     "title": "The Bookings equipment settings and current limits",
+     "url": "https://github.com/GeometerLabs/agents/tree/main/templates/commerce/bookings"
+    },
+    {
+     "title": "Current dependencies and continuity limits",
+     "url": "/journal/what-you-depend-on"
+    }
+   ],
+   "relatedAssessmentIds": [],
+   "corrections": [],
+   "related": [
+    "village-tractor-bookings",
+    "paid-work-around-an-agent",
+    "what-you-depend-on"
+   ],
+   "sections": [
+    {
+     "heading": "Whose turn comes first?",
+     "paragraphs": [
+      "Imagine a group of growers that shares one tractor. Rain has left a short harvest window. Two members ask for the same morning. One booked earlier; the other says a delay will spoil the crop. A third member maintains the machine and needs a free afternoon to repair it. An AI booking service could show the conflict. Someone still has to decide whose claim takes priority.",
+      "This group is invented. We have not observed this dispute, and no town is running the service described here. It is a proposal for an existing group to examine, if it wants one. The repeated task is allocating equipment and keeping a record members can question. The larger question is what the group would have to own and control for the service to belong to it.",
+      "A subscription could buy access without giving members a vote on prices, rules or the operator. Running a computer in the village would say where the software sits. Holding a token would say little without an agreement explaining its rights. Members would need those rights written down, with a practical way to exercise them."
+     ]
+    },
+    {
+     "heading": "Who could change the rules?",
+     "paragraphs": [
+      "The members would first agree who can join, how a booking is ranked and when an exception is allowed. They might choose first come, first served, with a separate route for urgent requests. The AI would apply the published rule and flag a conflict. It would have no authority to invent a new priority because one message sounds more persuasive.",
+      "A named committee member would approve an exception, give a reason and declare any personal interest. Another person would hear an appeal. Members would decide how committee members are chosen and replaced, and how a proposed rule change gets notice and a vote. The operator would explain the record and carry out approved changes; being able to edit software would not itself confer the right to change policy.",
+      "Records would show the request, the rule version, any approval and the resulting booking. Members would need enough access to challenge allocation without exposing everyone’s private messages. A booking record would establish a reserved slot. Whether the machine arrived and worked would require a separate handover and completion check with the people involved."
+     ]
+    },
+    {
+     "heading": "Who would do the work, and who would pay?",
+     "paragraphs": [
+      "The group would appoint an operator with agreed hours, a fee and a backup contact. Someone would inspect the equipment, arrange repairs and help members who cannot use the booking channel. These could be different people. The members would decide which tasks are paid and who may authorise each expense, rather than assuming that a neighbour will answer calls for free.",
+      "Hire charges or member subscriptions would fund the service. Before discussing any surplus, the group would account for fuel, maintenance, operator time, software, messaging and other direct costs. It would put an agreed amount into a repair reserve and compare that reserve with likely repair needs. A payment received for a booking would still carry the obligation to provide the hire or settle a cancellation.",
+      "Only after those costs and obligations were understood would members decide what to do with a remaining surplus: retain it, reduce future charges, improve the equipment or distribute it under their agreed rules. There is no projected return here. A quiet season or an expensive repair could leave nothing to share, and members would need a rule for a shortfall too."
+     ]
+    },
+    {
+     "heading": "Could the group change the operator or supplier?",
+     "paragraphs": [
+      "Ownership would need to survive a disagreement with the person running the service. The agreement should identify who holds the domain, service accounts, configuration, membership list and booking records. It should say who can appoint a replacement operator, revoke the old operator’s access and obtain a usable export without needing their cooperation at the last minute.",
+      "An export should include rules and outstanding obligations as well as names and dates. The replacement needs to know which deposits await a decision, which bookings are disputed and which messages were never acknowledged. Before relying on an exit promise, the group could rehearse a handover using invented records. It would then know what can actually be moved and what needs rebuilding.",
+      "Geometer has not resolved its own continuity arrangements. As of 5 November 2026, its product documents say Guard checks a Geometer licence and fails closed; continued operation if Geometer disappears cannot be promised. Open templates alone do not solve that dependency. Export and handover also remain planned work. A group considering this proposal would need a satisfactory continuity arrangement before depending on it."
+     ]
+    },
+    {
+     "heading": "Start with an ownership worksheet",
+     "paragraphs": [
+      "The existing tractor booking article explains the narrower booking proposal. In the current equipment variant, bookings share one calendar capacity, prices are fixed, a booking lasts at most eight hours within one day, and voice notes are not understood. It does not assign drivers or settle the balance after a deposit. It has no membership voting or surplus system. Those limits were checked against the repository for this piece; they are not evidence of a live group service.",
+      "The ownership proposal could fail even if the booking software worked. A committee might favour its own members, an unpaid operator might stop answering, or records might be inaccessible to people who need to appeal. Start by asking members separately which decision they most want to be able to challenge. If they cannot agree who has authority, software will not supply that agreement."
+     ],
+     "items": [
+      "Asset: what would the group own, and what would it only rent or license?",
+      "Members: who could join, vote, inspect decisions and propose a change?",
+      "Payer: which charges would cover operation, and who would approve spending?",
+      "Rules: how would priority and exceptions be decided and recorded?",
+      "Operator: who would maintain the service and equipment, on what paid terms?",
+      "Reserve: what would be set aside before deciding on any surplus?",
+      "Appeal: who would review a disputed decision without a personal interest?",
+      "Exit: how would members replace the operator, move records or close the service?"
+     ]
+    }
+   ],
+   "ending": {
+    "kind": "discovery",
+    "title": "Try the worksheet with one existing group",
+    "text": "Use the eight questions above in a meeting, then walk through one disputed booking and one operator handover on paper. The booking example is available to examine; the ownership arrangement is still a proposal.",
+    "href": "/journal/village-tractor-bookings",
+    "linkText": "Read the equipment booking proposal"
+   },
+   "example": {
+    "title": "An imagined decision, before any booking changes",
+    "caption": "A made-up exchange for this essay. It is not a transcript, a deployment result or an implemented approval process.",
+    "lines": [
+     {
+      "who": "customer",
+      "name": "A member",
+      "text": "Can my booking move ahead of the earlier request? The crop cannot wait."
+     },
+     {
+      "who": "helper",
+      "name": "The proposed helper",
+      "text": "That would change the agreed priority. I would leave both requests pending for the authorised reviewer."
+     },
+     {
+      "who": "owner",
+      "name": "The proposed reviewer",
+      "text": "Record my interest in this request and send it to the other reviewer. I am related to the applicant."
+     }
+    ]
+   }
+  },
+  {
+   "slug": "paid-work-around-an-agent",
+   "title": "The paid work around an AI agent",
+   "summary": "Setup, language review, exceptions and maintenance all take time. They become paid work only when someone covers the costs, and they can change or remove other people’s tasks.",
+   "author": "Geometer",
+   "published": "2026-11-05",
+   "updated": "2026-11-05",
+   "category": "journal",
+   "label": "opinion",
+   "topic": "work",
+   "sources": [
+    {
+     "title": "The proposed market ordering service",
+     "url": "/journal/market-orders-by-voice"
+    },
+    {
+     "title": "Current service dependencies and terms",
+     "url": "/journal/what-you-depend-on"
+    }
+   ],
+   "relatedAssessmentIds": [],
+   "corrections": [],
+   "related": [
+    "market-orders-by-voice",
+    "town-owned-ai-service",
+    "what-you-depend-on"
+   ],
+   "sections": [
+    {
+     "heading": "Someone has to ask what a box means",
+     "paragraphs": [
+      "An order says “two boxes”. In this imagined market, one supplier packs twelve units in a box and another packs twenty-four. The transcript could be perfectly accurate and the order still be wrong. A local operator recognises the ambiguity, asks which pack the shop means and checks the answer against the supplier’s catalogue. That intervention is useful work.",
+      "Someone must pay for that time. A discussion of work around AI should begin with a task, its cost and a buyer. A list of possible tasks does not establish a livelihood. These are hypothetical roles, not an operator’s testimonial or measured employment results.",
+      "The market ordering service is itself a proposal. Imagine a wholesaler paying for it because several shops repeatedly need help placing and reconciling orders. The operator’s job would be to keep that process usable and resolve exceptions within agreed authority. Whether the wholesaler values it enough to pay is a question for discovery, before building or selling it."
+     ]
+    },
+    {
+     "heading": "Before the first order",
+     "paragraphs": [
+      "Discovery would mean watching how an order is handled today, with permission: who writes it down, who confirms stock, how a substitution is agreed and who notices a short delivery. The operator would need to distinguish an inconvenient step from a necessary check. Removing the phone call that catches a pack-size mistake would not be an improvement just because fewer calls were made.",
+      "Setup would include checking catalogue units, agreeing access to records, naming an approver and trying mistakes deliberately with test data. Language review would involve people who understand the actual speech used by merchants. A readable translation can still mishandle a local product name or a unit. Reviewers should have a defined task and paid time, rather than an open-ended request to help.",
+      "There is work around finding customers too: visits, demonstrations, follow-up and preparing a quote. A person could do all of that and find no buyer. Count those hours and expenses in the cost of attempting the service. Leaving them out would make a successful installation look cheaper to sell than it was."
+     ]
+    },
+    {
+     "heading": "During an exception, and at the monthly review",
+     "paragraphs": [
+      "Suppose a shop approves two boxes of twelve. The supplier offers a different brand in boxes of twenty-four. The operator could explain the difference and obtain a fresh approval; they should not silently treat the substitution as equivalent. If dispatch is recorded but a delivery is short, they would compare the merchant’s receipt with the supplier’s dispatch and invoice records, then keep the discrepancy open until the parties resolve it.",
+      "The service agreement would need a name and a response window for this work. It should say who covers evenings, who can correct an order and who decides a credit or refund. An operator paid only for initial setup could otherwise become the permanent, unpaid contact for every dispute. A monthly fee could help fund support, but only if its scope and actual support load fit.",
+      "The monthly review would look at unresolved orders, repeated misunderstandings, changed catalogue entries and the hours needed to support each shop. It would also ask staff what changed in their day. The work might be reassigned to an existing clerk, performed by a specialist serving several shops, or judged too costly to continue. None of those outcomes should be assumed in advance."
+     ]
+    },
+    {
+     "heading": "Follow the payer, and count the whole cost",
+     "paragraphs": [
+      "In this example the wholesaler would pay the operator under an agreed contract. Shops would retain authority over their own purchases. The contract should explain what the wholesaler can see, how a shop can dispute a record and whether the operator has any incentive to favour particular products. Funding the software would not entitle the payer to approve another business’s order.",
+      "Keep separate records of selling hours, setup hours and ongoing support hours. Record what was invoiced and what was actually paid. Subtract direct expenses such as travel, connectivity, messaging, model use, software and any paid help. Record unpaid bills and work awaiting payment too. Gross receipts alone would say little about the money left for the operator’s own time.",
+      "Demand could be seasonal, support could arrive in bursts and a customer could leave. Report the variation across months and people, including those who found no customers. Before publishing real financial results, obtain consent and state the dates, the full number of people included and the range of outcomes. We have no such cohort for this proposal and publish no pay estimate."
+     ]
+    },
+    {
+     "heading": "New work and displaced work are different outcomes",
+     "paragraphs": [
+      "A technician being hired, a clerk being reassigned and a vacancy no longer being filled are different events. So is a reduction in someone’s paid hours. A pilot should record them separately, rather than treating every hour removed from a task as a new opportunity for someone else. The person whose work changes may not have the time, access or wish to become the operator.",
+      "A count of tasks an AI might handle would not establish how many jobs disappeared. A change in vacancies would answer a different question from a change in actual staffing. This piece offers no employment forecast and no claim that service roles will offset wider displacement. A small pilot could describe what happened to its participants; it could not establish the effect across a town.",
+      "The practical commitment is to count the costs borne by people who do not benefit. Ask the former order-taker, the shop that stopped using the service and the operator who gave up. Their accounts belong alongside successful orders. A service worth continuing should withstand that comparison."
+     ],
+     "items": [
+      "Useful work completed: which orders were received correctly, and what remains unresolved?",
+      "Roles changed: which tasks moved, whose paid hours changed and which vacancies went unfilled?",
+      "Paid hours: how much selling, setup, review and support time was paid, unpaid or awaiting payment?",
+      "Costs: what did each participant spend, including travel and paid assistance?",
+      "Variation: how did receipts, expenses and money left for time differ across people and months?",
+      "Who did not benefit: include unsuccessful sellers, departing customers and staff who lost hours."
+     ]
+    }
+   ],
+   "ending": {
+    "kind": "next",
+    "title": "Use the scorecard before promising a role",
+    "text": "Ask a prospective payer and the people doing the work today to review the six measures above. The market ordering essay gives a concrete proposal to discuss; no operator interview or employment result is implied.",
+    "href": "/journal/market-orders-by-voice",
+    "linkText": "Read the market ordering proposal"
+   }
+  },
+  {
+   "slug": "market-orders-by-voice",
+   "title": "Could a market order stock through voice notes?",
+   "summary": "A proposal for shops and a wholesaler: turn a familiar voice note into an approved order, then keep acceptance, dispatch and receipt separate. Start by mapping today’s work.",
+   "author": "Geometer",
+   "published": "2026-11-05",
+   "updated": "2026-11-05",
+   "category": "journal",
+   "label": "idea",
+   "topic": "commerce",
+   "sources": [
+    {
+     "title": "Why a missing acknowledgement leaves an outcome uncertain",
+     "url": "/journal/lost-acknowledgements"
+    },
+    {
+     "title": "Approval for the exact action",
+     "url": "/journal/exact-call-approval"
+    },
+    {
+     "title": "The paid work around the proposed service",
+     "url": "/journal/paid-work-around-an-agent"
+    }
+   ],
+   "relatedAssessmentIds": [],
+   "corrections": [],
+   "related": [
+    "paid-work-around-an-agent",
+    "lost-acknowledgements",
+    "exact-call-approval"
+   ],
+   "sections": [
+    {
+     "heading": "A familiar message, an uncertain order",
+     "paragraphs": [
+      "Imagine a merchant sending a mixed Hindi and English voice note: “Kal usual oil ke do box bhejna.” Tomorrow, two boxes of the usual oil. Which brand? Twelve bottles per box or twenty-four? Delivery tomorrow, or ordering tomorrow? A transcript would preserve those questions, not answer them.",
+      "This scene is invented. We have not interviewed merchants or a wholesaler to establish demand. The proposal is a shared ordering service for shops buying repeatedly from one supplier. Discovery might show that existing calls and messages work well enough.",
+      "Voice would be optional. Typing and human callbacks should remain available. Before retaining audio, the operator would need to explain its use, agree access and set a retention period with the people involved."
+     ]
+    },
+    {
+     "heading": "Read back the order before asking for approval",
+     "paragraphs": [
+      "The service would check a current catalogue and clarify the product, pack size and delivery date. An unavailable or ambiguous catalogue would mean waiting for the named operator. Past orders could suggest a product, but would not establish today’s intent. Mixed speech, noise and local product names would need testing with local speakers.",
+      "The service would read back or display the exact product, number of packs, units per pack, total units, unit and total price, any charges and the requested delivery date. It would identify when the quoted price was checked and distinguish a requested date from a supplier’s commitment. The merchant would approve those details before the order was submitted.",
+      "Approval would belong to someone authorised to purchase for that shop. A shared phone would not identify that person: authority would need checking separately. A changed price, quantity or substitute would require fresh approval. If the readback were unclear, a human would explain it before commitment."
+     ]
+    },
+    {
+     "heading": "Who would operate it, and who would pay?",
+     "paragraphs": [
+      "A wholesaler would be a candidate payer if fewer clarification calls and cleaner orders justified the full cost. A market association could instead fund a shared desk if its members agreed the charges. These are alternatives to investigate, not established buyers. The payer would need to cover discovery, language review, setup and ongoing exception work, as well as software and messaging.",
+      "A named local operator would handle substitutions, short shipments and invoice discrepancies. They would have access only to the records their task requires. Each shop would approve purchases; the supplier would decide whether to accept and fulfil them. A wholesaler funding the desk would not acquire authority to change a shop’s order without its approval.",
+      "Before a live connection, the parties would check access to stock, order and payment records, the terms of use and how to make corrections. A spreadsheet catalogue might support a paper trial while being too stale for live commitments. This proposal has no ready Geometer template or established access to supplier systems."
+     ]
+    },
+    {
+     "heading": "Acceptance, dispatch and receipt are separate",
+     "paragraphs": [
+      "After a merchant approves, submission would mean only that an order was sent. Supplier acceptance would need its own record with agreed items and terms. Dispatch would mean the supplier recorded goods leaving. Receipt would require the merchant or an authorised recipient to check what arrived. None of those states would, by itself, mean that the invoice was correct or the supplier had been paid.",
+      "If the acceptance reply disappeared, the order would stay unresolved. The service would look up the original reference or ask the operator to reconcile it. Sending a fresh order could create a duplicate. A retry would require knowing how the supplier recognises the original request.",
+      "For a short shipment, the operator would record the expected and received quantities and seek a correction from the supplier. A proposed substitute would return to the merchant for approval. Invoice disagreements and any credit would remain open until the relevant parties confirmed the resolution. The record would say what is known and what still needs a call, rather than marking the whole order complete."
+     ]
+    },
+    {
+     "heading": "Map the work before building",
+     "paragraphs": [
+      "Choose a few willing shops and one wholesaler. With permission, follow recent orders from request to receipt and settlement. Ask people to explain their own records. Count clarification calls, changed quantities, unresolved deliveries and time spent checking invoices. Include orders that went smoothly so that an unusual dispute does not become the assumed daily pattern.",
+      "Then replay a handful with invented products and test prices. Try an ambiguous pack size, a changed quote, a lost acceptance reply, a substitution and a short delivery. Have participants correct the readback in the language they would use. Do not place live orders or move money during this exercise. Record who must decide at each step and who would pay for the operator’s time.",
+      "The idea could fail because records are inaccessible, voice correction takes longer than a call, shops distrust a supplier-funded desk, or nobody funds support. Record those findings too. Discovery would establish whether to build, what to connect and which actions to authorise. Start with a process map."
+     ]
+    }
+   ],
+   "ending": {
+    "kind": "discovery",
+    "title": "Trace three orders with the people involved",
+    "text": "Map today’s request, approval, acceptance, dispatch, receipt and settlement. Keep missing replies visible. This is a proposal; Geometer’s Bookings template does not take voice orders.",
+    "href": "/journal/lost-acknowledgements",
+    "linkText": "Read about missing acknowledgements"
+   },
+   "example": {
+    "title": "A fictional readback using test prices",
+    "caption": "A made-up exchange, written for this proposal. The products, catalogue, prices and replies are fictional; no voice service or live supplier integration was run.",
+    "lines": [
+     {
+      "who": "customer",
+      "name": "The merchant",
+      "text": "Kal usual oil ke do box bhejna. Two boxes of the usual oil for tomorrow."
+     },
+     {
+      "who": "helper",
+      "name": "The proposed helper",
+      "text": "Sunflower oil? The test catalogue lists twelve 1-litre bottles per box."
+     },
+     {
+      "who": "customer",
+      "name": "The merchant",
+      "text": "Yes, sunflower oil. Two boxes. Read back the total."
+     },
+     {
+      "who": "helper",
+      "name": "The proposed helper",
+      "text": "Sunflower oil: two boxes of twelve 1-litre bottles. 24 bottles at the test price of ₹100 each; ₹2,400 total, no extra charges. Requested delivery: 6 November 2026, pending supplier acceptance. May I submit?"
+     },
+     {
+      "who": "customer",
+      "name": "The merchant",
+      "text": "Yes, submit those exact details. I understand the supplier has not accepted yet."
+     }
+    ]
+   }
+  },
+  {
+   "slug": "salon-whatsapp-deposits",
+   "title": "Could a salon's WhatsApp take the bridal deposit, and say no to a discount?",
+   "summary": "A proposal: an AI helper on a salon's WhatsApp that books the slot, takes the deposit and keeps to the owner's prices. Who would look after it, what could go wrong, and what would show whether it helped.",
+   "author": "Geometer",
+   "published": "2026-11-04",
+   "updated": "2026-11-04",
+   "category": "journal",
+   "label": "idea",
+   "topic": "commerce",
+   "featured": true,
+   "sources": [
+    {
+     "title": "Pricing",
+     "url": "/pricing"
+    },
+    {
+     "title": "The Bookings agent template, in the public agents repository",
+     "url": "https://github.com/GeometerLabs/agents"
+    }
+   ],
+   "relatedAssessmentIds": [],
+   "corrections": [],
+   "related": [
+    "village-tractor-bookings",
+    "what-you-depend-on"
+   ],
+   "sections": [
+    {
+     "heading": "The problem",
+     "paragraphs": [
+      "A bridal, makeup or spa booking takes a long slot of a salon's day. If the customer cancels the night before, or does not turn up, those hours are gone and nobody else could use them. A salon that takes bookings on WhatsApp by hand answers them whenever the owner has a free minute.",
+      "We have not measured how often this happens, and we have not interviewed a salon owner for this piece. So treat the problem as a question to put to an owner, not as a finding. The first thing a local partner would ask at a first visit is the plain one: how many bookings did you lose to no-shows and late cancellations last month?"
+     ]
+    },
+    {
+     "heading": "What the owner and an AI helper could do together",
+     "paragraphs": [
+      "The helper would answer the salon's WhatsApp in the customer's own language: Hindi, English, Malayalam or Kannada. It would offer only times that are free in the owner's calendar, send a link to pay a deposit, and confirm the booking only when the calendar and the payment record both agree. In the practice checks, when two customers ask for the same slot, only one gets it.",
+      "The owner would keep the decisions: her prices, the deposit, how early a customer must cancel to get it back, and the most the helper may refund without asking her. Anything above that would wait for her tap on WhatsApp. A local partner would set it up with her, and would be the person she calls."
+     ]
+    },
+    {
+     "heading": "Who decides, who looks after it, who pays",
+     "paragraphs": [
+      "The owner would decide. In the design, only she can loosen a limit, and not from the chat. A partner or builder, 18 or older, would set the helper up, check it in the first week and answer when something looks wrong.",
+      "The shop would pay that person a monthly fee that the person sets. Geometer charges the partner a monthly plan for each shop running live; the pricing page has the current figure and how a month is counted. The shop's own payment provider takes a small fee on each deposit, and keeps it even when a deposit goes back. A deposit would go straight to the salon's own account, and Geometer would never hold it."
+     ]
+    },
+    {
+     "heading": "What could go wrong, and who pays for it",
+     "items": [
+      "It could misread a message. A date like “next Friday” is the classic trap, so in the demo the helper writes the full date back and holds nothing until the customer says yes.",
+      "A customer could pay the deposit twice. In the practice checks the extra payment goes back.",
+      "A late cancellation would be the owner's decision, not the helper's.",
+      "Nothing has run on a real WhatsApp number, a real payment account or a real calendar. Whether a salon's own WhatsApp account can work with it depends on the account.",
+      "The Malayalam and Kannada wording is machine-written and waits for a native speaker to review it."
+     ],
+     "paragraphs": [
+      "Here is what we already know can go wrong."
+     ],
+     "after": [
+      "A mistake would land first on the owner and the customer, inside the limits the owner set. Geometer does not pay for losses. And the work of whoever answers these messages today, the owner or a receptionist, would change. That is a cost too, and the next section says how we would count it."
+     ]
+    },
+    {
+     "heading": "What would show whether it helped",
+     "paragraphs": [
+      "We would count, not grade, and compare each salon only with its own earlier months: bookings lost to no-shows and late cancellations, deposits taken, the time the owner spends on messages and, in the receptionist's own words, what happened to her hours.",
+      "We would say exactly what each number is. A deposit taken is money collected, not extra sales. A request the limits refused is a request refused, not a loss prevented. If a salon sees no difference, or is worse off, we would publish that too.",
+      "No salon is running this yet, so there is no result to report. Until one exists, this is a proposal."
+     ]
+    }
+   ],
+   "example": {
+    "title": "One moment from the practice demo",
+    "lines": [
+     {
+      "who": "customer",
+      "text": "Haircut tomorrow at 6 pm. Can you do it for ₹300?"
+     },
+     {
+      "who": "helper",
+      "text": "A haircut is ₹450. I can hold tomorrow at 6 pm once the ₹200 deposit is paid. Here is the link."
+     },
+     {
+      "who": "owner",
+      "text": "It said no to ₹300. It never goes below your price."
+     }
+    ],
+    "caption": "From the demo of Glow Salon, a made-up salon, run on practice services with test money. The helper's reply is paraphrased; the owner's line is the one the demo shows. The demo has no bridal or spa service: those would be the salon's own settings."
+   },
+   "ending": {
+    "kind": "template",
+    "title": "The agent template that does it",
+    "text": "The Bookings agent template is built to do the booking, the deposit and the refund rules above. It is free and open under the Apache-2.0 licence, in the agents repository on GitHub, with a guide to selling it in four languages. On 4 November 2026 it had been checked by hand on stand-in services: held 33 of 33 situations within what was tried, and 14 things not tested, including a real WhatsApp number, a real payment account and a real calendar.",
+    "linkText": "See the agent templates on GitHub",
+    "href": "https://github.com/GeometerLabs/agents"
+   },
+   "image": {
+    "src": "/journal/salon-whatsapp-deposits.jpg",
+    "alt": "A bridal makeup palette with a soft brush and a gold jhumka earring resting on it.",
+    "credit": "Photo: Lekhak Anurag / Unsplash",
+    "creditUrl": "https://unsplash.com/@lekhakanurag"
+   }
+  },
+  {
+   "slug": "village-tractor-bookings",
+   "title": "Could a village tractor book itself on WhatsApp?",
+   "summary": "A proposal: a hiring centre's tractor, booked by the half day or the day on WhatsApp, with a deposit, in Kannada or Hindi. What it cannot do yet, who would look after it, and what would show whether it helped.",
+   "author": "Geometer",
+   "published": "2026-11-04",
+   "updated": "2026-11-04",
+   "category": "journal",
+   "label": "idea",
+   "topic": "community",
+   "sources": [
+    {
+     "title": "Pricing",
+     "url": "/pricing"
+    },
+    {
+     "title": "The Bookings agent template, in the public agents repository",
+     "url": "https://github.com/GeometerLabs/agents"
+    }
+   ],
+   "relatedAssessmentIds": [],
+   "corrections": [],
+   "related": [
+    "salon-whatsapp-deposits",
+    "what-you-depend-on"
+   ],
+   "sections": [
+    {
+     "heading": "The problem",
+     "paragraphs": [
+      "A tractor and its attachments are often the busiest thing a village hiring centre owns. They are rented by the half day or the day, and bookings come by phone call and WhatsApp message. When rain comes, farmers cancel late. When a farmer does not turn up, the owner loses a working day that someone else in the village could have used.",
+      "That is the picture in the guide we wrote for local partners. It does not come from a farmer or an owner we spoke to, and we have not counted how often it happens. The first thing to find out, in the owner's own words, is how many hours the tractor sat idle last season because of a cancellation."
+     ]
+    },
+    {
+     "heading": "What the owner and an AI helper could do together",
+     "paragraphs": [
+      "A farmer would write on WhatsApp, in Kannada or Hindi. The helper would offer a free half day or day for the tractor and its attachment, say the fixed price, send a link to pay a deposit straight to the owner's account, and book the time. It would remind the farmer the day before.",
+      "If the farmer cancels at least 24 hours before, the deposit would go back by itself, up to the owner's limit. If it is later, the helper would ask the owner, and the owner would decide. It would not know the weather, and it does not try to. The decision would stay with the person."
+     ]
+    },
+    {
+     "heading": "Who decides, who looks after it, who pays",
+     "paragraphs": [
+      "The owner would decide the price of each job, the deposit, how early a farmer must cancel and how much the helper may give back without asking. A local partner or builder, 18 or older, would set it up with the owner, in the owner's language, and answer the phone when something looks wrong.",
+      "The farmer would pay the deposit on a payment link, straight to the owner's account. The rest of the payment would stay between the owner and the farmer, as it is now, and the helper would not record it. The owner would pay the person who set it up a monthly fee that the person sets. Geometer charges that person a monthly plan for each centre running live; the pricing page has the current figure and how a month is counted."
+     ]
+    },
+    {
+     "heading": "What could go wrong, and who pays for it",
+     "paragraphs": [
+      "Here is what it cannot do today, so that nobody is promised it."
+     ],
+     "items": [
+      "It books one thing at a time for the whole centre. A booking for the sprayer blocks the tractor at that time.",
+      "Each job has one fixed price. It cannot charge by the acre or by the hour.",
+      "One booking is one day at most, up to 8 hours.",
+      "It does not record the field, the driver or the weather.",
+      "The deposit holds the time. It is not cover for damage, and the helper does not track the machine.",
+      "It does not listen to voice notes. A farmer who sends one gets a short reply asking them to type, so farmers who only use voice notes would be left out until that is fixed."
+     ],
+     "after": [
+      "A mistake would land first on the owner and the farmer, inside the limits the owner set. Geometer does not pay for losses. No hiring centre runs this yet, and the Kannada and Hindi wording is machine-written and waits for a native speaker to review it."
+     ]
+    },
+    {
+     "heading": "What would show whether it helped",
+     "paragraphs": [
+      "We would count, and compare a centre only with its own earlier seasons: days the machine was used, hours lost to cancellations and no-shows, the time the owner spends on messages and calls, and how many farmers could not use it because they only send voice notes.",
+      "The improvement we would look for is plain to see: the machine used on more days, and an owner who gets her evenings back. We would say exactly what each number is, publish it if it did not help, and say what changed for whoever used to take these bookings.",
+      "No centre is running this yet, so there is no result to report. Until one exists, this is a proposal."
+     ]
+    }
+   ],
+   "example": {
+    "title": "One moment from the practice demo",
+    "lines": [
+     {
+      "who": "customer",
+      "text": "Please cancel tomorrow's booking. It is raining.",
+      "name": "A farmer"
+     },
+     {
+      "who": "helper",
+      "text": "Give back ₹1,000? Cancelled less than 24 hours before the start.",
+      "name": "The helper asks the owner"
+     },
+     {
+      "who": "owner",
+      "text": "Approve",
+      "name": "The owner taps"
+     }
+    ],
+    "caption": "From the demo of Hosahalli Farm Hiring Centre, a made-up centre, run on practice services with test money. The farmer's message is paraphrased. The question to the owner and its two buttons, Approve and Deny, are as the demo shows them."
+   },
+   "ending": {
+    "kind": "template",
+    "title": "The agent template that does it",
+    "text": "Equipment rental runs on the Bookings agent template, with a different set of settings. It is free and open under the Apache-2.0 licence, in the agents repository on GitHub, with a guide to selling it to a hiring centre. On 4 November 2026 it had been checked by hand, for the made-up Hosahalli centre, on stand-in services: held 28 of 28 situations within what was tried, and 14 things not tested, including a real WhatsApp number, a real payment account and a real calendar. The gaps above are listed in the repository, with what would close each one.",
+    "linkText": "See the agent templates on GitHub",
+    "href": "https://github.com/GeometerLabs/agents"
+   }
+  }
+ ]
+}

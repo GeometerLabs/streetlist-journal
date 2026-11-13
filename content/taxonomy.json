@@ -1,0 +1,18 @@
+{
+  "about": "The Journal's labels (what kind of piece it is) and topics (the five sections of the magazine). The one source for both: the build, the pages, the feeds and the choices in .pages.yml all follow this file (tests/content.test.ts checks .pages.yml). The labels are geometer.dev's six, unchanged. The topics are the five sections the owner set on 14 Nov 2026 (art, philosophy, civic ideas and technology blended); migration/map.json says where geometer.dev's old topics went. Each topic names its mascot (a face from src/characters/cast.ts and the mood it shows) and may carry a header picture (image: src, alt, credit, creditUrl) once the owner supplies one (docs/image-prompts.md).",
+  "labels": [
+    { "id": "idea", "name": "Idea", "gloss": "A proposal. Nobody has tried it yet." },
+    { "id": "practical-guide", "name": "Practical guide", "gloss": "How to do one thing, step by step." },
+    { "id": "experiment", "name": "Experiment", "gloss": "A small test: what we ran and what we saw." },
+    { "id": "field-report", "name": "Field report", "gloss": "What happened in a real shop or group, with dates." },
+    { "id": "research", "name": "Research", "gloss": "Careful study, with its sources and its limits." },
+    { "id": "opinion", "name": "Opinion", "gloss": "A view we hold. You are welcome to disagree." }
+  ],
+  "topics": [
+    { "id": "technology", "name": "Technology", "gloss": "Tools, machines and intelligence that a place can own and run itself.", "mascot": { "look": "pixel-1", "mood": "well" } },
+    { "id": "livelihoods", "name": "Livelihoods", "gloss": "Work and commerce: shops, trades, services and the money that stays where it is made.", "mascot": { "look": "moods-1", "mood": "busy" } },
+    { "id": "community", "name": "Community and civic life", "gloss": "How a village, a town or a ward shares, decides and looks after things together.", "mascot": { "look": "critters-1", "mood": "well" } },
+    { "id": "ideas", "name": "Ideas and philosophy", "gloss": "Questions about technology and everyday life, thought through slowly.", "mascot": { "look": "sprouts-1", "mood": "needs" } },
+    { "id": "art", "name": "Art and culture", "gloss": "Pictures, songs, crafts and stories, and the everyday life around them.", "mascot": { "look": "clay-1", "mood": "well" } }
+  ]
+}

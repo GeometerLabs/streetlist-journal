@@ -1,0 +1,112 @@
+{
+  "slug": "town-owned-ai-service",
+  "title": "What would it mean for a town to own an AI service?",
+  "summary": "An imagined equipment group asks who controls its service, who gets paid, what happens to the surplus and how members could leave. A proposal about rights and responsibilities.",
+  "author": "Geometer",
+  "published": "2026-11-05",
+  "updated": "2026-11-05",
+  "label": "idea",
+  "topic": "community",
+  "companion": {
+    "look": "moods-2",
+    "mood": "needs"
+  },
+  "sections": [
+    {
+      "heading": "Whose turn comes first?",
+      "paragraphs": [
+        "Imagine a group of growers that shares one tractor. Rain has left a short harvest window. Two members ask for the same morning. One booked earlier; the other says a delay will spoil the crop. A third member maintains the machine and needs a free afternoon to repair it. An AI booking service could show the conflict. Someone still has to decide whose claim takes priority.",
+        "This group is invented. We have not observed this dispute, and no town is running the service described here. It is a proposal for an existing group to examine, if it wants one. The repeated task is allocating equipment and keeping a record members can question. The larger question is what the group would have to own and control for the service to belong to it.",
+        "A subscription could buy access without giving members a vote on prices, rules or the operator. Running a computer in the village would say where the software sits. Holding a token would say little without an agreement explaining its rights. Members would need those rights written down, with a practical way to exercise them."
+      ]
+    },
+    {
+      "heading": "Who could change the rules?",
+      "paragraphs": [
+        "The members would first agree who can join, how a booking is ranked and when an exception is allowed. They might choose first come, first served, with a separate route for urgent requests. The AI would apply the published rule and flag a conflict. It would have no authority to invent a new priority because one message sounds more persuasive.",
+        "A named committee member would approve an exception, give a reason and declare any personal interest. Another person would hear an appeal. Members would decide how committee members are chosen and replaced, and how a proposed rule change gets notice and a vote. The operator would explain the record and carry out approved changes; being able to edit software would not itself confer the right to change policy.",
+        "Records would show the request, the rule version, any approval and the resulting booking. Members would need enough access to challenge allocation without exposing everyone’s private messages. A booking record would establish a reserved slot. Whether the machine arrived and worked would require a separate handover and completion check with the people involved."
+      ]
+    },
+    {
+      "heading": "Who would do the work, and who would pay?",
+      "paragraphs": [
+        "The group would appoint an operator with agreed hours, a fee and a backup contact. Someone would inspect the equipment, arrange repairs and help members who cannot use the booking channel. These could be different people. The members would decide which tasks are paid and who may authorise each expense, rather than assuming that a neighbour will answer calls for free.",
+        "Hire charges or member subscriptions would fund the service. Before discussing any surplus, the group would account for fuel, maintenance, operator time, software, messaging and other direct costs. It would put an agreed amount into a repair reserve and compare that reserve with likely repair needs. A payment received for a booking would still carry the obligation to provide the hire or settle a cancellation.",
+        "Only after those costs and obligations were understood would members decide what to do with a remaining surplus: retain it, reduce future charges, improve the equipment or distribute it under their agreed rules. There is no projected return here. A quiet season or an expensive repair could leave nothing to share, and members would need a rule for a shortfall too."
+      ]
+    },
+    {
+      "heading": "Could the group change the operator or supplier?",
+      "paragraphs": [
+        "Ownership would need to survive a disagreement with the person running the service. The agreement should identify who holds the domain, service accounts, configuration, membership list and booking records. It should say who can appoint a replacement operator, revoke the old operator’s access and obtain a usable export without needing their cooperation at the last minute.",
+        "An export should include rules and outstanding obligations as well as names and dates. The replacement needs to know which deposits await a decision, which bookings are disputed and which messages were never acknowledged. Before relying on an exit promise, the group could rehearse a handover using invented records. It would then know what can actually be moved and what needs rebuilding.",
+        "Geometer has not resolved its own continuity arrangements. As of 5 November 2026, its product documents say Guard checks a Geometer licence and fails closed; continued operation if Geometer disappears cannot be promised. Open templates alone do not solve that dependency. Export and handover also remain planned work. A group considering this proposal would need a satisfactory continuity arrangement before depending on it."
+      ]
+    },
+    {
+      "heading": "Start with an ownership worksheet",
+      "paragraphs": [
+        "The existing tractor booking article explains the narrower booking proposal. In the current equipment variant, bookings share one calendar capacity, prices are fixed, a booking lasts at most eight hours within one day, and voice notes are not understood. It does not assign drivers or settle the balance after a deposit. It has no membership voting or surplus system. Those limits were checked against the repository for this piece; they are not evidence of a live group service.",
+        "The ownership proposal could fail even if the booking software worked. A committee might favour its own members, an unpaid operator might stop answering, or records might be inaccessible to people who need to appeal. Start by asking members separately which decision they most want to be able to challenge. If they cannot agree who has authority, software will not supply that agreement."
+      ],
+      "items": [
+        "Asset: what would the group own, and what would it only rent or license?",
+        "Members: who could join, vote, inspect decisions and propose a change?",
+        "Payer: which charges would cover operation, and who would approve spending?",
+        "Rules: how would priority and exceptions be decided and recorded?",
+        "Operator: who would maintain the service and equipment, on what paid terms?",
+        "Reserve: what would be set aside before deciding on any surplus?",
+        "Appeal: who would review a disputed decision without a personal interest?",
+        "Exit: how would members replace the operator, move records or close the service?"
+      ]
+    }
+  ],
+  "example": {
+    "title": "An imagined decision, before any booking changes",
+    "caption": "A made-up exchange for this essay. It is not a transcript, a deployment result or an implemented approval process.",
+    "lines": [
+      {
+        "who": "customer",
+        "name": "A member",
+        "text": "Can my booking move ahead of the earlier request? The crop cannot wait."
+      },
+      {
+        "who": "helper",
+        "name": "The proposed helper",
+        "text": "That would change the agreed priority. I would leave both requests pending for the authorised reviewer."
+      },
+      {
+        "who": "owner",
+        "name": "The proposed reviewer",
+        "text": "Record my interest in this request and send it to the other reviewer. I am related to the applicant."
+      }
+    ]
+  },
+  "ending": {
+    "kind": "discovery",
+    "title": "Try the worksheet with one existing group",
+    "text": "Use the eight questions above in a meeting, then walk through one disputed booking and one operator handover on paper. The booking example is available to examine; the ownership arrangement is still a proposal.",
+    "href": "/village-tractor-bookings",
+    "linkText": "Read the equipment booking proposal"
+  },
+  "sources": [
+    {
+      "title": "The equipment booking proposal",
+      "url": "/village-tractor-bookings"
+    },
+    {
+      "title": "The Bookings equipment settings and current limits",
+      "url": "https://github.com/GeometerLabs/agents/tree/main/templates/commerce/bookings"
+    },
+    {
+      "title": "Current dependencies and continuity limits",
+      "url": "https://geometer.dev/journal/what-you-depend-on"
+    }
+  ],
+  "related": [
+    "village-tractor-bookings",
+    "paid-work-around-an-agent"
+  ],
+  "corrections": []
+}

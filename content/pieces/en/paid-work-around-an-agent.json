@@ -1,0 +1,86 @@
+{
+  "slug": "paid-work-around-an-agent",
+  "title": "The paid work around an AI agent",
+  "summary": "Setup, language review, exceptions and maintenance all take time. They become paid work only when someone covers the costs, and they can change or remove other people’s tasks.",
+  "author": "Geometer",
+  "published": "2026-11-05",
+  "updated": "2026-11-05",
+  "label": "opinion",
+  "topic": "livelihoods",
+  "companion": {
+    "look": "pixel-2",
+    "mood": "busy"
+  },
+  "sections": [
+    {
+      "heading": "Someone has to ask what a box means",
+      "paragraphs": [
+        "An order says “two boxes”. In this imagined market, one supplier packs twelve units in a box and another packs twenty-four. The transcript could be perfectly accurate and the order still be wrong. A local operator recognises the ambiguity, asks which pack the shop means and checks the answer against the supplier’s catalogue. That intervention is useful work.",
+        "Someone must pay for that time. A discussion of work around AI should begin with a task, its cost and a buyer. A list of possible tasks does not establish a livelihood. These are hypothetical roles, not an operator’s testimonial or measured employment results.",
+        "The market ordering service is itself a proposal. Imagine a wholesaler paying for it because several shops repeatedly need help placing and reconciling orders. The operator’s job would be to keep that process usable and resolve exceptions within agreed authority. Whether the wholesaler values it enough to pay is a question for discovery, before building or selling it."
+      ]
+    },
+    {
+      "heading": "Before the first order",
+      "paragraphs": [
+        "Discovery would mean watching how an order is handled today, with permission: who writes it down, who confirms stock, how a substitution is agreed and who notices a short delivery. The operator would need to distinguish an inconvenient step from a necessary check. Removing the phone call that catches a pack-size mistake would not be an improvement just because fewer calls were made.",
+        "Setup would include checking catalogue units, agreeing access to records, naming an approver and trying mistakes deliberately with test data. Language review would involve people who understand the actual speech used by merchants. A readable translation can still mishandle a local product name or a unit. Reviewers should have a defined task and paid time, rather than an open-ended request to help.",
+        "There is work around finding customers too: visits, demonstrations, follow-up and preparing a quote. A person could do all of that and find no buyer. Count those hours and expenses in the cost of attempting the service. Leaving them out would make a successful installation look cheaper to sell than it was."
+      ]
+    },
+    {
+      "heading": "During an exception, and at the monthly review",
+      "paragraphs": [
+        "Suppose a shop approves two boxes of twelve. The supplier offers a different brand in boxes of twenty-four. The operator could explain the difference and obtain a fresh approval; they should not silently treat the substitution as equivalent. If dispatch is recorded but a delivery is short, they would compare the merchant’s receipt with the supplier’s dispatch and invoice records, then keep the discrepancy open until the parties resolve it.",
+        "The service agreement would need a name and a response window for this work. It should say who covers evenings, who can correct an order and who decides a credit or refund. An operator paid only for initial setup could otherwise become the permanent, unpaid contact for every dispute. A monthly fee could help fund support, but only if its scope and actual support load fit.",
+        "The monthly review would look at unresolved orders, repeated misunderstandings, changed catalogue entries and the hours needed to support each shop. It would also ask staff what changed in their day. The work might be reassigned to an existing clerk, performed by a specialist serving several shops, or judged too costly to continue. None of those outcomes should be assumed in advance."
+      ]
+    },
+    {
+      "heading": "Follow the payer, and count the whole cost",
+      "paragraphs": [
+        "In this example the wholesaler would pay the operator under an agreed contract. Shops would retain authority over their own purchases. The contract should explain what the wholesaler can see, how a shop can dispute a record and whether the operator has any incentive to favour particular products. Funding the software would not entitle the payer to approve another business’s order.",
+        "Keep separate records of selling hours, setup hours and ongoing support hours. Record what was invoiced and what was actually paid. Subtract direct expenses such as travel, connectivity, messaging, model use, software and any paid help. Record unpaid bills and work awaiting payment too. Gross receipts alone would say little about the money left for the operator’s own time.",
+        "Demand could be seasonal, support could arrive in bursts and a customer could leave. Report the variation across months and people, including those who found no customers. Before publishing real financial results, obtain consent and state the dates, the full number of people included and the range of outcomes. We have no such cohort for this proposal and publish no pay estimate."
+      ]
+    },
+    {
+      "heading": "New work and displaced work are different outcomes",
+      "paragraphs": [
+        "A technician being hired, a clerk being reassigned and a vacancy no longer being filled are different events. So is a reduction in someone’s paid hours. A pilot should record them separately, rather than treating every hour removed from a task as a new opportunity for someone else. The person whose work changes may not have the time, access or wish to become the operator.",
+        "A count of tasks an AI might handle would not establish how many jobs disappeared. A change in vacancies would answer a different question from a change in actual staffing. This piece offers no employment forecast and no claim that service roles will offset wider displacement. A small pilot could describe what happened to its participants; it could not establish the effect across a town.",
+        "The practical commitment is to count the costs borne by people who do not benefit. Ask the former order-taker, the shop that stopped using the service and the operator who gave up. Their accounts belong alongside successful orders. A service worth continuing should withstand that comparison."
+      ],
+      "items": [
+        "Useful work completed: which orders were received correctly, and what remains unresolved?",
+        "Roles changed: which tasks moved, whose paid hours changed and which vacancies went unfilled?",
+        "Paid hours: how much selling, setup, review and support time was paid, unpaid or awaiting payment?",
+        "Costs: what did each participant spend, including travel and paid assistance?",
+        "Variation: how did receipts, expenses and money left for time differ across people and months?",
+        "Who did not benefit: include unsuccessful sellers, departing customers and staff who lost hours."
+      ]
+    }
+  ],
+  "ending": {
+    "kind": "next",
+    "title": "Use the scorecard before promising a role",
+    "text": "Ask a prospective payer and the people doing the work today to review the six measures above. The market ordering essay gives a concrete proposal to discuss; no operator interview or employment result is implied.",
+    "href": "/market-orders-by-voice",
+    "linkText": "Read the market ordering proposal"
+  },
+  "sources": [
+    {
+      "title": "The proposed market ordering service",
+      "url": "/market-orders-by-voice"
+    },
+    {
+      "title": "Current service dependencies and terms",
+      "url": "https://geometer.dev/journal/what-you-depend-on"
+    }
+  ],
+  "related": [
+    "market-orders-by-voice",
+    "town-owned-ai-service"
+  ],
+  "corrections": []
+}

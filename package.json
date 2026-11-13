@@ -1,0 +1,35 @@
+{
+  "//": "The Journal's build and checks. Comments live in README.md (JSON has none): npm run build type-checks, lets Vite bundle the stylesheet, fonts and theme script, then scripts/build.ts writes every page, picture and feed into dist/.",
+  "name": "streetlist-journal",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "The Streetlist Journal (journal.streetlist.in): a static magazine of stories and ideas about technology, livelihoods and the places people call home.",
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "scripts": {
+    "build": "tsc --noEmit && vite build && node scripts/build.ts",
+    "preview": "node scripts/serve.ts",
+    "test": "node --test tests/site.test.ts tests/content.test.ts tests/migration.test.ts",
+    "test:ci": "node --test tests/site.test.ts",
+    "test:browser": "node --test tests/browser/pages.test.ts",
+    "review-sheet": "node scripts/review-sheet.ts"
+  },
+  "dependencies": {
+    "@dicebear/core": "10.7.0",
+    "@dicebear/styles": "10.6.0",
+    "@fontsource-variable/baloo-2": "5.3.0",
+    "@fontsource-variable/baloo-chettan-2": "5.3.0",
+    "@fontsource-variable/baloo-tamma-2": "5.3.0",
+    "sharp": "0.34.5"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0",
+    "@types/node": "26.6.3",
+    "axe-core": "4.13.0",
+    "typescript": "5.9.3",
+    "vite": "8.3.1",
+    "yaml": "2.8.1"
+  }
+}

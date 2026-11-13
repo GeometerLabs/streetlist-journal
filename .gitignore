@@ -1,0 +1,8 @@
+# Installed packages, the built site and test output are made on each machine (and in the GitHub Actions run), never committed.
+node_modules/
+dist/
+.cache/
+test-results/
+playwright-report/
+*.log
+.DS_Store

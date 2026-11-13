@@ -1,0 +1,104 @@
+{
+  "slug": "village-tractor-bookings",
+  "title": "Could a village tractor book itself on WhatsApp?",
+  "summary": "A proposal: a hiring centre's tractor, booked by the half day or the day on WhatsApp, with a deposit, in Kannada or Hindi. What it cannot do yet, who would look after it, and what would show whether it helped.",
+  "author": "Geometer",
+  "published": "2026-11-04",
+  "updated": "2026-11-04",
+  "label": "idea",
+  "topic": "community",
+  "companion": {
+    "look": "critters-2",
+    "mood": "well"
+  },
+  "sections": [
+    {
+      "heading": "The problem",
+      "paragraphs": [
+        "A tractor and its attachments are often the busiest thing a village hiring centre owns. They are rented by the half day or the day, and bookings come by phone call and WhatsApp message. When rain comes, farmers cancel late. When a farmer does not turn up, the owner loses a working day that someone else in the village could have used.",
+        "That is the picture in the guide we wrote for local partners. It does not come from a farmer or an owner we spoke to, and we have not counted how often it happens. The first thing to find out, in the owner's own words, is how many hours the tractor sat idle last season because of a cancellation."
+      ]
+    },
+    {
+      "heading": "What the owner and an AI helper could do together",
+      "paragraphs": [
+        "A farmer would write on WhatsApp, in Kannada or Hindi. The helper would offer a free half day or day for the tractor and its attachment, say the fixed price, send a link to pay a deposit straight to the owner's account, and book the time. It would remind the farmer the day before.",
+        "If the farmer cancels at least 24 hours before, the deposit would go back by itself, up to the owner's limit. If it is later, the helper would ask the owner, and the owner would decide. It would not know the weather, and it does not try to. The decision would stay with the person."
+      ]
+    },
+    {
+      "heading": "Who decides, who looks after it, who pays",
+      "paragraphs": [
+        "The owner would decide the price of each job, the deposit, how early a farmer must cancel and how much the helper may give back without asking. A local partner or builder, 18 or older, would set it up with the owner, in the owner's language, and answer the phone when something looks wrong.",
+        "The farmer would pay the deposit on a payment link, straight to the owner's account. The rest of the payment would stay between the owner and the farmer, as it is now, and the helper would not record it. The owner would pay the person who set it up a monthly fee that the person sets. Geometer charges that person a monthly plan for each centre running live; the pricing page has the current figure and how a month is counted."
+      ]
+    },
+    {
+      "heading": "What could go wrong, and who pays for it",
+      "paragraphs": [
+        "Here is what it cannot do today, so that nobody is promised it."
+      ],
+      "items": [
+        "It books one thing at a time for the whole centre. A booking for the sprayer blocks the tractor at that time.",
+        "Each job has one fixed price. It cannot charge by the acre or by the hour.",
+        "One booking is one day at most, up to 8 hours.",
+        "It does not record the field, the driver or the weather.",
+        "The deposit holds the time. It is not cover for damage, and the helper does not track the machine.",
+        "It does not listen to voice notes. A farmer who sends one gets a short reply asking them to type, so farmers who only use voice notes would be left out until that is fixed."
+      ],
+      "after": [
+        "A mistake would land first on the owner and the farmer, inside the limits the owner set. Geometer does not pay for losses. No hiring centre runs this yet, and the Kannada and Hindi wording is machine-written and waits for a native speaker to review it."
+      ]
+    },
+    {
+      "heading": "What would show whether it helped",
+      "paragraphs": [
+        "We would count, and compare a centre only with its own earlier seasons: days the machine was used, hours lost to cancellations and no-shows, the time the owner spends on messages and calls, and how many farmers could not use it because they only send voice notes.",
+        "The improvement we would look for is plain to see: the machine used on more days, and an owner who gets her evenings back. We would say exactly what each number is, publish it if it did not help, and say what changed for whoever used to take these bookings.",
+        "No centre is running this yet, so there is no result to report. Until one exists, this is a proposal."
+      ]
+    }
+  ],
+  "example": {
+    "title": "One moment from the practice demo",
+    "lines": [
+      {
+        "who": "customer",
+        "text": "Please cancel tomorrow's booking. It is raining.",
+        "name": "A farmer"
+      },
+      {
+        "who": "helper",
+        "text": "Give back ₹1,000? Cancelled less than 24 hours before the start.",
+        "name": "The helper asks the owner"
+      },
+      {
+        "who": "owner",
+        "text": "Approve",
+        "name": "The owner taps"
+      }
+    ],
+    "caption": "From the demo of Hosahalli Farm Hiring Centre, a made-up centre, run on practice services with test money. The farmer's message is paraphrased. The question to the owner and its two buttons, Approve and Deny, are as the demo shows them."
+  },
+  "ending": {
+    "kind": "template",
+    "title": "The agent template that does it",
+    "text": "Equipment rental runs on the Bookings agent template, with a different set of settings. It is free and open under the Apache-2.0 licence, in the agents repository on GitHub, with a guide to selling it to a hiring centre. On 4 November 2026 it had been checked by hand, for the made-up Hosahalli centre, on stand-in services: held 28 of 28 situations within what was tried, and 14 things not tested, including a real WhatsApp number, a real payment account and a real calendar. The gaps above are listed in the repository, with what would close each one.",
+    "linkText": "See the agent templates on GitHub",
+    "href": "https://github.com/GeometerLabs/agents"
+  },
+  "sources": [
+    {
+      "title": "Pricing",
+      "url": "https://geometer.dev/pricing"
+    },
+    {
+      "title": "The Bookings agent template, in the public agents repository",
+      "url": "https://github.com/GeometerLabs/agents"
+    }
+  ],
+  "related": [
+    "salon-whatsapp-deposits"
+  ],
+  "corrections": []
+}

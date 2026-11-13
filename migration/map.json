@@ -1,0 +1,33 @@
+{
+  "about": "Every change made when the six pieces moved from geometer.dev's Journal (migration/geometer-articles.json) to content/pieces/en. Words, dates, labels, summaries, sections, examples and endings are unchanged; only these addresses and ids changed, because the pieces now live on journal.streetlist.in. tests/migration.test.ts applies exactly these maps and nothing else.",
+  "topics": {
+    "about": "geometer.dev's five topics to the Journal's five sections (owner, 14 Nov 2026).",
+    "commerce": "livelihoods",
+    "work": "livelihoods",
+    "community": "community",
+    "public-services": "community",
+    "media": "art"
+  },
+  "links": {
+    "about": "Addresses in sources and endings. A piece that moved links to its new page here; a piece that stayed with Geometer keeps its geometer.dev address (the website job redirects it when the technical notes move); support goes to the one public address.",
+    "/journal/village-tractor-bookings": "/village-tractor-bookings",
+    "/journal/paid-work-around-an-agent": "/paid-work-around-an-agent",
+    "/journal/market-orders-by-voice": "/market-orders-by-voice",
+    "/journal/what-you-depend-on": "https://geometer.dev/journal/what-you-depend-on",
+    "/journal/lost-acknowledgements": "https://geometer.dev/journal/lost-acknowledgements",
+    "/journal/exact-call-approval": "https://geometer.dev/journal/exact-call-approval",
+    "/pricing": "https://geometer.dev/pricing",
+    "/contact?topic=help#request": "mailto:hello@geometer.dev"
+  },
+  "images": {
+    "about": "Lead pictures now sit in content/media (Pages CMS's media folder) and are written as /media/<file>.",
+    "/journal/salon-whatsapp-deposits.jpg": "/media/salon-whatsapp-deposits.jpg"
+  },
+  "dropped": {
+    "about": "Keys geometer.dev needed and the Journal does not: every piece had these exact values.",
+    "category": "journal",
+    "relatedAssessmentIds": []
+  },
+  "related": "Only pieces that moved stay in 'related' (the Keep reading cards). The ones that stayed with Geometer are still linked from the piece's sources.",
+  "added": "Each piece gains a 'companion' (a face from src/characters/cast.ts and the mood it shows); it is new, so the test does not compare it."
+}

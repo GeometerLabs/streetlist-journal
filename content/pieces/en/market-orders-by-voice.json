@@ -1,0 +1,112 @@
+{
+  "slug": "market-orders-by-voice",
+  "title": "Could a market order stock through voice notes?",
+  "summary": "A proposal for shops and a wholesaler: turn a familiar voice note into an approved order, then keep acceptance, dispatch and receipt separate. Start by mapping today’s work.",
+  "author": "Geometer",
+  "published": "2026-11-05",
+  "updated": "2026-11-05",
+  "label": "idea",
+  "topic": "livelihoods",
+  "companion": {
+    "look": "sprouts-1",
+    "mood": "needs"
+  },
+  "sections": [
+    {
+      "heading": "A familiar message, an uncertain order",
+      "paragraphs": [
+        "Imagine a merchant sending a mixed Hindi and English voice note: “Kal usual oil ke do box bhejna.” Tomorrow, two boxes of the usual oil. Which brand? Twelve bottles per box or twenty-four? Delivery tomorrow, or ordering tomorrow? A transcript would preserve those questions, not answer them.",
+        "This scene is invented. We have not interviewed merchants or a wholesaler to establish demand. The proposal is a shared ordering service for shops buying repeatedly from one supplier. Discovery might show that existing calls and messages work well enough.",
+        "Voice would be optional. Typing and human callbacks should remain available. Before retaining audio, the operator would need to explain its use, agree access and set a retention period with the people involved."
+      ]
+    },
+    {
+      "heading": "Read back the order before asking for approval",
+      "paragraphs": [
+        "The service would check a current catalogue and clarify the product, pack size and delivery date. An unavailable or ambiguous catalogue would mean waiting for the named operator. Past orders could suggest a product, but would not establish today’s intent. Mixed speech, noise and local product names would need testing with local speakers.",
+        "The service would read back or display the exact product, number of packs, units per pack, total units, unit and total price, any charges and the requested delivery date. It would identify when the quoted price was checked and distinguish a requested date from a supplier’s commitment. The merchant would approve those details before the order was submitted.",
+        "Approval would belong to someone authorised to purchase for that shop. A shared phone would not identify that person: authority would need checking separately. A changed price, quantity or substitute would require fresh approval. If the readback were unclear, a human would explain it before commitment."
+      ]
+    },
+    {
+      "heading": "Who would operate it, and who would pay?",
+      "paragraphs": [
+        "A wholesaler would be a candidate payer if fewer clarification calls and cleaner orders justified the full cost. A market association could instead fund a shared desk if its members agreed the charges. These are alternatives to investigate, not established buyers. The payer would need to cover discovery, language review, setup and ongoing exception work, as well as software and messaging.",
+        "A named local operator would handle substitutions, short shipments and invoice discrepancies. They would have access only to the records their task requires. Each shop would approve purchases; the supplier would decide whether to accept and fulfil them. A wholesaler funding the desk would not acquire authority to change a shop’s order without its approval.",
+        "Before a live connection, the parties would check access to stock, order and payment records, the terms of use and how to make corrections. A spreadsheet catalogue might support a paper trial while being too stale for live commitments. This proposal has no ready Geometer template or established access to supplier systems."
+      ]
+    },
+    {
+      "heading": "Acceptance, dispatch and receipt are separate",
+      "paragraphs": [
+        "After a merchant approves, submission would mean only that an order was sent. Supplier acceptance would need its own record with agreed items and terms. Dispatch would mean the supplier recorded goods leaving. Receipt would require the merchant or an authorised recipient to check what arrived. None of those states would, by itself, mean that the invoice was correct or the supplier had been paid.",
+        "If the acceptance reply disappeared, the order would stay unresolved. The service would look up the original reference or ask the operator to reconcile it. Sending a fresh order could create a duplicate. A retry would require knowing how the supplier recognises the original request.",
+        "For a short shipment, the operator would record the expected and received quantities and seek a correction from the supplier. A proposed substitute would return to the merchant for approval. Invoice disagreements and any credit would remain open until the relevant parties confirmed the resolution. The record would say what is known and what still needs a call, rather than marking the whole order complete."
+      ]
+    },
+    {
+      "heading": "Map the work before building",
+      "paragraphs": [
+        "Choose a few willing shops and one wholesaler. With permission, follow recent orders from request to receipt and settlement. Ask people to explain their own records. Count clarification calls, changed quantities, unresolved deliveries and time spent checking invoices. Include orders that went smoothly so that an unusual dispute does not become the assumed daily pattern.",
+        "Then replay a handful with invented products and test prices. Try an ambiguous pack size, a changed quote, a lost acceptance reply, a substitution and a short delivery. Have participants correct the readback in the language they would use. Do not place live orders or move money during this exercise. Record who must decide at each step and who would pay for the operator’s time.",
+        "The idea could fail because records are inaccessible, voice correction takes longer than a call, shops distrust a supplier-funded desk, or nobody funds support. Record those findings too. Discovery would establish whether to build, what to connect and which actions to authorise. Start with a process map."
+      ]
+    }
+  ],
+  "example": {
+    "title": "A fictional readback using test prices",
+    "caption": "A made-up exchange, written for this proposal. The products, catalogue, prices and replies are fictional; no voice service or live supplier integration was run.",
+    "lines": [
+      {
+        "who": "customer",
+        "name": "The merchant",
+        "text": "Kal usual oil ke do box bhejna. Two boxes of the usual oil for tomorrow."
+      },
+      {
+        "who": "helper",
+        "name": "The proposed helper",
+        "text": "Sunflower oil? The test catalogue lists twelve 1-litre bottles per box."
+      },
+      {
+        "who": "customer",
+        "name": "The merchant",
+        "text": "Yes, sunflower oil. Two boxes. Read back the total."
+      },
+      {
+        "who": "helper",
+        "name": "The proposed helper",
+        "text": "Sunflower oil: two boxes of twelve 1-litre bottles. 24 bottles at the test price of ₹100 each; ₹2,400 total, no extra charges. Requested delivery: 6 November 2026, pending supplier acceptance. May I submit?"
+      },
+      {
+        "who": "customer",
+        "name": "The merchant",
+        "text": "Yes, submit those exact details. I understand the supplier has not accepted yet."
+      }
+    ]
+  },
+  "ending": {
+    "kind": "discovery",
+    "title": "Trace three orders with the people involved",
+    "text": "Map today’s request, approval, acceptance, dispatch, receipt and settlement. Keep missing replies visible. This is a proposal; Geometer’s Bookings template does not take voice orders.",
+    "href": "https://geometer.dev/journal/lost-acknowledgements",
+    "linkText": "Read about missing acknowledgements"
+  },
+  "sources": [
+    {
+      "title": "Why a missing acknowledgement leaves an outcome uncertain",
+      "url": "https://geometer.dev/journal/lost-acknowledgements"
+    },
+    {
+      "title": "Approval for the exact action",
+      "url": "https://geometer.dev/journal/exact-call-approval"
+    },
+    {
+      "title": "The paid work around the proposed service",
+      "url": "/paid-work-around-an-agent"
+    }
+  ],
+  "related": [
+    "paid-work-around-an-agent"
+  ],
+  "corrections": []
+}

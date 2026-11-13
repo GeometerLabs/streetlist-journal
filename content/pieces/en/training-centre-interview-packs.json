@@ -1,0 +1,113 @@
+{
+  "slug": "training-centre-interview-packs",
+  "title": "Could a training centre sell a 30-day interview pack on WhatsApp?",
+  "summary": "A proposal: short interview practice written by the centre's own teacher, sold as a pack the learner pays for once, with the payment, the sessions and the completion note kept in order outside the AI. Who would look after it, what could go wrong, and what would show whether it helped.",
+  "author": "Geometer",
+  "published": "2026-11-09",
+  "updated": "2026-11-09",
+  "label": "idea",
+  "topic": "livelihoods",
+  "companion": {
+    "look": "critters-1",
+    "mood": "needs"
+  },
+  "sections": [
+    {
+      "heading": "The problem",
+      "paragraphs": [
+        "Many jobs in shops, hotels, call centres and sales start with an interview in English. Training centres and vocational institutes already teach for it, but a class meets a few hours a week, and a learner rarely gets to rehearse the same question several times, alone, between classes.",
+        "Spoken-English practice apps exist, and some sell low-priced packs. What a local centre has is a teacher who knows the employers nearby and the learners in the room. We have not interviewed a centre for this piece, so treat the problem as a question to put to one: how many of last term's learners rehearsed an interview more than once before the real one?"
+      ]
+    },
+    {
+      "heading": "What the teacher and an AI helper could do together",
+      "paragraphs": [
+        "The helper would send short practice sessions to the learner's WhatsApp, written by the centre's own teacher: a question an interviewer might ask, three replies to choose from, and the teacher's note on why one works better. Free answers that need judgement would go to the teacher, not to the AI. Speaking aloud would stay with the teacher, in class or in a mock interview, because tapping the right reply is not the same as saying it.",
+        "The centre would keep the decisions: what a pack holds, how many sessions, how long it lasts, when a refund is due and the most the helper may refund without asking. A pack would open once for each payment, and only when the payment provider's own record shows it paid. A message that fails to arrive would not use up a session.",
+        "Progress would go only to the learner, and to anyone the learner names. The teacher would see which questions the class gets wrong most often, to plan the next class. A completion note would go out only when the records show the sessions were done, and it would say only that: the pack was completed. It would not be a language certificate or a promise of a job."
+      ]
+    },
+    {
+      "heading": "Who decides, who looks after it, who pays",
+      "paragraphs": [
+        "The centre would decide, and only the centre could loosen a limit, never from the chat. The learners would be adults, 18 or older; school students would wait for a proper way to bring a parent in. A partner or builder, 18 or older, would set the helper up with the teacher, check it in the first week and answer when something looks wrong.",
+        "The learner would pay the centre for a pack, at a price the centre sets, straight into the centre's own payment account. Geometer would never hold it. Geometer would charge the partner a monthly plan for the running centre, shared with the fee collection helper if the centre uses both; the pricing page has the current figures.",
+        "The teacher's time would be a real cost: writing the questions and notes, reading the weekly summary and running the spoken practice. The centre would decide whether a pack is worth that time, and a teacher whose material other centres reuse would be paid for it, on terms agreed in writing."
+      ]
+    },
+    {
+      "heading": "What could go wrong, and who pays for it",
+      "paragraphs": [
+        "Here is what we already know can go wrong."
+      ],
+      "items": [
+        "A question or a note could be wrong or unclear. The helper would send only what the teacher wrote, so a mistake there is a mistake in the material, fixed once for every learner.",
+        "A learner could pay twice, or a payment notice could arrive twice. In the design, a pack opens once for each payment, and a payment nobody can match waits for the centre.",
+        "Progress could reach the wrong person, for example on a phone number that changed hands. Reports would go only to numbers the learner has confirmed.",
+        "Practice could turn into memorising answers. A learner who picks the right reply every time can still freeze in a real interview, which is why the spoken part stays with the teacher.",
+        "Nothing has run with a real centre, a real learner or a real payment account. The pack, its sessions and its completion note are not built, and Malayalam and Kannada wording would wait for a native speaker's review."
+      ],
+      "after": [
+        "A mistake would land first on the learner and the centre, inside the limits the centre set. Geometer does not pay for losses. And the teacher's week would change, which the next section counts as well."
+      ]
+    },
+    {
+      "heading": "What would show whether it helped",
+      "paragraphs": [
+        "We would compare each learner's own unaided mock interview at the start and at the end, with new questions each time, scored on the same short rubric, ideally by a second teacher who does not know which interview came first. Finishing the sessions is not the measure; answering well without help is.",
+        "We would say exactly what each number is. A pack sold is money collected, not a job found. A finished pack is practice done, not English learned. We would count the teacher's hours too. If learners do no better than with the centre's usual teaching, or the teacher's week gets worse, we would publish that too.",
+        "No centre is running this yet, so there is no result to report. Until one exists, this is a proposal."
+      ]
+    }
+  ],
+  "example": {
+    "title": "One practice question, as a teacher might write it",
+    "lines": [
+      {
+        "who": "helper",
+        "text": "Practice 4 of 12, hotel front desk. A guest says the room is not clean. Which reply would you give? 1. Sorry, I will clean it. 2. I'm sorry about that. I'll send housekeeping now, or would you like another room? 3. Rooms are cleaned every morning."
+      },
+      {
+        "who": "customer",
+        "name": "The learner",
+        "text": "2"
+      },
+      {
+        "who": "helper",
+        "text": "Yes. Your teacher's note: say what you will do, then offer a choice. Say it aloud to your teacher on Thursday."
+      },
+      {
+        "who": "owner",
+        "name": "The teacher",
+        "text": "Most of the group picked 1 this week. Thursday's class practises offering a choice."
+      }
+    ],
+    "caption": "A made-up exchange, written for this proposal, with a question and a note of the kind a teacher might write. No learner, centre or practice service was involved."
+  },
+  "ending": {
+    "kind": "discovery",
+    "title": "Plan one cohort with one centre, on paper",
+    "text": "Take one teacher's questions for one job and walk through a pack on paper: what a payment opens, what counts as a session, what the completion note says and who sees progress. The fee collection agent template is built and open; the course pack is a proposal. If you run a centre, or work with one, write to support. A person answers.",
+    "href": "mailto:hello@geometer.dev",
+    "linkText": "Write to support"
+  },
+  "sources": [
+    {
+      "title": "Pricing",
+      "url": "https://geometer.dev/pricing"
+    },
+    {
+      "title": "The fee collection agent template, in the public agents repository",
+      "url": "https://github.com/GeometerLabs/agents/tree/main/templates/education/fees"
+    },
+    {
+      "title": "Supernova, a spoken-English practice app (its own site)",
+      "url": "https://www.getsupernova.ai/"
+    }
+  ],
+  "related": [
+    "salon-whatsapp-deposits",
+    "paid-work-around-an-agent"
+  ],
+  "corrections": []
+}
