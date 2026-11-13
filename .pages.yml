@@ -371,6 +371,7 @@ content:
         label: हिन्दी (Hindi translations)
         type: collection
         path: content/pieces/hi
+        exclude: [README.md]
         format: json
         filename: { template: "{fields.slug}.json", field: false }
         view: { primary: title, fields: [title, reviewedBy, updated] }
@@ -439,6 +440,7 @@ content:
         label: മലയാളം (Malayalam translations)
         type: collection
         path: content/pieces/ml
+        exclude: [README.md]
         format: json
         filename: { template: "{fields.slug}.json", field: false }
         view: { primary: title, fields: [title, reviewedBy, updated] }
@@ -447,6 +449,7 @@ content:
         label: ಕನ್ನಡ (Kannada translations)
         type: collection
         path: content/pieces/kn
+        exclude: [README.md]
         format: json
         filename: { template: "{fields.slug}.json", field: false }
         view: { primary: title, fields: [title, reviewedBy, updated] }
