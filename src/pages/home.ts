@@ -47,22 +47,26 @@ export function homePage(ctx: Ctx, lang: Lang): string {
 <div class="cards">${rest.slice(0, 6).map((p) => card(ctx, p, lang)).join("")}</div></section>`
     : "";
 
-  const sections = topics.map((t) => {
+  // Sections with pieces first, in the taxonomy's order, then the ones still waiting for their first piece, side by side.
+  const ordered = [...topics.filter((t) => all.some((p) => p.topic === t.id)), ...topics.filter((t) => !all.some((p) => p.topic === t.id))];
+  const sections = ordered.map((t) => {
     const name = topicIn(t, lang);
     const inTopic = all.filter((p) => p.topic === t.id);
     const head = `<div class="shelf-head">${faceImg(ctx, t.mascot.look, inTopic.length ? t.mascot.mood : "closed", 64, "shelf-face")}`
       + `<div><h3 class="shelf-title"><a href="${url.topic(lang, t.id)}">${esc(name.name)}</a></h3><p class="shelf-gloss">${esc(name.gloss)}</p></div></div>`;
     const list = inTopic.length
-      ? `<div class="shelf-list">${inTopic.slice(0, 3).map((p) => card(ctx, p, lang, { summary: false, compact: true })).join("")}</div>`
+      ? `<div class="shelf-list">${inTopic.slice(0, 3).map((p) => card(ctx, p, lang, { summary: false, compact: true, stamp: false })).join("")}</div>`
         + (inTopic.length > 3 ? `<p class="more"><a href="${url.topic(lang, t.id)}">${esc(s.home.more(name.name))}</a></p>` : "")
       : `<p class="shelf-empty">${esc(s.home.empty)} <a href="mailto:${CONTACT}">${esc(s.home.write)}</a></p>`;
     return `<section class="shelf t-${t.id}${inTopic.length ? "" : " is-empty"}" aria-label="${esc(name.name)}">${head}${list}</section>`;
   }).join("");
 
   const body = `<section class="mast wrap">
+<div class="mast-words">
 <h1 class="mast-title">${esc(s.site.tagline)}</h1>
 <p class="mast-sub">${esc(s.site.sub)}</p>
 <p class="mast-intro">${esc(s.home.intro)}</p>
+</div>
 <nav class="mascots-nav" aria-label="${esc(s.home.sections)}"><ul class="mascots">${mascots}</ul></nav>
 </section>
 ${leadHtml}

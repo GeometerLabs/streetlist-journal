@@ -97,7 +97,7 @@ export function meta(piece: Piece, lang: Lang, withAuthor: boolean): string {
 }
 
 /** A piece as a card: its picture, stamps, title, summary and date. The title is the one link; the whole card answers to it. */
-export function card(ctx: Ctx, piece: Piece, lang: Lang, opts: { summary?: boolean; compact?: boolean } = {}): string {
+export function card(ctx: Ctx, piece: Piece, lang: Lang, opts: { summary?: boolean; compact?: boolean; stamp?: boolean } = {}): string {
   const pic = ctx.pictures.get(piece.slug)!;
   const words = langAttr(piece.lang, lang);
   const href = url.piece(piece.lang, piece.slug);
@@ -105,7 +105,8 @@ export function card(ctx: Ctx, piece: Piece, lang: Lang, opts: { summary?: boole
   return `<article class="card${opts.compact ? " card-compact" : ""} t-${piece.topic}">`
     + `<div class="card-pic">${pictureHtml(pic, "", sizes, false)}</div>`
     + `<div class="card-body">`
-    + `<p class="tags">${stamp(ctx, piece.topic, lang, false)} ${labelTag(ctx, piece.label, lang, false)}</p>`
+    // Inside a section's own shelf the section stamp would only repeat the heading above it, so only the label shows.
+    + `<p class="tags">${opts.stamp === false ? "" : `${stamp(ctx, piece.topic, lang, false)} `}${labelTag(ctx, piece.label, lang, false)}</p>`
     + `<h3 class="card-title"${words}><a class="card-link" href="${href}">${esc(piece.title)}</a></h3>`
     + (opts.summary === false ? "" : `<p class="card-sum"${words}>${esc(piece.summary)}</p>`)
     + `<p class="card-meta">${faceImg(ctx, piece.companion.look, piece.companion.mood, 28, "card-face")}<span>${meta(piece, lang, false)}</span></p>`

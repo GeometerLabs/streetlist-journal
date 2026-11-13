@@ -117,6 +117,10 @@ ul, ol { padding: 0; margin: 0; list-style: none; }
 .top { display: flex; align-items: center; gap: 6px; max-width: 1120px; margin: 0 auto; padding: 12px 16px; position: relative; z-index: 5; }
 .brand { display: inline-flex; align-items: center; gap: 7px; color: var(--ink); text-decoration: none; font: 800 1.12rem/1 var(--display); min-width: 0; }
 .brand-b { font-weight: 550; color: var(--ink-soft); }
+/* On a phone the wordmark stacks ("Streetlist" over "Journal"), so the link to streetlist.in and both switches fit beside it. */
+.brand-words, .brand-words > span { line-height: 1; } /* also on Hindi, Malayalam and Kannada pages, whose taller lines are for reading text */
+.brand-words { display: grid; gap: 1px; }
+.brand-b { font-size: .86em; }
 .mark { width: 28px; height: 21px; flex: none; }
 .mark-a { fill: #136650; }
 .mark-b { fill: #f7f8f4; }
@@ -204,7 +208,7 @@ a.lbl { text-decoration: underline; text-decoration-color: var(--line-strong); t
 .lead-text { padding: 0 8px; }
 /* The stamp sits a little askew on the lead, like a sticker on a magazine cover. */
 .lead-text .stamp { transform: rotate(-3deg); background: var(--card); box-shadow: var(--tile-shadow); }
-.lead-title { font-size: clamp(2rem, 7.4vw, 3.3rem); line-height: 1.04; letter-spacing: -.02em; margin-bottom: .35em; }
+.lead-title { font-size: clamp(2rem, 7.4vw, 2.9rem); line-height: 1.04; letter-spacing: -.02em; margin-bottom: .35em; }
 .lead-title:lang(hi), .lead-title:lang(ml), .lead-title:lang(kn) { line-height: 1.3; }
 .lead-title a { color: var(--ink); text-decoration: none; }
 .lead-title a:hover { text-decoration: underline; text-decoration-color: var(--tc); text-decoration-thickness: .08em; }
@@ -235,7 +239,8 @@ a.lbl { text-decoration: underline; text-decoration-color: var(--line-strong); t
 .card-face { flex: none; border-radius: 9px; }
 /* A compact card (inside a section on the front page): a small picture beside the title. */
 .card-compact { display: grid; grid-template-columns: 104px 1fr; border-radius: 16px; }
-.card-compact .card-pic img { height: 100%; aspect-ratio: auto; min-height: 104px; }
+/* A cover's companion sits left of centre; this keeps its face in the narrow frame (a photo crops well either way). */
+.card-compact .card-pic img { height: 100%; aspect-ratio: auto; min-height: 104px; object-position: 22% 50%; }
 .card-compact .card-body { padding: 12px 14px; border-top: 0; border-left: 4px solid var(--tc); }
 .card-compact .tags { margin-bottom: 6px; }
 .card-compact .card-title { font-size: 1.04rem; }
@@ -267,6 +272,8 @@ a.lbl { text-decoration: underline; text-decoration-color: var(--line-strong); t
 .also { margin: 14px 0 0; font-size: .95rem; }
 .lead-fig { max-width: 1080px; margin: 26px auto 0; padding: 0 16px; }
 .lead-fig img { display: block; width: 100%; border-radius: 22px; aspect-ratio: 3 / 2; object-fit: cover; background: var(--tt); }
+/* A cover is a drawing of the companion, not a photo: a narrower frame, so it does not outshout the headline. */
+.lead-fig.is-cover { max-width: 860px; }
 .lead-fig figcaption { margin-top: 8px; font-size: .84rem; color: var(--ink-soft); text-align: right; }
 .lead-fig figcaption a { color: inherit; }
 .body { font-size: 1.125rem; line-height: 1.65; margin-top: 34px; }
@@ -368,6 +375,8 @@ a.lbl { text-decoration: underline; text-decoration-color: var(--line-strong); t
 @media (min-width: 760px) {
   .top { gap: 10px; }
   .brand { font-size: 1.32rem; gap: 9px; }
+  .brand-words { display: inline; }
+  .brand-b { font-size: 1em; }
   .mark { width: 34px; height: 26px; }
   .to-streetlist { font-size: .98rem; padding: 11px 10px; }
   .langs summary, .theme-toggle { height: 40px; }
@@ -380,6 +389,14 @@ a.lbl { text-decoration: underline; text-decoration-color: var(--line-strong); t
   .foot-in { grid-template-columns: 1.1fr .8fr 1.5fr; }
 }
 @media (min-width: 1000px) {
+  /* The masthead in two columns: the words on the left, the five section mascots as a little street on the right. */
+  .mast { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, .75fr); gap: 40px; align-items: center; }
+  .mascots { display: grid; grid-template-columns: repeat(6, 1fr); gap: 22px 14px; margin: 0; }
+  .mascots li { grid-column: span 2; }
+  .mascots li:nth-child(4) { grid-column: 2 / span 2; }
+  .mascots li:nth-child(5) { grid-column: 4 / span 2; }
+  .mascot { max-width: none; }
+  .mascot-face { width: 84px; height: 84px; border-radius: 22px; }
   .cards { grid-template-columns: repeat(3, 1fr); gap: 24px; }
   .shelf-grid { grid-template-columns: repeat(6, 1fr); }
   .shelf { grid-column: span 6; padding: 22px; }

@@ -79,7 +79,7 @@ ${elsewhere.length ? `<div class="elsewhere"><h3>${esc(s.piece.elsewhere)}</h3><
 <div class="byline">${faceImg(ctx, piece.companion.look, piece.companion.mood, 48, "byline-face", false)}<p>${meta(piece, lang, true)}</p></div>
 ${others.length ? `<p class="also">${esc(s.piece.alsoIn)}: ${others.map((l) => `<a href="${url.piece(l, piece.slug)}" hreflang="${l}" lang="${l}">${esc(LANG_INFO[l].name)}</a>`).join(", ")}</p>` : ""}
 </header>
-<figure class="lead-fig">${pictureHtml(pic, pictureAlt(ctx, piece, lang), "(max-width: 1080px) calc(100vw - 32px), 1048px", true)}<figcaption>${credit}</figcaption></figure>
+<figure class="lead-fig${pic.kind === "cover" ? " is-cover" : ""}">${pictureHtml(pic, pictureAlt(ctx, piece, lang), "(max-width: 1080px) calc(100vw - 32px), 1048px", true)}<figcaption>${credit}</figcaption></figure>
 <div class="body read">
 ${body}
 ${ending}
