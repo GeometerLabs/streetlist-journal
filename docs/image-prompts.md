@@ -7,7 +7,7 @@ from their companion. Nothing here is generated automatically.
 ## The spirit
 
 Busy, affectionate, gently funny scenes of ordinary people in Indian towns and villages, where technology is simply part of the day:
-a phone propped against a tea glass, a price board beside a sack of onions, a tractor's owner checking a booking while a child
+a phone propped on a tea glass, a price board beside a sack of onions, a tractor's owner checking a booking while a child
 climbs the seat. Many small figures, each doing something; nobody is the butt of the joke. Dignity, warmth, crowds, weather, animals,
 signboards with no readable words. Technology is never the hero; people are.
 

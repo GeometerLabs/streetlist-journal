@@ -25,13 +25,14 @@ and livelihood pieces that moved here from geometer.dev's Journal, word for word
 ## The stack, and why
 
 Plain TypeScript functions that return HTML (`src/pages/`), run by Node at build time: the same arrangement as streetlist.in's site,
-so the two share their drawing code, their theme switch and their tokens, and the owner already knows the commands. Vite bundles the
+so the two share their drawing code, their theme switch and their colours, and the owner already knows the commands. Vite bundles the
 stylesheet, the self-hosted fonts and the theme script with hashed names; [sharp](https://sharp.pixelplumbing.com) makes the
 pictures; [DiceBear](https://www.dicebear.com) draws the companions at build time (never its web service).
 
-Astro was considered and not chosen: its content collections, image service, RSS and sitemap packages would replace about 250 lines
-here (`src/content.ts`, `src/images.ts`, `src/feeds.ts`), but would add a framework and its dependency tree to a site that is six
-pieces and a dozen page types, and the Journal would no longer share streetlist.in's code. Five runtime packages (DiceBear's two,
+Astro was considered and not chosen: its content collections, image service, RSS and sitemap packages would replace part of the
+600 lines in `src/content.ts`, `src/images.ts` and `src/feeds.ts` (not the publishing rules or the covers), but would add a
+framework and its dependency tree to a site of six pieces and a handful of page types, and the Journal would no longer share
+streetlist.in's code. Five runtime packages (DiceBear's two,
 three Baloo fonts) plus sharp are all it needs.
 
 ## Run it

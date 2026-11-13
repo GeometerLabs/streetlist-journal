@@ -6,7 +6,7 @@
   Until then those languages are built but not indexed.
 - **A translated About page**: English only until the owner approves the draft.
 - **Feeds per language** (`/hi/feed.json` and so on): worth adding when the first reviewed translations exist.
-- **Trying the Pages CMS form in the hosted app**: written against Pages CMS's documentation and checked by the tests, but it can
+- **Trying the Pages CMS form in the hosted app**: written from Pages CMS's documentation and checked by the tests, but it can
   only be opened once the repository is on GitHub (README, "The owner's first steps", step 6).
 - **A real budget phone**: the timings in the browser test are headless Chromium with the CPU slowed 4x and a slow 4G connection, on
   this machine's background cores.

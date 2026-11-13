@@ -61,7 +61,7 @@ curious at a question, busy where work and money are counted, cheerful elsewhere
 asleep, inviting a story. Covers for pieces without a picture put the companion large beside a speech bubble and the section's
 mascot. No script is involved: the faces are prerendered SVG files of 2 to 8 KB.
 
-### Checked against the brief
+### Checked with the brief
 
 | First idea | Why it was wrong | Now |
 | --- | --- | --- |
@@ -115,7 +115,7 @@ does the same locally. One `404.html` serves every language.
   policy on each, nothing inline or from elsewhere, every link and fragment resolving as GitHub Pages serves it, hreflang both ways,
   picture sizes and lazy loading, the feeds, the sitemap, redirects.json, CNAME and the size budget.
 - `npm test` adds the wording rules in all four languages (with the moved pieces' own sentences listed exactly), the Pages CMS form
-  against the taxonomy and the cast, the translation rule with fixtures, the review sheet, and the migration check.
+  compared with the taxonomy and the cast, the translation rule with fixtures, the review sheet, and the migration check.
 - `npm run test:browser`: Playwright and axe at 390 and 1280 px in light and dark on every English page and the interface pages of
   the other three languages; the theme and language switches by keyboard; the header at 360 px in all four languages; the reading
   measure; well-formed feeds; and a budget phone (CPU slowed 4x, slow 4G) on the front page and two pieces.

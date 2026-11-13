@@ -3,7 +3,7 @@
 // piece gets the companion in the mood of that part of the story (sectionMood below), so the face changes as the reader goes.
 // The faces have no names (Streetlist's rule since 14 Nov 2026): in the Pages CMS form they are "Clay 1", "Critters 2" and so on.
 // The seeds are the ones Streetlist picked from its contact sheet, so a reader who knows streetlist.in meets familiar faces.
-// Used by the build (src/pages, src/images.ts) and checked by tests/content.test.ts against the choices in .pages.yml.
+// Used by the build (src/pages, src/images.ts) and compared with the choices in .pages.yml by tests/content.test.ts.
 
 export const STYLES = ["clay", "critters", "sprouts", "moods", "pixelbot"] as const;
 export type StyleId = (typeof STYLES)[number];

@@ -8,14 +8,14 @@
    relies on colour alone.
    Reading: 18 px body text, about 66 characters a line; Hindi, Malayalam and Kannada get line-height 1.7 (their marks need room).
    Light is the default for everyone; dark applies only when picked with the header switch (src/client/theme.ts sets data-theme).
-   Every colour that changes between themes is a token, redefined in the one :root[data-theme="dark"] block. Phone first: every
+   Every colour that changes between themes is a custom property, redefined in the one :root[data-theme="dark"] block. Phone first: every
    rule is written for 390 px; wider screens add columns. */
 
 @import "@fontsource-variable/baloo-2/index.css";
 @import "@fontsource-variable/baloo-chettan-2/index.css";
 @import "@fontsource-variable/baloo-tamma-2/index.css";
 
-/* ---------- Tokens ---------- */
+/* ---------- Colours, type and spacing ---------- */
 :root {
   --paper: #f7f8f4;        /* limewash, as on streetlist.in */
   --card: #ffffff;

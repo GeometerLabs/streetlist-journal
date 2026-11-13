@@ -15,7 +15,7 @@ media:
   input: content/media
   output: /media
   extensions: [jpg, jpeg, png, webp]
-  rename: safe
+  rename: true
 
 settings:
   content:
