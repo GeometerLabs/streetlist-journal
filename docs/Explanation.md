@@ -131,7 +131,7 @@ Measured on this machine, in headless Chromium only (a real budget phone is in `
 | Script | the theme switch only, 0.4 KB gzipped |
 | Heading fonts | Latin 33 KB (preloaded on English pages); Devanagari 113 KB, Kannada 76 KB, Malayalam 45 KB, each loaded only on pages in that script |
 | A lead photo on a phone | the 800 px AVIF, 22 KB for the salon piece (its original is 416 KB and is never published) |
-| A cover | 7 to 24 KB as SVG (2 to 3 KB gzipped); a face 1 to 2 KB gzipped |
+| A cover | 7 to 24 KB as SVG, under 2 KB gzipped; a face about 1 KB gzipped |
 | All pictures in dist | 48 files, 889 KB (every width and format; a reader downloads one of each) |
 
 On a budget phone's terms (390 px, device pixel ratio 2, CPU slowed 4x, slow 4G at 1.6 Mbit/s and 150 ms, best of two runs, bytes
