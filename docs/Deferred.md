@@ -11,4 +11,9 @@
 - **A real budget phone**: the timings in the browser test are headless Chromium with the CPU slowed 4x and a slow 4G connection, on
   this machine's background cores.
 - **Search** across pieces: not needed at six pieces; the sections and labels do the job for now.
+- **The six stashed pieces** (15 Nov 2026): market-orders-by-voice, paid-work-around-an-agent, salon-whatsapp-deposits,
+  town-owned-ai-service, training-centre-interview-packs and village-tractor-bookings are kept as drafts (`"draft": true`), not
+  published. Trigger to bring one back: the owner has rewritten it by hand. Then switch its draft off, point its geometer.dev
+  redirect (here, in `redirects.json`, and in public-web's `firebase.json` and `src/data/moved/streetlist-journal.json`) back at its
+  own page, and run the tests. The browser test needs at least one published piece to check a piece page.
 - **Bylines other than Geometer**: the field exists; the owner decides when writers sign their own pieces.

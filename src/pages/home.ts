@@ -1,7 +1,8 @@
 // The front page, one per language: the masthead (the tagline, the line under it, the short introduction and the five section
 // mascots), the lead story (the one bold place on the page: a big picture and a big Baloo headline), the latest pieces as cards,
 // the five sections each with its mascot and its newest pieces (a section with none yet shows its mascot asleep and an invitation
-// to write), and a pointer to About. Pieces not yet in the page's language show in English, marked with lang="en".
+// to write), and a pointer to About. With no piece published (all stashed as drafts), a short line under the introduction says the
+// first pieces are being written; every other part already copes with an empty list. Pieces not yet in the page's language show in English, marked with lang="en".
 import { CONTACT } from "../i18n/en.ts";
 import { LANGS, STRINGS, url, type Lang } from "../i18n/index.ts";
 import { leadOf, type Piece } from "../content.ts";
@@ -66,6 +67,7 @@ export function homePage(ctx: Ctx, lang: Lang): string {
 <h1 class="mast-title">${esc(s.site.tagline)}</h1>
 <p class="mast-sub">${esc(s.site.sub)}</p>
 <p class="mast-intro">${esc(s.home.intro)}</p>
+${all.length ? "" : `<p class="mast-soon">${esc(s.home.soon)}</p>`}
 </div>
 <nav class="mascots-nav" aria-label="${esc(s.home.sections)}"><ul class="mascots">${mascots}</ul></nav>
 </section>

@@ -4,6 +4,8 @@
 // keys, related pieces that stayed behind) and the new companion. The read time is checked with geometer.dev's own formula, and
 // every paragraph, list item, example line and credit is checked on the built page too (run `npm run build` first).
 // Set GEOMETER_ARTICLES=<path to public-web's src/data/articles.json> to also compare the frozen copy with geometer.dev's file.
+// The six are now stashed as drafts ("draft": true, the only addition to a piece file); the words are still compared, and the
+// built-page check runs only for a piece that is published (a draft has no page).
 // Not run in the deploy workflow: once the owner edits a moved piece on purpose, this test has done its job.
 import test from "node:test";
 import assert from "node:assert/strict";
@@ -54,7 +56,7 @@ for (const src of pieces) {
     const mapped = ["topic", "image", "ending", "sources", "related"];
     const dropped = Object.keys(map.dropped).filter((k) => k !== "about");
     for (const key of Object.keys(src)) assert.ok([...kept, ...mapped, ...dropped].includes(key), `${key} is not accounted for`);
-    for (const key of Object.keys(out)) assert.ok([...kept, ...mapped, "elsewhere", "companion"].includes(key), `${key} is new and undocumented`);
+    for (const key of Object.keys(out)) assert.ok([...kept, ...mapped, "elsewhere", "companion", "draft"].includes(key), `${key} is new and undocumented`);
 
     for (const key of kept) assert.deepEqual(out[key as keyof PieceFile], src[key as keyof SourcePiece], key);
     for (const key of dropped) assert.deepEqual(src[key as keyof SourcePiece], map.dropped[key as keyof typeof map.dropped], `dropped ${key}`);
@@ -73,7 +75,7 @@ for (const src of pieces) {
     assert.equal(readMinutes(out), geometerReadMinutes(src), "read time");
   });
 
-  test(`${src.slug}: the built page shows every paragraph, item, example line and credit`, { skip: !existsSync(join(root, "dist", `${src.slug}.html`)) && "run npm run build first" }, () => {
+  test(`${src.slug}: the built page shows every paragraph, item, example line and credit`, { skip: (contentOf(src.slug).draft ? "stashed as a draft: no page is built" : false) || (!existsSync(join(root, "dist", `${src.slug}.html`)) && "run npm run build first") }, () => {
     const html = readFileSync(join(root, "dist", `${src.slug}.html`), "utf8");
     const texts = [src.title, src.summary, ...src.sections.flatMap((s) => [s.heading, ...(s.paragraphs ?? []), ...(s.items ?? []), ...(s.after ?? [])])];
     if (src.example) texts.push(src.example.title, src.example.caption, ...src.example.lines.flatMap((l) => [l.text, ...(l.name ? [l.name] : [])]));
