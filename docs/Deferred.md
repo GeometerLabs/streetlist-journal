@@ -15,5 +15,6 @@
   town-owned-ai-service, training-centre-interview-packs and village-tractor-bookings are kept as drafts (`"draft": true`), not
   published. Trigger to bring one back: the owner has rewritten it by hand. Then switch its draft off, point its geometer.dev
   redirect (here, in `redirects.json`, and in public-web's `firebase.json` and `src/data/moved/streetlist-journal.json`) back at its
-  own page, and run the tests. The browser test needs at least one published piece to check a piece page.
+  own page, and run the tests. Until the redirect is pointed back, the old address still opens the front page; the publish
+  check allows that, so switching a draft off in Pages CMS alone never stops the site from publishing. The browser test needs at least one published piece to check a piece page.
 - **Bylines other than Geometer**: the field exists; the owner decides when writers sign their own pieces.
