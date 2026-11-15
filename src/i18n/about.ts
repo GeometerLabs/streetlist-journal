@@ -13,7 +13,7 @@ export const about = {
       heading: "Technology that leaves its value where it is made",
       paragraphs: [
         "A shop, a salon, a tuition centre or a farmers' group can have its own page and its own assistant that answers at any hour. The people who use it live nearby, and so do the people who set it up and look after it.",
-        "We care about where the value goes. The owner keeps their money. The local partner who set things up keeps their margin. A group that shares a tractor, or a price line for its farmers, can own the service it relies on. When we say decentralised, we mean exactly that: run close to home, by people you know.",
+        "We care about where the value goes. The owner keeps their money. The local Operator who set things up keeps their margin. A group that shares a tractor, or a price line for its farmers, can own the service it relies on. When we say decentralised, we mean exactly that: run close to home, by people you know.",
       ],
     },
     {
