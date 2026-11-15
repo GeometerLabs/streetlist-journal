@@ -87,6 +87,26 @@ mascot. No script is involved: the faces are prerendered SVG files of 2 to 8 KB.
 - **Links:** a moved piece links to its new page here; Pricing and the three technical pieces keep their geometer.dev addresses (the
   website job redirects those when the notes move); "Write to support" opens an email to hello@geometer.dev.
 
+### The six pieces are stashed (15 Nov 2026)
+
+The owner decided the six moved pieces read as machine-written and will write the Journal again by hand, one piece at a time, for
+quality. So each file in `content/pieces/en/` now carries `"draft": true` (the Pages CMS "Draft" switch) and nothing else changed:
+the text is kept, and the owner can open any of them in the CMS and switch the draft off to bring it back. By the existing rule in
+`src/content.ts` a draft English piece, and any translation of it, is not built, listed, in the feeds or in the sitemap.
+
+- **The site with no pieces:** the front page, the five section pages, About, the 404, `feed.json` (empty list), `feed.xml` (no
+  items, no `lastBuildDate`, which would need an invented date) and the sitemap all build. The front page gets one plain line under
+  the introduction ("The first pieces are being written. Check back soon.", in all four languages, shown only while the list is
+  empty); the five sections keep their sleeping mascots and the invitation to write to us. No label pages are made.
+- **Old geometer.dev addresses:** `redirects.json` sends all six `/journal/<slug>` addresses to the front page,
+  `https://journal.streetlist.in/`, because the piece pages no longer exist. When a piece is brought back, point its redirect at
+  `https://journal.streetlist.in/<slug>` again (`tests/site.test.ts` asks for exactly that, here and in public-web's copies).
+- **Tests:** the tests that need a published piece (the stashed text's wording, the translation rule, the form-saved shape, the
+  Pages CMS address pattern) read a temporary copy of the content with the drafts switched on, so the stashed words stay checked
+  and a returning piece is already covered. The migration test still compares the words field by field (it allows the new `draft`
+  key) and checks the built page only for a piece that is published. Without a published piece the browser test cannot check a
+  piece page; it was not changed or run (a reader of a piece page needs a published piece).
+
 ## 3. Languages
 
 - English at `/`, Hindi at `/hi/`, Malayalam at `/ml/`, Kannada at `/kn/`. Every interface page exists in all four; a piece exists in

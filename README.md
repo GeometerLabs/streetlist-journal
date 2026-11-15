@@ -2,8 +2,9 @@
 
 **journal.streetlist.in**: *The future, built locally.* Stories and ideas about technology, livelihoods, and people shaping the
 places they call home. A small, fun magazine in Streetlist's look, about villages and small towns that own and run their own
-intelligence, where art, philosophy, civic ideas and technology meet everyday life. It began on 14 Nov 2026 with the six community
-and livelihood pieces that moved here from geometer.dev's Journal, word for word.
+intelligence, where art, philosophy, civic ideas and technology meet everyday life. It began on 14 Nov 2026 with six community
+and livelihood pieces that moved here from geometer.dev's Journal; on 15 Nov 2026 they were stashed as drafts (kept in the
+repository, not published) while the owner writes new pieces by hand, one at a time (docs/Explanation.md, section 2).
 
 > **Before the first push, read [docs/review.md](docs/review.md).** The About page, the front page's introduction and the
 > editorial guidelines are drafts for the owner's review, and the Hindi, Malayalam and Kannada interface words wait for a native
@@ -67,8 +68,8 @@ npm run review-sheet   # rewrites docs/strings-review.md after an interface stri
 | `src/feeds.ts` | RSS, JSON feed, sitemap, robots.txt |
 | `src/styles/site.css`, `src/client/theme.ts` | The one stylesheet; the light/dark switch |
 | `scripts/build.ts`, `scripts/serve.ts` | The build after Vite; the GitHub Pages-like preview |
-| `migration/` | The six pieces as geometer.dev had them, and the map of what changed (addresses and section ids only) |
-| `redirects.json` | geometer.dev/journal/<slug> to journal.streetlist.in/<slug>, for the geometer.dev website |
+| `migration/` | The six stashed pieces as geometer.dev had them, and the map of what changed (addresses and section ids only) |
+| `redirects.json` | geometer.dev/journal/<slug> to journal.streetlist.in/ (the front page, while the six are stashed), for the geometer.dev website |
 | `docs/` | [Explanation](docs/Explanation.md) (design and why), [editorial guidelines](docs/editorial.md), [image prompts](docs/image-prompts.md), [review list](docs/review.md), [strings review sheet](docs/strings-review.md), [Deferred](docs/Deferred.md) |
 
 ## How to write a piece (for the owner)
