@@ -194,17 +194,19 @@ test("the sitemap lists every indexable page and nothing else", () => {
   assert.match(readFileSync(join(dist, "robots.txt"), "utf8"), new RegExp(`Sitemap: ${SITE}/sitemap.xml`));
 });
 
-// A moved piece's old address goes to its page while the piece is published, and to the front page while it is stashed as a draft
-// (a redirect to a page this site does not build would be a dead end). When the owner brings a piece back, this test asks for the
-// redirect to be pointed at the piece again.
-test("redirects.json sends geometer.dev's six moved pieces to pages this site builds: the piece when published, the front page when stashed", () => {
+// A moved piece's old address goes to the front page while the piece is stashed as a draft (a redirect to a page this site does not
+// build would be a dead end). Once the owner brings a piece back, its old address may go to the piece or still to the front page:
+// both are live pages. This check runs in the publish workflow (test:ci), so it must not stop a piece published from Pages CMS just
+// because the redirect has not been pointed back at it yet; pointing it back is a later tidy-up (docs/Deferred.md).
+test("redirects.json sends geometer.dev's six moved pieces to pages this site builds: the front page when stashed, the piece or the front page when published", () => {
   const { redirects } = JSON.parse(readFileSync(join(root, "redirects.json"), "utf8"));
   assert.equal(redirects.length, 6);
   const published = new Set(content.pieces.en.map((p) => p.slug));
   for (const r of redirects) {
     assert.match(r.source, /^\/journal\/[a-z0-9-]+$/);
     const slug = r.source.slice("/journal/".length);
-    assert.equal(r.destination, published.has(slug) ? `${SITE}/${slug}` : `${SITE}/`, slug);
+    const allowed = published.has(slug) ? [`${SITE}/${slug}`, `${SITE}/`] : [`${SITE}/`];
+    assert.ok(allowed.includes(r.destination), `${slug}: ${r.destination} should be one of ${allowed.join(", ")}`);
     assert.equal(r.type, 301);
     assert.ok(pagesBuilt.has(r.destination.replace(SITE, "")), `${r.destination} is not built`);
   }
