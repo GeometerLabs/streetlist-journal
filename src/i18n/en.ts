@@ -29,6 +29,8 @@ export const en = {
     // Draft for the owner's review (docs/review.md): the Journal's techno-social framing in three warm, concrete sentences.
     intro:
       "Villages and small towns can own and run their own intelligence: local services, set up by local people, with the value staying where it is made. Owners keep their money, the partners who set things up keep their margin, and a community can own the services it relies on. This Journal is where art, ideas and technology meet that everyday life.",
+    // Shown under the introduction while no piece is published (the pieces are being rewritten by hand, see docs/Explanation.md).
+    soon: "The first pieces are being written. Check back soon.",
     lead: "Lead story",
     latest: "Latest",
     sections: "Sections",

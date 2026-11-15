@@ -24,6 +24,7 @@ export const hi = {
     latest: "ताज़ा",
     sections: "विभाग",
     more: (section: string) => `${section} में और`,
+    soon: "पहले लेख लिखे जा रहे हैं। जल्द ही फिर देखिए।",
     empty: "यहाँ अभी कुछ नहीं है।",
     write: "इस विभाग के लिए कोई कहानी है? हमें लिखें।",
     aboutTitle: "जर्नल के बारे में",

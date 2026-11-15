@@ -1,35 +1,35 @@
 {
-  "about": "Where geometer.dev's Journal pieces went: the six community and livelihood pieces moved to the Streetlist Journal on 14 Nov 2026. Each entry is a permanent (301) redirect in Firebase Hosting's own shape (source on geometer.dev, destination here), for the geometer.dev website job to copy into its firebase.json. The technical pieces are not here: they move to docs.geometer.dev/notes in another job. tests/site.test.ts checks that every destination is a page this site builds.",
+  "about": "Where geometer.dev's Journal pieces went: the six community and livelihood pieces moved to the Streetlist Journal on 14 Nov 2026. Each entry is a permanent (301) redirect in Firebase Hosting's own shape (source on geometer.dev, destination here), for the geometer.dev website job to copy into its firebase.json. The technical pieces are not here: they move to docs.geometer.dev/notes in another job. While the six pieces are stashed as drafts (15 Nov 2026) every destination is the front page, https://journal.streetlist.in/; a piece brought back gets its own address again. tests/site.test.ts checks that every destination is a page this site builds.",
   "site": "geometer.dev",
   "redirects": [
     {
       "source": "/journal/training-centre-interview-packs",
-      "destination": "https://journal.streetlist.in/training-centre-interview-packs",
+      "destination": "https://journal.streetlist.in/",
       "type": 301
     },
     {
       "source": "/journal/town-owned-ai-service",
-      "destination": "https://journal.streetlist.in/town-owned-ai-service",
+      "destination": "https://journal.streetlist.in/",
       "type": 301
     },
     {
       "source": "/journal/paid-work-around-an-agent",
-      "destination": "https://journal.streetlist.in/paid-work-around-an-agent",
+      "destination": "https://journal.streetlist.in/",
       "type": 301
     },
     {
       "source": "/journal/market-orders-by-voice",
-      "destination": "https://journal.streetlist.in/market-orders-by-voice",
+      "destination": "https://journal.streetlist.in/",
       "type": 301
     },
     {
       "source": "/journal/salon-whatsapp-deposits",
-      "destination": "https://journal.streetlist.in/salon-whatsapp-deposits",
+      "destination": "https://journal.streetlist.in/",
       "type": 301
     },
     {
       "source": "/journal/village-tractor-bookings",
-      "destination": "https://journal.streetlist.in/village-tractor-bookings",
+      "destination": "https://journal.streetlist.in/",
       "type": 301
     }
   ]

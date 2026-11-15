@@ -173,7 +173,7 @@ test("the feeds list every published piece with absolute addresses and pictures 
   }
   const rss = readFileSync(join(dist, "feed.xml"), "utf8");
   assert.match(rss, /^<\?xml version="1.0" encoding="UTF-8"\?>\n<rss version="2.0"/);
-  assert.equal(rss.match(/<item>/g)?.length, content.pieces.en.length);
+  assert.equal(rss.match(/<item>/g)?.length ?? 0, content.pieces.en.length); // 0 while every piece is stashed
   assert.doesNotMatch(rss.replace(/&(amp|lt|gt|quot|#39);/g, ""), /&/, "unescaped & in the RSS");
   for (const m of rss.matchAll(/<enclosure url="([^"]+)" length="(\d+)"/g)) {
     const file = served(m[1].replace(SITE, ""));
@@ -194,12 +194,17 @@ test("the sitemap lists every indexable page and nothing else", () => {
   assert.match(readFileSync(join(dist, "robots.txt"), "utf8"), new RegExp(`Sitemap: ${SITE}/sitemap.xml`));
 });
 
-test("redirects.json sends geometer.dev's six moved pieces to pages this site builds", () => {
+// A moved piece's old address goes to its page while the piece is published, and to the front page while it is stashed as a draft
+// (a redirect to a page this site does not build would be a dead end). When the owner brings a piece back, this test asks for the
+// redirect to be pointed at the piece again.
+test("redirects.json sends geometer.dev's six moved pieces to pages this site builds: the piece when published, the front page when stashed", () => {
   const { redirects } = JSON.parse(readFileSync(join(root, "redirects.json"), "utf8"));
   assert.equal(redirects.length, 6);
+  const published = new Set(content.pieces.en.map((p) => p.slug));
   for (const r of redirects) {
     assert.match(r.source, /^\/journal\/[a-z0-9-]+$/);
-    assert.equal(r.destination, `${SITE}/${r.source.slice("/journal/".length)}`);
+    const slug = r.source.slice("/journal/".length);
+    assert.equal(r.destination, published.has(slug) ? `${SITE}/${slug}` : `${SITE}/`, slug);
     assert.equal(r.type, 301);
     assert.ok(pagesBuilt.has(r.destination.replace(SITE, "")), `${r.destination} is not built`);
   }

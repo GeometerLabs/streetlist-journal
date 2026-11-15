@@ -5,6 +5,7 @@
 //    "_streetlist_journal" (JSON Feed's place for extensions).
 //  - /sitemap.xml: every indexable page with its language versions (hreflang), and /robots.txt pointing at it. Pages in a language
 //    whose interface words wait for review, and the 404, are left out.
+// With no published piece both feeds are valid and empty (no lastBuildDate in the RSS, which would need a made-up date).
 // Dates are written from the content (no build clock), so the files only change when the content does.
 import { interfaceReviewed, LANGS, STRINGS, url, type Lang } from "./i18n/index.ts";
 import { readMinutes, type Piece } from "./content.ts";
@@ -51,7 +52,7 @@ export function rssFeed(ctx: Ctx): string {
 <link>${SITE}/</link>
 <description>${esc(s.site.sub)}</description>
 <language>en-IN</language>
-<lastBuildDate>${rfc822(newest(pieces))}</lastBuildDate>
+${pieces.length ? `<lastBuildDate>${rfc822(newest(pieces))}</lastBuildDate>\n` : ""}
 <atom:link href="${SITE}/feed.xml" rel="self" type="application/rss+xml"/>
 ${items}
 </channel>

@@ -31,6 +31,35 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const dist = join(root, "dist");
 const content = loadContent(root);
 
+/**
+ * The six moved pieces are stashed as drafts (content/pieces/en/*.json has "draft": true), so the real content publishes nothing.
+ * Tests that need a published piece (the wording of the stashed text, the translation rules, the form-saved shape) read a temporary
+ * copy of the content with those drafts switched on, so the stashed words keep being checked and a piece the owner brings back
+ * is already covered. Callers remove the folder.
+ */
+function publishedCopy(): { dir: string; loaded: ReturnType<typeof loadContent> } {
+  const dir = mkdtempSync(join(tmpdir(), "journal-published-"));
+  cpSync(join(root, "content"), join(dir, "content"), { recursive: true });
+  const en = join(dir, "content/pieces/en");
+  for (const name of readdirSync(en)) {
+    const p = JSON.parse(readFileSync(join(en, name), "utf8"));
+    p.draft = false;
+    writeFileSync(join(en, name), JSON.stringify(p));
+  }
+  return { dir, loaded: loadContent(dir) };
+}
+const asPublished = publishedCopy();
+const stashed = asPublished.loaded;
+rmSync(asPublished.dir, { recursive: true, force: true });
+
+test("the six moved pieces are stashed as drafts: nothing is published, and switching the drafts on publishes all six", () => {
+  assert.equal(content.pieces.en.length, 0);
+  assert.equal(stashed.pieces.en.length, 6);
+  for (const name of readdirSync(join(root, "content/pieces/en"))) {
+    assert.equal(JSON.parse(readFileSync(join(root, "content/pieces/en", name), "utf8")).draft, true, name);
+  }
+});
+
 /** Words never used in anything the Journal writes (owner's rules), as whole words; "100%" as written. */
 const BANNED = [
   /\bsafe(ly|ty)?\b/i, /\bguarantee(d|s)?\b/i, /\bproves?\b/i, /\bcertified\b/i, /100\s?%/, /\bearn(s|ed|ing|ings)?\b/i, /\bincome\b/i,
@@ -91,7 +120,9 @@ test("no banned word anywhere a reader can read on the built site, beyond the mo
     for (const a of addresses) assert.equal(a, "hello@geometer.dev", `${file.replace(dist, "")}: ${a}`);
   }
   // The kept sentences really are in the moved pieces (so this list cannot hide a new use).
-  const words = JSON.stringify(content.pieces.en);
+  // The stashed text is read through the published copy, so the words in the drafts are held to the same rules.
+  const words = JSON.stringify(stashed.pieces.en);
+  assert.deepEqual(banned(KEPT_SENTENCES.reduce((t, k) => t.split(k).join(" "), words)), [], "a stashed piece uses a banned word");
   for (const kept of KEPT_SENTENCES) assert.ok(words.includes(kept), kept);
 });
 
@@ -134,7 +165,7 @@ test("the Pages CMS address pattern reserves exactly the site's own names, and a
   const reserved = regex.source.match(/\(\?:([a-z0-9|]+)\)/)![1].split("|");
   assert.deepEqual([...reserved].sort(), [...RESERVED].sort());
   for (const name of RESERVED) assert.ok(!regex.test(name), `${name} is accepted`);
-  for (const p of content.pieces.en) assert.ok(regex.test(p.slug), p.slug);
+  for (const p of stashed.pieces.en) assert.ok(regex.test(p.slug), p.slug);
   assert.ok(!regex.test("Not A Slug"));
 });
 
@@ -166,9 +197,8 @@ test("every key stored in a piece file has a field in the Pages CMS form", () =>
 // ---------- Translations ----------
 /** A copy of the content with one Hindi translation, reviewed or not, read the way the build reads it. */
 function withTranslation(reviewedBy: string) {
-  const dir = mkdtempSync(join(tmpdir(), "journal-test-"));
-  cpSync(join(root, "content"), join(dir, "content"), { recursive: true });
-  const base = content.pieces.en.find((p) => p.slug === "village-tractor-bookings")!;
+  const { dir } = publishedCopy();
+  const base = stashed.pieces.en.find((p) => p.slug === "village-tractor-bookings")!;
   writeFileSync(join(dir, "content/pieces/hi/village-tractor-bookings.json"), JSON.stringify({
     slug: base.slug, reviewedBy, title: "गाँव के ट्रैक्टर की बुकिंग (परीक्षण)", summary: "परीक्षण के लिए एक नमूना अनुवाद, जो प्रकाशित नहीं होता।",
     sections: base.sections.map((s) => ({ heading: `${s.heading} (हि)`, paragraphs: ["नमूना अनुच्छेद।"] })),
@@ -193,8 +223,10 @@ function stubCtx(loaded: ReturnType<typeof loadContent>): Ctx {
 }
 
 test("a piece saved by a form (empty optional groups, empty strings and lists, false flags) renders exactly the same pages", () => {
+  // "Before" is the stashed pieces published as they are stored; "after" is the same pieces as a form would save them.
+  const { dir: plain, loaded: plainContent } = publishedCopy();
   const dir = mkdtempSync(join(tmpdir(), "journal-form-"));
-  cpSync(join(root, "content"), join(dir, "content"), { recursive: true });
+  cpSync(join(plain, "content"), join(dir, "content"), { recursive: true });
   try {
     const en = join(dir, "content/pieces/en");
     for (const name of readdirSync(en)) {
@@ -212,12 +244,14 @@ test("a piece saved by a form (empty optional groups, empty strings and lists, f
       p.corrections ??= [];
       writeFileSync(join(en, name), JSON.stringify(p));
     }
-    const before = pages(stubCtx(loadContent(root)));
+    const before = pages(stubCtx(plainContent));
+    assert.ok(before.some((x) => x.path === "/village-tractor-bookings"), "the pieces are published in this check");
     const after = pages(stubCtx(loadContent(dir)));
     assert.deepEqual(after.map((x) => x.path), before.map((x) => x.path));
     for (const [i, page] of before.entries()) assert.equal(after[i].html, page.html, page.path);
   } finally {
     rmSync(dir, { recursive: true, force: true });
+    rmSync(plain, { recursive: true, force: true });
   }
 });
 
