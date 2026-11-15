@@ -54,19 +54,19 @@ story, describe what it does and how people use it, not who runs it.
 
 - **Plain, warm and concrete.** Say what happens, to whom, in which kind of place. The reader's gain comes first, in a plain
   sentence, not a slogan. Our technology appears only as the means, never as the hero.
-- **Told positively, never preachy.** We show technology that leaves its value where it is made: owners keep their money, partners
+- **Told positively, never preachy.** We show technology that leaves its value where it is made: owners keep their money, Operators
   keep their margin, communities own their services. We do not lecture or campaign.
 - **No claimed results.** Say exactly what each number is and where it comes from. If we have not interviewed anyone, measured
   anything or run anything, the piece says so ("We have not interviewed a salon owner for this piece").
 - **Made-up examples are labelled as made up**, in the note under them, and say what they are not.
-- **Money** is shown as arithmetic only: what a shop pays, what a partner keeps (the "margin"). Never a promise of what someone will
+- **Money** is shown as arithmetic only: what a shop pays, what an Operator keeps (the "margin"). Never a promise of what someone will
   make.
 - **Decentralised** means owned and run locally, by people you know. Never tokens, crypto, DAOs or blockchains.
 - **Words we never use** (the build checks the site's own words): safe, guaranteed, proves, certified, 100%, bot, earn, income, side
   hustle, passive, limited seats, join now, work from home, founder, founding, leaderboard, streak, revolution, fight, against,
   disrupt. Say "community", never "communal". Two pieces that moved from geometer.dev use "against" in its plain sense ("checked
   against the repository"); they keep every word, and new writing avoids it.
-- **People:** partners and builders are adults (18 or older). Children are never identifiable. Real people appear only with their
+- **People:** Operators and builders are adults (18 or older). Children are never identifiable. Real people appear only with their
   consent, and only as they would want to be seen.
 - **Contact** in any piece is hello@geometer.dev only.
 

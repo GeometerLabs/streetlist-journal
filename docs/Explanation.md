@@ -25,7 +25,7 @@ colours carry meaning:
 | Section | Colour | Why |
 | --- | --- | --- |
 | Technology | blue `#3459b8` | screens and painted service boards |
-| Livelihoods | marigold `#e89a06` | the market's garlands; Streetlist's partner colour |
+| Livelihoods | marigold `#e89a06` | the market's garlands; Streetlist's Operator colour |
 | Community and civic life | shutter green `#136650` | the shared street, the commons |
 | Ideas and philosophy | indigo `#5763a8` | evening, when people sit and talk |
 | Art and culture | pink `#c4386f` | festival posters and paint |
@@ -173,3 +173,7 @@ as GitHub Pages sends them, fonts included):
 The budgets in the tests: a page's HTML 24 KB gzipped, the stylesheet 14 KB, the script 1 KB, a phone-sized photo 110 KB, a cover
 40 KB and a face 4 KB gzipped (`tests/site.test.ts`); a whole front page 220 KB and a piece 160 KB, the main picture within 3.5 s
 (`tests/browser/pages.test.ts`). The reading measure on a laptop is 65 characters a line at 18 px (median of the body's full lines).
+
+## 16 Nov 2026 — "partner" is now "Operator" in words people read
+
+The local person who sets up and looks after shops' AI agents is now called an Operator. The home intro (en, kn, ml, and the Hindi line that said "साथी"), the About page, the editorial rules, the strings review, and the six stashed draft pieces (`content/pieces/en/*.json` and `migration/geometer-articles.json`) were changed. The kn and ml words carry the same "needs native review" note as before. Pieces that already said lowercase "operator" for the local role or for the person running a community service were left as they were.

@@ -18,3 +18,8 @@
   own page, and run the tests. Until the redirect is pointed back, the old address still opens the front page; the publish
   check allows that, so switching a draft off in Pages CMS alone never stops the site from publishing. The browser test needs at least one published piece to check a piece page.
 - **Bylines other than Geometer**: the field exists; the owner decides when writers sign their own pieces.
+
+## 16 Nov 2026 — left after the Operator rename
+
+- Lowercase "operator" in the pieces (`market-orders-by-voice`, `paid-work-around-an-agent`, `town-owned-ai-service`, and their copy in `migration/geometer-articles.json`) was already in use for the local role or a community's appointed service runner. Capitalise it, or reword the town-owned piece, when the pieces are next edited by hand.
+- Hindi "साथी" in the cover alt text (`src/i18n/hi.ts` coverAlt) is the ordinary word "companion", not the role; unchanged.
