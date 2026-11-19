@@ -1,0 +1,27 @@
+{
+  "slug": "many-centres",
+  "title": "What if every shop had its own robot?",
+  "summary": "A cook gets her evenings back. A young person on her street gets a chance to build a business. What changes in a town when the people who use AI can own it too?",
+  "author": "Geometer",
+  "published": "2026-11-19",
+  "updated": "2026-11-19",
+  "label": "opinion",
+  "topic": "ideas",
+  "featured": true,
+  "draft": true,
+  "companion": {
+    "look": "clay-1",
+    "mood": "needs"
+  },
+  "sections": [
+    {
+      "heading": "What if she had her own personal robot?",
+      "paragraphs": [
+        "Think of the woman on your street who cooks tiffin meals. By nine at night, she has washed the last pot. Her phone is still going. “Two lunches for tomorrow.” “Can you send mine to the shop?” “Amma is visiting. Make it three.”",
+        "Imagine she had her own personal robot. It lives on her phone. She tells it tomorrow’s menu in her own words. While she sits down to eat, her robot answers customers and takes their orders. In the morning she asks, “How many lunches today?” Her robot gives her the count and reads out who wants what. She puts the rice on.",
+        "It then place orders for her, too. “Ask Ravi for five kilos of onions. I need them by eight.” Her robot places the order with her usual supplier and follows up. When Ravi replies, it tells her, “He can bring them at half past eight. Does that give you enough time?” She keeps chopping. She can also talk to it when she has a doubt about a recipe or an idea for Friday’s lunch.",
+        "Start there. She gets to eat dinner while it’s hot. She knows how much food to buy. A customer who remembers to order at ten can still buy lunch from her. And when that customer comes back next week, they call her number. It’s her kitchen, her order book and her robot."
+      ]
+    }
+  ]
+}
