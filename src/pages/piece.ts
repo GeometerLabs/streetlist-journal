@@ -11,7 +11,7 @@ function sectionHtml(ctx: Ctx, piece: Piece, section: Section, index: number): s
   const mood = piece.moods[index] ?? "well";
   const parts = [
     `<h2>${faceImg(ctx, piece.companion.look, mood, 36, "part-face")}<span>${esc(section.heading)}</span></h2>`,
-    ...(section.paragraphs ?? []).map((t) => `<p>${esc(t)}</p>`),
+    ...(section.paragraphs ?? []).map((t) => `<p>${esc(t).replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>").replace(/\*([^*]+)\*/g, "<em>$1</em>")}</p>`),
   ];
   if (section.items?.length) parts.push(`<ul class="items">${section.items.map((t) => `<li>${esc(t)}</li>`).join("")}</ul>`);
   if (section.timeline?.length) {

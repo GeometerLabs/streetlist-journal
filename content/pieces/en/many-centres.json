@@ -1,0 +1,97 @@
+{
+  "draft": false,
+  "slug": "many-centres",
+  "title": "What if every shop had its own robot?",
+  "summary": "A caterer gets her evenings back. A young person on her street gets a chance to build a business. What changes in a town when the people who use AI can own it too?",
+  "author": "Geometer",
+  "published": "2026-11-19",
+  "updated": "2026-11-19",
+  "label": "opinion",
+  "topic": "ideas",
+  "companion": {
+    "look": "clay-1",
+    "mood": "needs"
+  },
+  "sections": [
+    {
+      "heading": "What if she had her own personal robot?",
+      "paragraphs": [
+        "By nine, the woman who runs the tiffin service has washed the last pot. Then her phone lights up. “Two lunches for tomorrow.” A minute later, the same customer writes again. “Amma is visiting. Make it three.” The caterer dries her hands and opens her order book.",
+        "What if she had her own personal robot? It could live on her phone. Before dinner she tells it what’s on the menu. While she eats, it takes the evening’s orders. In the morning she asks, “How many lunches today?” Her robot gives her the count. She puts the rice on.",
+        "It then places her order for five kilos of onions with Ravi, her usual supplier. When the onions are late, it follows up. “Ravi says half past eight,” it tells her. She has time to grate the carrots. She also has someone to talk recipes with. Would carrot rice travel well in a lunch box? It’s a dish she’s been meaning to try.",
+        "**She gets to eat her dinner while it’s hot.** A customer who remembers to order at ten can still buy tomorrow’s lunch. Next week, when Amma comes again, the family calls the same number. The caterer keeps the order book and the business she has built."
+      ]
+    },
+    {
+      "heading": "A new line of work in town",
+      "paragraphs": [
+        "Every town has people who have a knack for technology. They’re the ones neighbours call when a new phone won’t show the contacts from the old one. Some are young and keen to learn. They’d like to put that knack to work, help the businesses they grew up around and earn a living doing it.",
+        "One of them spends a morning with the caterer. He knows where to send a lunch marked “old bus stand.” He grew up two streets away. What he learns that morning is that she buys vegetables at seven. A lunch count that arrives at eight is an hour too late. He sets up her robot to have the count ready before she leaves for the market.",
+        "**We shall call the person who does this work an Operator.** The Operator and the caterer agree on a fee. She can call him when the menu changes or a delivery goes astray. A few hours a month from one kitchen is a start. The salon down the road needs help with appointments. The cycle repairer keeps stopping mid-repair to answer “Is it ready?” calls. With enough customers, the Operator could build a skilled business in his own town."
+      ]
+    },
+    {
+      "heading": "What one kitchen can do with two others",
+      "paragraphs": [
+        "A school asks for ninety lunches on Friday. The caterer has room for thirty. Two nearby kitchens could make thirty each. Between them they have the stoves and the skill. The hard part is finding out who’s free, agreeing on a price and getting ninety hot lunches to the school by one.",
+        "“Who else could take thirty?” she asks her robot. It checks with the other kitchens’ robots and brings back two offers. The three owners agree on the menu and price. A local driver collects the boxes in one round. The school has one delivery to meet at the gate.",
+        "**The kitchens can share a delivery and reach a bigger customer.** Each earns a share of Friday’s order. The driver earns the delivery fee. The Operator earns his fee for looking after the robots. On Saturday each kitchen is free to choose its next job."
+      ]
+    },
+    {
+      "heading": "A capitalism with more owners",
+      "paragraphs": [
+        "The familiar version of capitalism works like this. One company owns the service through which a hundred caterers find customers. Each caterer earns from the meals she sells. The company can take a share of every order. As more families come to rely on its number, it gets harder for any one caterer to walk away.",
+        "With her own robot the caterer can take orders directly. If she finds a better service, her number and her order book go with her. The Operator has a business of his own, too. **That is the case for a better form of capitalism. More of the people who do the work can own the tools and keep what they earn.**",
+        "India has done something like this with milk. In the cooperatives behind Amul, farmers pooled the milk from their villages. Together they could pay for dairies, transport and a brand that reached buyers far beyond any one village. A family with a few cows gained a much larger market.",
+        "A town could put that idea to work in a hundred different ways. A growers’ cooperative could use its robot to add up the week’s harvest and offer a full load to a buyer in the next district. Independent tailors could share a school uniform order for one term. A potter who prefers to work alone could use her robot to show her own designs to shops further afield. People could choose what to share, with whom and for how long.",
+        "An economy with many such centres of ownership and decision is called *polycentric*. It leaves room for a cooperative that lasts generations, a partnership that lasts until Friday and a woman with a kitchen who likes being her own boss. Come Monday morning, she decides what’s on the menu."
+      ]
+    }
+  ],
+  "example": {
+    "title": "What could I make with these carrots?",
+    "lines": [
+      {
+        "who": "owner",
+        "name": "Caterer",
+        "text": "I’ve got carrots left over. I’d like to try something new for Friday lunch. Any ideas?"
+      },
+      {
+        "who": "helper",
+        "name": "Her robot",
+        "text": "What else have you got in the kitchen?"
+      },
+      {
+        "who": "owner",
+        "name": "Caterer",
+        "text": "Coconut, curd, a few limes. It has to travel well. Some of my customers eat late."
+      },
+      {
+        "who": "helper",
+        "name": "Her robot",
+        "text": "How about carrot rice with coconut and lime? You could cook one small box today and taste it at lunchtime."
+      },
+      {
+        "who": "owner",
+        "name": "Caterer",
+        "text": "I’ll try that. I’ll keep half the coconut back and toast it. Let’s see which version I like."
+      }
+    ],
+    "caption": "An imagined conversation with a caterer. She knows how long her customers carry a lunch box. Her robot helps her think of something worth trying in it."
+  },
+  "featured": true,
+  "image": {
+    "src": "/media/many-centres.jpg",
+    "alt": "A caterer passes a steel lunch carrier into a crate on a cycle cart. Beside her order book, a phone shows a small robot face.",
+    "credit": "Illustration supplied by Geometer for the Streetlist Journal"
+  },
+  "sources": [
+    {
+      "title": "Amul — From cow to consumer",
+      "url": "https://amul.com/files/pdf/6-10-15-Cow-to-consumer.pdf"
+    }
+  ],
+  "related": [],
+  "corrections": []
+}

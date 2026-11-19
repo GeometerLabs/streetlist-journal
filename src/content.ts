@@ -5,7 +5,7 @@
 // (content/pieces/hi/<slug>.json and so on) holds only the words in that language and the name of the native speaker who
 // reviewed them; it shares the English piece's slug, dates, picture and sources. The rules that decide what is published:
 //  - an English piece with "draft": true is not published, nor are its translations;
-//  - a translation is published only when "reviewedBy" is filled; until then it is a draft (built nowhere, listed nowhere);
+//  - a translation is published when reviewed or explicitly released before review; until then it is a draft (built nowhere, listed nowhere);
 //  - anything malformed stops the build with a message naming the file and the field, so a broken piece never goes live
 //    (GitHub Pages keeps the last good version until the next push fixes it).
 // The shape mirrors geometer.dev's articles.json one to one, so the six pieces that moved here are unchanged
@@ -77,6 +77,8 @@ export interface TranslationFile {
   slug: string;
   reviewedBy: string;
   translatedBy?: string;
+  /** The publisher explicitly approved this edition for release before review. */
+  publishBeforeReview?: boolean;
   updated?: string;
   title: string;
   summary: string;
@@ -277,7 +279,7 @@ export function loadContent(root: string): Content {
   const published = english.filter((p) => !p.draft);
   const bySlug = new Map(published.map((p) => [p.slug, p]));
 
-  // Translations: published only once a native speaker has reviewed them.
+  // Translations wait for review unless the publisher explicitly releases that edition.
   const drafts: string[] = [];
   const translations = new Map<string, Map<Lang, TranslationFile>>();
   for (const lang of LANGS.filter((l) => l !== "en")) {
@@ -294,7 +296,7 @@ export function loadContent(root: string): Content {
         drafts.push(`${file} (no published English piece "${t.slug}")`);
         continue;
       }
-      if (typeof t.reviewedBy !== "string" || t.reviewedBy.trim() === "") {
+      if (t.publishBeforeReview !== true && (typeof t.reviewedBy !== "string" || t.reviewedBy.trim() === "")) {
         drafts.push(`${file} (waiting for a reviewer)`);
         continue;
       }
