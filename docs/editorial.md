@@ -83,6 +83,8 @@ story, describe what it does and how people use it, not who runs it.
 
 ## 5. Languages
 
+Write each edition in the natural rhythm of its language. Adapt dialogue and everyday details while preserving the facts and argument. Give every person respectful pronouns, forms of address and matching verbs, including in examples and captions. See the house style in the company docs, `product/journal-editorial-plan.md`, for examples.
+
 - The interface is in English, Hindi, Malayalam and Kannada. A piece is written in one language first.
 - A translation is made by a person and **reviewed by a native speaker**, whose name goes in "Reviewed by". Only then is it
   published; until that field is filled the translation stays a draft and off the site. A machine translation is never published.
