@@ -1,4 +1,5 @@
 // The content checks (`npm test`; the word checks read dist/, so build first):
+//  - which pieces publish: exactly the English files without "draft": true (read from content/pieces/en);
 //  - the wording rules: no banned word in any interface string in any language, in the About page, or anywhere a reader can read on
 //    the built site, except the words of the six moved pieces, which keep every word (two use "against" in its plain sense and one
 //    discusses tokens; they are listed here exactly); only hello@geometer.dev as an address; no artist's name anywhere in the
@@ -32,8 +33,17 @@ const dist = join(root, "dist");
 const content = loadContent(root);
 
 /**
- * The six moved pieces are stashed as drafts (content/pieces/en/*.json has "draft": true), so the real content publishes nothing.
- * Tests that need a published piece (the wording of the stashed text, the translation rules, the form-saved shape) read a temporary
+ * What the English piece files say about themselves: the slugs with "draft": true (the six moved pieces stay stashed this way)
+ * and the slugs without it, which the site publishes. The tests read this from content/pieces/en/*.json, so publishing or
+ * stashing a piece in Pages CMS needs no change here.
+ */
+const enFiles = readdirSync(join(root, "content/pieces/en")).filter((name) => name.endsWith(".json"))
+  .map((name) => JSON.parse(readFileSync(join(root, "content/pieces/en", name), "utf8")) as { slug: string; draft?: boolean });
+const draftSlugs = new Set(enFiles.filter((p) => p.draft === true).map((p) => p.slug));
+const publishedSlugs = enFiles.filter((p) => p.draft !== true).map((p) => p.slug).sort();
+
+/**
+ * Tests that need every piece published (the wording of the stashed text, the translation rules, the form-saved shape) read a temporary
  * copy of the content with those drafts switched on, so the stashed words keep being checked and a piece the owner brings back
  * is already covered. Callers remove the folder.
  */
@@ -52,12 +62,9 @@ const asPublished = publishedCopy();
 const stashed = asPublished.loaded;
 rmSync(asPublished.dir, { recursive: true, force: true });
 
-test("the six moved pieces are stashed as drafts: nothing is published, and switching the drafts on publishes all six", () => {
-  assert.equal(content.pieces.en.length, 0);
-  assert.equal(stashed.pieces.en.length, 6);
-  for (const name of readdirSync(join(root, "content/pieces/en"))) {
-    assert.equal(JSON.parse(readFileSync(join(root, "content/pieces/en", name), "utf8")).draft, true, name);
-  }
+test("the site publishes exactly the English pieces whose files are not drafts, and switching the drafts on publishes every file", () => {
+  assert.deepEqual(content.pieces.en.map((p) => p.slug).sort(), publishedSlugs);
+  assert.equal(stashed.pieces.en.length, enFiles.length);
 });
 
 /** Words never used in anything the Journal writes (owner's rules), as whole words; "100%" as written. */
@@ -120,8 +127,9 @@ test("no banned word anywhere a reader can read on the built site, beyond the mo
     for (const a of addresses) assert.equal(a, "hello@geometer.dev", `${file.replace(dist, "")}: ${a}`);
   }
   // The kept sentences really are in the moved pieces (so this list cannot hide a new use).
-  // The stashed text is read through the published copy, so the words in the drafts are held to the same rules.
-  const words = JSON.stringify(stashed.pieces.en);
+  // The stashed text is read through the published copy, so the words in the drafts are held to the same rules
+  // (published pieces are already checked above, through the built pages).
+  const words = JSON.stringify(stashed.pieces.en.filter((p) => draftSlugs.has(p.slug)));
   assert.deepEqual(banned(KEPT_SENTENCES.reduce((t, k) => t.split(k).join(" "), words)), [], "a stashed piece uses a banned word");
   for (const kept of KEPT_SENTENCES) assert.ok(words.includes(kept), kept);
 });
@@ -159,7 +167,7 @@ test("the Pages CMS choices match the taxonomy and the cast", () => {
   assert.deepEqual(values(field(companion.fields!, "mood")), [...MOODS]);
 });
 
-test("the Pages CMS address pattern reserves exactly the site's own names, and accepts the six slugs", () => {
+test("the Pages CMS address pattern reserves exactly the site's own names, and accepts every piece's slug", () => {
   const slug = field(english.fields, "slug");
   const regex = new RegExp(typeof slug.pattern === "string" ? slug.pattern : slug.pattern!.regex);
   const reserved = regex.source.match(/\(\?:([a-z0-9|]+)\)/)![1].split("|");
@@ -257,7 +265,7 @@ test("a piece saved by a form (empty optional groups, empty strings and lists, f
 
 test("a translation without a reviewer is a draft: no page, no hreflang, no feed entry", () => {
   const { loaded, built, feed } = withTranslation("");
-  assert.equal(loaded.pieces.hi.length, 0);
+  assert.ok(!loaded.pieces.hi.some((p) => p.slug === "village-tractor-bookings"));
   assert.ok(loaded.drafts.some((d) => d.includes("hi/village-tractor-bookings")));
   assert.ok(!built.some((p) => p.path === "/hi/village-tractor-bookings"));
   const en = built.find((p) => p.path === "/village-tractor-bookings")!;
